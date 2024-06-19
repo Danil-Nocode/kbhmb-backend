@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_components_tekstovyj_redaktor",
+  "info": {
+    "displayName": "Текстовый редактор"
+  },
+  "options": {},
+  "attributes": {
+    "description": {
+      "type": "customField",
+      "options": {
+        "preset": "toolbar"
+      },
+      "customField": "plugin::ckeditor5.CKEditor"
+    }
+  }
+}

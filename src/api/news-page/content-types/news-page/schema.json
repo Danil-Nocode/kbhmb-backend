@@ -1,0 +1,36 @@
+{
+  "kind": "singleType",
+  "collectionName": "news_pages",
+  "info": {
+    "singularName": "news-page",
+    "pluralName": "news-pages",
+    "displayName": "Новости Страница",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "bannerTitle": {
+      "type": "string",
+      "required": true
+    },
+    "bannerSubtitle": {
+      "type": "string"
+    },
+    "bannerBtnText": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "kind": "singleType",
+  "collectionName": "vacancies_pages",
+  "info": {
+    "singularName": "vacancies-page",
+    "pluralName": "vacancies-pages",
+    "displayName": "Вакансии Страница",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    }
+  }
+}

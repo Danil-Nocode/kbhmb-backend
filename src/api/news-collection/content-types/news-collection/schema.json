@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "news_collections",
+  "info": {
+    "singularName": "news-collection",
+    "pluralName": "news-collections",
+    "displayName": "Новости",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "description": {
+      "type": "customField",
+      "options": {
+        "preset": "toolbar"
+      },
+      "customField": "plugin::ckeditor5.CKEditor",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "Tag": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tage-news-collection.tage-news-collection",
+      "inversedBy": "News"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    }
+  }
+}

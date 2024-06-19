@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "recommended_products",
+  "info": {
+    "singularName": "recommended-product",
+    "pluralName": "recommended-products",
+    "displayName": "Рекомендованные продукты"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    }
+  }
+}

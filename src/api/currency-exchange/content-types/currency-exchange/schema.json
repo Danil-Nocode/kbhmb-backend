@@ -1,0 +1,43 @@
+{
+  "kind": "singleType",
+  "collectionName": "currencies_exchange",
+  "info": {
+    "singularName": "currency-exchange",
+    "pluralName": "currencies-exchange",
+    "displayName": "Обмен Валют Страница",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "currencies": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::currency.currency"
+    },
+    "precious_metals": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::precious-metal.precious-metal"
+    },
+    "currencyTableDescription": {
+      "type": "string",
+      "required": true
+    },
+    "metalsTableDescription": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

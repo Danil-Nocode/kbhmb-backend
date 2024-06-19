@@ -1,0 +1,24 @@
+{
+  "kind": "singleType",
+  "collectionName": "inter_transfers_swift_pages",
+  "info": {
+    "singularName": "inter-transfers-swift-page",
+    "pluralName": "inter-transfers-swift-pages",
+    "displayName": "Меж. переводы SWIFT Страница"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    }
+  }
+}

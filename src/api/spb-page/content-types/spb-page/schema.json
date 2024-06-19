@@ -1,0 +1,24 @@
+{
+  "kind": "singleType",
+  "collectionName": "spb_pages",
+  "info": {
+    "singularName": "spb-page",
+    "pluralName": "spb-pages",
+    "displayName": "СПБ Страница"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    }
+  }
+}

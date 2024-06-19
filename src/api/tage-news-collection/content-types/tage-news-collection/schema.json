@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tage_news_collections",
+  "info": {
+    "singularName": "tage-news-collection",
+    "pluralName": "tage-news-collections",
+    "displayName": "Новости (Теги)",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "News": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::news-collection.news-collection",
+      "mappedBy": "Tag"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "singleType",
+  "collectionName": "hmb_online_for_business_pages",
+  "info": {
+    "singularName": "hmb-online-for-business-page",
+    "pluralName": "hmb-online-for-business-pages",
+    "displayName": "«ХМБ-онлайн для бизнеса»"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    }
+  }
+}

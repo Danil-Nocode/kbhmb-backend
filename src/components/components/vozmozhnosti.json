@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_test_vozmozhnosti",
+  "info": {
+    "displayName": "Возможности",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    }
+  }
+}

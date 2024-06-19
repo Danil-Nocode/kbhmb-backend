@@ -1,0 +1,61 @@
+{
+  "kind": "collectionType",
+  "collectionName": "currencies",
+  "info": {
+    "singularName": "currency",
+    "pluralName": "currencies",
+    "displayName": "Валюты",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "units": {
+      "type": "integer",
+      "required": true,
+      "min": 0,
+      "default": 1
+    },
+    "purchase": {
+      "type": "float",
+      "required": true,
+      "min": 0,
+      "default": 0
+    },
+    "sale": {
+      "type": "float",
+      "required": true,
+      "min": 0,
+      "default": 0
+    },
+    "centralBank": {
+      "type": "float",
+      "required": true,
+      "min": 0,
+      "default": 0
+    },
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "purchasePrevious": {
+      "type": "float"
+    },
+    "salePrevious": {
+      "type": "float"
+    },
+    "centralBankPrevious": {
+      "type": "float"
+    }
+  }
+}

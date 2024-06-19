@@ -1,0 +1,61 @@
+{
+  "kind": "collectionType",
+  "collectionName": "precious_metals",
+  "info": {
+    "singularName": "precious-metal",
+    "pluralName": "precious-metals",
+    "displayName": "Драг. металлы",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "grams": {
+      "type": "integer",
+      "default": 1,
+      "min": 0,
+      "required": true
+    },
+    "purchase": {
+      "type": "float",
+      "default": 0,
+      "min": 0,
+      "required": true
+    },
+    "sale": {
+      "type": "float",
+      "required": true,
+      "min": 0,
+      "default": 0
+    },
+    "centralBank": {
+      "type": "float",
+      "default": 0,
+      "min": 0,
+      "required": true
+    },
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "purchasePrevious": {
+      "type": "float"
+    },
+    "salePrevious": {
+      "type": "float"
+    },
+    "centralBankPrevious": {
+      "type": "float"
+    }
+  }
+}

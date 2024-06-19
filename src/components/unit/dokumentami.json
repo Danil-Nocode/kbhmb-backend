@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_unit_dokumentami",
+  "info": {
+    "displayName": "Документы",
+    "icon": "archive",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "docs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::document.document"
+    }
+  }
+}

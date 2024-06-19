@@ -1,0 +1,25 @@
+{
+  "kind": "singleType",
+  "collectionName": "mir_pay_pages",
+  "info": {
+    "singularName": "mir-pay-page",
+    "pluralName": "mir-pay-pages",
+    "displayName": "Mir Pay Страница",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    }
+  }
+}
