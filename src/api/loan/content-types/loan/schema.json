@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "loans",
+  "info": {
+    "singularName": "loan",
+    "pluralName": "loans",
+    "displayName": "Кредиты",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    }
+  }
+}

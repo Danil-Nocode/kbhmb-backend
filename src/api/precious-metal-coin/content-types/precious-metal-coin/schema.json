@@ -1,0 +1,67 @@
+{
+  "kind": "collectionType",
+  "collectionName": "precious_metal_coins",
+  "info": {
+    "singularName": "precious-metal-coin",
+    "pluralName": "precious-metal-coins",
+    "displayName": "Монеты",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "weight": {
+      "type": "decimal",
+      "required": true,
+      "default": 0,
+      "min": 0
+    },
+    "currencyType": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::coins-currency-type.coins-currency-type"
+    },
+    "denomination": {
+      "type": "integer",
+      "required": true,
+      "min": 0,
+      "default": 0
+    },
+    "metalType": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::coins-metal-type.coins-metal-type"
+    },
+    "assay": {
+      "type": "integer",
+      "required": true,
+      "default": 0,
+      "min": 0
+    },
+    "countryType": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::coins-country-type.coins-country-type"
+    },
+    "price": {
+      "type": "decimal",
+      "required": true,
+      "min": 0,
+      "default": 0
+    }
+  }
+}

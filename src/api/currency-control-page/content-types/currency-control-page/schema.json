@@ -1,0 +1,24 @@
+{
+  "kind": "singleType",
+  "collectionName": "currency_control_pages",
+  "info": {
+    "singularName": "currency-control-page",
+    "pluralName": "currency-control-pages",
+    "displayName": "Валютный контроль Страница"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    }
+  }
+}

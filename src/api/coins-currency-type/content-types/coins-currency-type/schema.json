@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "coins_currency_types",
+  "info": {
+    "singularName": "coins-currency-type",
+    "pluralName": "coins-currency-types",
+    "displayName": "Монеты (Типы валют)",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_components_malyj_blok",
+  "info": {
+    "displayName": "Малый блок"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "buttonText": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

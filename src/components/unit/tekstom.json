@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_unit_tekstom",
+  "info": {
+    "displayName": "Текст/Таблица",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "customField",
+      "options": {
+        "preset": "toolbar"
+      },
+      "customField": "plugin::ckeditor5.CKEditor"
+    }
+  }
+}

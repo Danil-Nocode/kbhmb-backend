@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "coins_metal_types",
+  "info": {
+    "singularName": "coins-metal-type",
+    "pluralName": "coins-metal-types",
+    "displayName": "Монеты (Типы металлов)",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "billing_calculators",
+  "info": {
+    "singularName": "billing-calculator",
+    "pluralName": "billing-calculators",
+    "displayName": "Калькуляторы"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

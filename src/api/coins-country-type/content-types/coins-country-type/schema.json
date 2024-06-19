@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "coins_country_types",
+  "info": {
+    "singularName": "coins-country-type",
+    "pluralName": "coins-country-types",
+    "displayName": "Монеты (Типы стран)",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

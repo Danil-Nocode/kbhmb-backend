@@ -1,0 +1,24 @@
+{
+  "kind": "singleType",
+  "collectionName": "hmb_online_pages",
+  "info": {
+    "singularName": "hmb-online-page",
+    "pluralName": "hmb-online-pages",
+    "displayName": "Интернет-банк «ХМБ-онлайн» Страница"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    }
+  }
+}

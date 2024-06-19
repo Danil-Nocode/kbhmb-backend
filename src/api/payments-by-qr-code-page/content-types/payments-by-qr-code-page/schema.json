@@ -1,0 +1,24 @@
+{
+  "kind": "singleType",
+  "collectionName": "payments_by_qr_code_pages",
+  "info": {
+    "singularName": "payments-by-qr-code-page",
+    "pluralName": "payments-by-qr-code-pages",
+    "displayName": "Прием платежей по QR-коду Страница"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    }
+  }
+}
