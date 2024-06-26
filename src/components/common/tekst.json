@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_common_tekst",
+  "info": {
+    "displayName": "Текст",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

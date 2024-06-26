@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_header_kredity",
+  "info": {
+    "displayName": "Кредиты"
+  },
+  "options": {},
+  "attributes": {
+    "loans": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::loan.loan"
+    }
+  }
+}

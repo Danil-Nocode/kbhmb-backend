@@ -4,7 +4,8 @@
   "info": {
     "singularName": "payments-by-qr-code-page",
     "pluralName": "payments-by-qr-code-pages",
-    "displayName": "Прием платежей по QR-коду Страница"
+    "displayName": "Прием платежей по QR-коду Страница",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -19,6 +20,79 @@
       "type": "uid",
       "targetField": "title",
       "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "mainImage": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "mainBtnText": {
+      "type": "string",
+      "required": true
+    },
+    "benefits": {
+      "type": "component",
+      "repeatable": true,
+      "component": "components.preimushhestvo-karty",
+      "required": true,
+      "max": 8,
+      "min": 3
+    },
+    "processingMethods1": {
+      "type": "component",
+      "repeatable": false,
+      "component": "components.repetitive-with-title",
+      "required": true
+    },
+    "leftSideBlock": {
+      "type": "component",
+      "repeatable": false,
+      "component": "components.text-image-block",
+      "required": true
+    },
+    "rightSideBlock": {
+      "type": "component",
+      "repeatable": false,
+      "component": "components.text-image-block",
+      "required": true
+    },
+    "processingMethods2": {
+      "type": "component",
+      "repeatable": false,
+      "required": true,
+      "component": "components.repetitive-with-title"
+    },
+    "infoAndDocsTitle": {
+      "type": "string",
+      "required": true
+    },
+    "infoAndDocs": {
+      "type": "dynamiczone",
+      "components": [
+        "unit.dokumentami",
+        "unit.tekstom"
+      ],
+      "required": true,
+      "min": 2,
+      "max": 5
+    },
+    "banner": {
+      "type": "component",
+      "repeatable": false,
+      "component": "components.bolshoj-blok",
+      "required": true
+    },
+    "recommended_products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::recommended-product.recommended-product"
     }
   }
 }

@@ -4,7 +4,8 @@
   "info": {
     "singularName": "inter-transfers-swift-page",
     "pluralName": "inter-transfers-swift-pages",
-    "displayName": "Меж. переводы SWIFT Страница"
+    "displayName": "Меж. переводы SWIFT Страница",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -19,6 +20,64 @@
       "type": "uid",
       "targetField": "title",
       "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "mainImage": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "benefits": {
+      "type": "component",
+      "repeatable": true,
+      "component": "components.preimushhestvo-karty",
+      "required": true,
+      "max": 8,
+      "min": 3
+    },
+    "rightSideBlock": {
+      "displayName": "TextImageBlock",
+      "type": "component",
+      "repeatable": false,
+      "component": "components.text-image-block",
+      "required": true
+    },
+    "leftSideBlock": {
+      "type": "component",
+      "repeatable": false,
+      "component": "components.text-image-block",
+      "required": true
+    },
+    "infoAndDocsTitle": {
+      "type": "string",
+      "required": true
+    },
+    "infoAndDocs": {
+      "type": "dynamiczone",
+      "components": [
+        "unit.dokumentami",
+        "unit.tekstom"
+      ],
+      "required": true,
+      "min": 2,
+      "max": 5
+    },
+    "banner": {
+      "type": "component",
+      "repeatable": false,
+      "component": "components.bolshoj-blok",
+      "required": true
+    },
+    "recommended_products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::recommended-product.recommended-product"
     }
   }
 }

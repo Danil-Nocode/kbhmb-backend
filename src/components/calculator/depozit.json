@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_calculator_depozit",
+  "info": {
+    "displayName": "Депозит",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "deposit": {
+      "displayName": "depositItem",
+      "type": "component",
+      "repeatable": true,
+      "component": "calculator.deposit-item",
+      "min": 1,
+      "required": true
+    }
+  }
+}

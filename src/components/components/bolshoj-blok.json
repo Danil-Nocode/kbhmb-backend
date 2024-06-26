@@ -1,7 +1,8 @@
 {
   "collectionName": "components_components_bolshoj_blok",
   "info": {
-    "displayName": "Большой блок"
+    "displayName": "Большой блок",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -10,12 +11,12 @@
       "required": true
     },
     "image": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "description": {
       "type": "customField",
@@ -26,7 +27,8 @@
       "customField": "plugin::ckeditor5.CKEditor"
     },
     "buttonText": {
-      "type": "string"
+      "type": "string",
+      "required": true
     }
   }
 }

@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_header_punkt_menyu",
+  "info": {
+    "displayName": "Пункт меню"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "group": {
+      "displayName": "Группы меню",
+      "type": "component",
+      "repeatable": true,
+      "component": "header.gruppy-menyu",
+      "required": true,
+      "max": 2,
+      "min": 1
+    }
+  }
+}

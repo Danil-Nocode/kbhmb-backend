@@ -1,17 +1,18 @@
 {
   "collectionName": "components_components_preimushhestvo_karty",
   "info": {
-    "displayName": "Преимущество - Карты"
+    "displayName": "Преимущество",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "icon": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "title": {
       "type": "string"

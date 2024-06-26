@@ -1,0 +1,40 @@
+{
+  "kind": "singleType",
+  "collectionName": "disclosures_pages",
+  "info": {
+    "singularName": "disclosures-page",
+    "pluralName": "disclosures-pages",
+    "displayName": "Раскрытие информации Страница",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "documents_rsa": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::document.document"
+    },
+    "documents_ifrs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::document.document"
+    },
+    "documents_objectives": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::document.document"
+    }
+  }
+}

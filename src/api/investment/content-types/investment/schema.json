@@ -4,7 +4,8 @@
   "info": {
     "singularName": "investment",
     "pluralName": "investments",
-    "displayName": "Вклады"
+    "displayName": "Вклады",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -19,6 +20,95 @@
       "type": "uid",
       "targetField": "title",
       "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "mainBtxText": {
+      "type": "string",
+      "required": true
+    },
+    "mainImage": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "passportBtnText": {
+      "type": "string",
+      "required": true
+    },
+    "document": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::document.document"
+    },
+    "conditions": {
+      "type": "component",
+      "repeatable": true,
+      "component": "components.usloviya",
+      "max": 3,
+      "min": 3,
+      "required": true
+    },
+    "investmentsInfoTitle": {
+      "type": "string",
+      "required": true
+    },
+    "investmentsInfo": {
+      "type": "dynamiczone",
+      "components": [
+        "unit.dokumentami",
+        "unit.tekstom"
+      ],
+      "required": true,
+      "min": 2,
+      "max": 5
+    },
+    "calculator": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::billing-calculator.billing-calculator"
+    },
+    "processingMethods": {
+      "type": "component",
+      "repeatable": false,
+      "component": "components.repetitive-with-title",
+      "required": true
+    },
+    "infoAndDocsTitle": {
+      "type": "string",
+      "required": true
+    },
+    "infoAndDocs": {
+      "type": "dynamiczone",
+      "components": [
+        "unit.dokumentami",
+        "unit.tekstom"
+      ],
+      "required": true,
+      "max": 5,
+      "min": 2
+    },
+    "depositInsurance": {
+      "type": "component",
+      "repeatable": false,
+      "component": "common.title-image",
+      "required": true
+    },
+    "banner": {
+      "type": "component",
+      "repeatable": false,
+      "component": "components.bolshoj-blok",
+      "required": true
+    },
+    "recommended_products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::recommended-product.recommended-product"
     }
   }
 }

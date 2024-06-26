@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_header_gruppy_menyu",
+  "info": {
+    "displayName": "Группы меню"
+  },
+  "options": {},
+  "attributes": {
+    "header_link": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::header-link.header-link"
+    }
+  }
+}

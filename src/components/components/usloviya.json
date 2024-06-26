@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_components_usloviya",
+  "info": {
+    "displayName": "Условия"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

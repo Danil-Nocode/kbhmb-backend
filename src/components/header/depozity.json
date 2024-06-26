@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_header_depozity",
+  "info": {
+    "displayName": "Депозиты"
+  },
+  "options": {},
+  "attributes": {
+    "deposits": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::deposit.deposit"
+    }
+  }
+}

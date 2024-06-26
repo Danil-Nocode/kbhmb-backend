@@ -4,7 +4,8 @@
   "info": {
     "singularName": "account",
     "pluralName": "accounts",
-    "displayName": "Счета"
+    "displayName": "Счета",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -17,7 +18,74 @@
     },
     "slug": {
       "type": "uid",
-      "targetField": "title"
+      "targetField": "title",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "mainImage": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "mainBtnText": {
+      "type": "string",
+      "required": true
+    },
+    "document": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::document.document"
+    },
+    "conditions": {
+      "type": "component",
+      "repeatable": true,
+      "component": "components.usloviya",
+      "max": 3,
+      "min": 3,
+      "required": true
+    },
+    "infoAndDocsTitle": {
+      "type": "string",
+      "required": true
+    },
+    "infoAndDocs": {
+      "type": "dynamiczone",
+      "components": [
+        "unit.dokumentami",
+        "unit.tekstom"
+      ],
+      "required": true,
+      "min": 2,
+      "max": 5
+    },
+    "depositInsurance": {
+      "type": "component",
+      "repeatable": false,
+      "component": "common.title-image",
+      "required": true
+    },
+    "processingMethods": {
+      "type": "component",
+      "repeatable": false,
+      "component": "components.repetitive-with-title",
+      "required": true
+    },
+    "banner": {
+      "type": "component",
+      "repeatable": false,
+      "component": "components.bolshoj-blok",
+      "required": true
+    },
+    "recommended_products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::recommended-product.recommended-product"
     }
   }
 }

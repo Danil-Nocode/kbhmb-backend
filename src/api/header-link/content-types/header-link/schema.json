@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "header_links",
+  "info": {
+    "singularName": "header-link",
+    "pluralName": "header-links",
+    "displayName": "Шапка (Ссылки)",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "allProductsRoute": {
+      "type": "string",
+      "required": true
+    },
+    "allProductTitle": {
+      "type": "string",
+      "required": true
+    },
+    "products": {
+      "type": "dynamiczone",
+      "components": [
+        "header.vklady",
+        "header.kredity",
+        "header.ipoteka",
+        "header.karty",
+        "header.scheta",
+        "header.depozity",
+        "header.staticheskaya-ssylka"
+      ],
+      "required": true,
+      "min": 1
+    }
+  }
+}

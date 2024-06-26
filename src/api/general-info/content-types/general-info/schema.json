@@ -1,0 +1,95 @@
+{
+  "kind": "singleType",
+  "collectionName": "general_infos",
+  "info": {
+    "singularName": "general-info",
+    "pluralName": "general-infos",
+    "displayName": "Общая информация",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "aboutBankTitle": {
+      "type": "string",
+      "required": true
+    },
+    "aboutBankDescription": {
+      "type": "customField",
+      "options": {
+        "preset": "toolbar"
+      },
+      "required": true,
+      "customField": "plugin::ckeditor5.CKEditor"
+    },
+    "credentialsTitle": {
+      "type": "string",
+      "required": true
+    },
+    "credentialsDescription": {
+      "type": "customField",
+      "options": {
+        "preset": "toolbar"
+      },
+      "required": true,
+      "customField": "plugin::ckeditor5.CKEditor"
+    },
+    "licensesTitle": {
+      "type": "string",
+      "required": true
+    },
+    "lcenses": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::license.license"
+    },
+    "ratingsTitle": {
+      "type": "string",
+      "required": true
+    },
+    "ratingsUpdateDate": {
+      "type": "date",
+      "required": true
+    },
+    "ratings": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::rating.rating"
+    },
+    "ratingsDescription": {
+      "type": "customField",
+      "options": {
+        "preset": "toolbar"
+      },
+      "required": true,
+      "customField": "plugin::ckeditor5.CKEditor"
+    },
+    "auditTitle": {
+      "type": "string",
+      "required": true
+    },
+    "auditDateUpdate": {
+      "type": "date",
+      "required": true
+    },
+    "auditDescription": {
+      "type": "customField",
+      "options": {
+        "preset": "toolbar"
+      },
+      "required": true,
+      "customField": "plugin::ckeditor5.CKEditor"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    }
+  }
+}

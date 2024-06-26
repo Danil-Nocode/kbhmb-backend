@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_calculator_ipoteka",
+  "info": {
+    "displayName": "Ипотека",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "mortrage": {
+      "displayName": "mortrageItem",
+      "type": "component",
+      "repeatable": true,
+      "component": "calculator.mortrage-item",
+      "required": true,
+      "min": 1
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_common_title_images",
+  "info": {
+    "displayName": "TitleImage"
+  },
+  "options": {},
+  "attributes": {
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    }
+  }
+}
