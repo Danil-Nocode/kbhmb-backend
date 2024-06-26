@@ -794,13 +794,51 @@ export interface ApiAccountAccount extends Schema.CollectionType {
     singularName: 'account';
     pluralName: 'accounts';
     displayName: '\u0421\u0447\u0435\u0442\u0430';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     title: Attribute.String & Attribute.Required;
-    slug: Attribute.UID<'api::account.account', 'title'>;
+    slug: Attribute.UID<'api::account.account', 'title'> & Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+    mainImage: Attribute.Media<'images'> & Attribute.Required;
+    mainBtnText: Attribute.String & Attribute.Required;
+    document: Attribute.Relation<
+      'api::account.account',
+      'oneToOne',
+      'api::document.document'
+    >;
+    conditions: Attribute.Component<'components.usloviya', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 3;
+          max: 3;
+        },
+        number
+      >;
+    infoAndDocsTitle: Attribute.String & Attribute.Required;
+    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 2;
+          max: 5;
+        },
+        number
+      >;
+    depositInsurance: Attribute.Component<'common.title-image'> &
+      Attribute.Required;
+    processingMethods: Attribute.Component<'components.repetitive-with-title'> &
+      Attribute.Required;
+    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
+    recommended_products: Attribute.Relation<
+      'api::account.account',
+      'oneToMany',
+      'api::recommended-product.recommended-product'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -825,6 +863,7 @@ export interface ApiAccountPageAccountPage extends Schema.SingleType {
     singularName: 'account-page';
     pluralName: 'accounts-page';
     displayName: '\u0421\u0447\u0435\u0442\u0430 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0430';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -832,6 +871,32 @@ export interface ApiAccountPageAccountPage extends Schema.SingleType {
   attributes: {
     title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::account-page.account-page', 'title'> &
+      Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+    mainImage: Attribute.Media<'images'> & Attribute.Required;
+    accounts: Attribute.Relation<
+      'api::account-page.account-page',
+      'oneToMany',
+      'api::account.account'
+    >;
+    processingMethods: Attribute.Component<'components.repetitive-with-title'> &
+      Attribute.Required;
+    InfoAndDocsTitle: Attribute.String & Attribute.Required;
+    InfoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+      Attribute.SetMinMax<
+        {
+          min: 2;
+          max: 5;
+        },
+        number
+      >;
+    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
+    recommended_products: Attribute.Relation<
+      'api::account-page.account-page',
+      'oneToMany',
+      'api::recommended-product.recommended-product'
+    >;
+    depositInsurance: Attribute.Component<'common.title-image'> &
       Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -858,12 +923,29 @@ export interface ApiBillingCalculatorBillingCalculator
     singularName: 'billing-calculator';
     pluralName: 'billing-calculators';
     displayName: '\u041A\u0430\u043B\u044C\u043A\u0443\u043B\u044F\u0442\u043E\u0440\u044B';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     title: Attribute.String & Attribute.Required;
+    item: Attribute.DynamicZone<
+      [
+        'calculator.kredit',
+        'calculator.vklad',
+        'calculator.ipoteka',
+        'calculator.depozit'
+      ]
+    > &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 1;
+          max: 1;
+        },
+        number
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -888,6 +970,7 @@ export interface ApiBiometricsPageBiometricsPage extends Schema.SingleType {
     singularName: 'biometrics-page';
     pluralName: 'biometrics-pages';
     displayName: '\u0411\u0438\u043E\u043C\u0435\u0442\u0440\u0438\u0447\u0435\u0441\u043A\u0438\u0435 \u0434\u0430\u043D\u043D\u044B\u0435 \u0421\u0442\u0440\u0430\u043D\u0438\u0446\u0430';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -896,6 +979,34 @@ export interface ApiBiometricsPageBiometricsPage extends Schema.SingleType {
     title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::biometrics-page.biometrics-page', 'title'> &
       Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+    mainImage: Attribute.Media<'images'> & Attribute.Required;
+    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 3;
+          max: 8;
+        },
+        number
+      >;
+    processingMethods: Attribute.Component<'components.repetitive-with-title'> &
+      Attribute.Required;
+    infoAndDocsTitle: Attribute.String & Attribute.Required;
+    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 2;
+          max: 5;
+        },
+        number
+      >;
+    recommended_products: Attribute.Relation<
+      'api::biometrics-page.biometrics-page',
+      'oneToMany',
+      'api::recommended-product.recommended-product'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -958,6 +1069,7 @@ export interface ApiCardCard extends Schema.CollectionType {
     singularName: 'card';
     pluralName: 'cards';
     displayName: '\u041A\u0430\u0440\u0442\u044B';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -965,6 +1077,44 @@ export interface ApiCardCard extends Schema.CollectionType {
   attributes: {
     title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::card.card', 'title'> & Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+    makeCardBtnText: Attribute.String & Attribute.Required;
+    mainImage: Attribute.Media<'images'> & Attribute.Required;
+    conditions: Attribute.Component<'components.usloviya', true> &
+      Attribute.SetMinMax<
+        {
+          min: 3;
+          max: 3;
+        },
+        number
+      >;
+    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 3;
+          max: 8;
+        },
+        number
+      >;
+    processingMethods: Attribute.Component<'components.repetitive-with-title'> &
+      Attribute.Required;
+    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
+    recommended_products: Attribute.Relation<
+      'api::card.card',
+      'oneToMany',
+      'api::recommended-product.recommended-product'
+    >;
+    InfoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 2;
+          max: 5;
+        },
+        number
+      >;
+    infoAndDocsTitle: Attribute.String & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1033,9 +1183,14 @@ export interface ApiCardPageCardPage extends Schema.SingleType {
         },
         number
       >;
-    AdaptiveUnitTitle: Attribute.String & Attribute.Required;
+    infoAndDocsTitle: Attribute.String & Attribute.Required;
     makeCardBtnText: Attribute.String & Attribute.Required;
     mainImage: Attribute.Media<'images'> & Attribute.Required;
+    recommended_products: Attribute.Relation<
+      'api::card-page.card-page',
+      'oneToMany',
+      'api::recommended-product.recommended-product'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1054,35 +1209,60 @@ export interface ApiCardPageCardPage extends Schema.SingleType {
   };
 }
 
-export interface ApiCashSettlementServicesPageCashSettlementServicesPage
-  extends Schema.SingleType {
-  collectionName: 'cash_settlement_services_pages';
+export interface ApiCashManagementCashManagement extends Schema.SingleType {
+  collectionName: 'cash_managements';
   info: {
-    singularName: 'cash-settlement-services-page';
-    pluralName: 'cash-settlement-services-pages';
-    displayName: '\u0420\u0430\u0441\u0447\u0435\u0442\u043D\u043E-\u043A\u0430\u0441\u0441\u043E\u0432\u043E\u0435  \u043E\u0431\u0441\u043B\u0443\u0436\u0438\u0432\u0430\u043D\u0438\u0435';
+    singularName: 'cash-management';
+    pluralName: 'cash-managements';
+    displayName: '\u0420\u0430\u0441\u0447\u0435\u0442\u043D\u043E-\u043A\u0430\u0441\u0441\u043E\u0432\u043E\u0435 \u043E\u0431\u0441\u043B\u0443\u0436\u0438\u0432\u0430\u043D\u0438\u0435';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     title: Attribute.String & Attribute.Required;
-    slug: Attribute.UID<
-      'api::cash-settlement-services-page.cash-settlement-services-page',
-      'title'
-    > &
+    slug: Attribute.UID<'api::cash-management.cash-management', 'title'>;
+    description: Attribute.Text & Attribute.Required;
+    mainImage: Attribute.Media<'images'> & Attribute.Required;
+    mainBtnText: Attribute.String & Attribute.Required;
+    benefits: Attribute.Component<'components.preimushhestvo-2', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 3;
+          max: 8;
+        },
+        number
+      >;
+    processingMethods: Attribute.Component<'components.repetitive-with-title'> &
       Attribute.Required;
+    infoAndDocsTitle: Attribute.String & Attribute.Required;
+    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 2;
+          max: 5;
+        },
+        number
+      >;
+    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
+    recommended_products: Attribute.Relation<
+      'api::cash-management.cash-management',
+      'oneToMany',
+      'api::recommended-product.recommended-product'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::cash-settlement-services-page.cash-settlement-services-page',
+      'api::cash-management.cash-management',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::cash-settlement-services-page.cash-settlement-services-page',
+      'api::cash-management.cash-management',
       'oneToOne',
       'admin::user'
     > &
@@ -1225,6 +1405,7 @@ export interface ApiCorporateCardsPageCorporateCardsPage
     singularName: 'corporate-cards-page';
     pluralName: 'corporate-cards-pages';
     displayName: '\u041A\u0430\u0440\u0442\u044B \u042E\u041B \u0421\u0442\u0440\u0430\u043D\u0438\u0446\u0430';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1236,6 +1417,36 @@ export interface ApiCorporateCardsPageCorporateCardsPage
       'title'
     > &
       Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+    mainImage: Attribute.Media<'images'> & Attribute.Required;
+    mainBtnText: Attribute.String;
+    cards: Attribute.Relation<
+      'api::corporate-cards-page.corporate-cards-page',
+      'oneToMany',
+      'api::card.card'
+    >;
+    processingMethods: Attribute.Component<'components.repetitive-with-title'> &
+      Attribute.Required;
+    infoAndDocsTitle: Attribute.String & Attribute.Required;
+    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 2;
+          max: 5;
+        },
+        number
+      >;
+    additionalUnit1: Attribute.Component<'components.malyj-blok'> &
+      Attribute.Required;
+    additionalUnit2: Attribute.Component<'components.malyj-blok'> &
+      Attribute.Required;
+    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
+    recommended_products: Attribute.Relation<
+      'api::corporate-cards-page.corporate-cards-page',
+      'oneToMany',
+      'api::recommended-product.recommended-product'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1332,6 +1543,7 @@ export interface ApiCurrencyControlPageCurrencyControlPage
     singularName: 'currency-control-page';
     pluralName: 'currency-control-pages';
     displayName: '\u0412\u0430\u043B\u044E\u0442\u043D\u044B\u0439 \u043A\u043E\u043D\u0442\u0440\u043E\u043B\u044C \u0421\u0442\u0440\u0430\u043D\u0438\u0446\u0430';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1343,6 +1555,30 @@ export interface ApiCurrencyControlPageCurrencyControlPage
       'title'
     > &
       Attribute.Required;
+    description: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
+    infoAndDocsTitle: Attribute.String & Attribute.Required;
+    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 2;
+          max: 5;
+        },
+        number
+      >;
+    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
+    recommended_products: Attribute.Relation<
+      'api::currency-control-page.currency-control-page',
+      'oneToMany',
+      'api::recommended-product.recommended-product'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1412,6 +1648,7 @@ export interface ApiDepositDeposit extends Schema.CollectionType {
     singularName: 'deposit';
     pluralName: 'deposits';
     displayName: '\u0414\u0435\u043F\u043E\u0437\u0438\u0442\u044B';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1419,6 +1656,62 @@ export interface ApiDepositDeposit extends Schema.CollectionType {
   attributes: {
     title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::deposit.deposit', 'title'> & Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+    mainImage: Attribute.Media<'images'> & Attribute.Required;
+    mainBtnText: Attribute.String & Attribute.Required;
+    conditions: Attribute.Component<'components.usloviya', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 3;
+          max: 3;
+        },
+        number
+      >;
+    benefits: Attribute.Component<'components.preimushhestvo-2', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 3;
+          max: 8;
+        },
+        number
+      >;
+    depositRatesTitle: Attribute.String & Attribute.Required;
+    depositRatesBlock: Attribute.DynamicZone<
+      ['unit.dokumentami', 'unit.tekstom']
+    > &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 2;
+          max: 5;
+        },
+        number
+      >;
+    calculator: Attribute.Relation<
+      'api::deposit.deposit',
+      'oneToOne',
+      'api::billing-calculator.billing-calculator'
+    >;
+    processingMethods: Attribute.Component<'components.repetitive-with-title'> &
+      Attribute.Required;
+    infoAndDocsTitle: Attribute.String & Attribute.Required;
+    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 2;
+          max: 5;
+        },
+        number
+      >;
+    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
+    recommended_products: Attribute.Relation<
+      'api::deposit.deposit',
+      'oneToMany',
+      'api::recommended-product.recommended-product'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1443,6 +1736,7 @@ export interface ApiDepositsPageDepositsPage extends Schema.SingleType {
     singularName: 'deposits-page';
     pluralName: 'deposits-pages';
     displayName: '\u0414\u0435\u043F\u043E\u0437\u0438\u0442\u044B \u0421\u0442\u0440\u0430\u043D\u0438\u0446\u0430';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1451,6 +1745,46 @@ export interface ApiDepositsPageDepositsPage extends Schema.SingleType {
     title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::deposits-page.deposits-page', 'title'> &
       Attribute.Required;
+    description: Attribute.String & Attribute.Required;
+    mainImage: Attribute.Media<'images', true> & Attribute.Required;
+    mainBtnText: Attribute.String & Attribute.Required;
+    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 3;
+          max: 8;
+        },
+        number
+      >;
+    deposits: Attribute.Relation<
+      'api::deposits-page.deposits-page',
+      'oneToMany',
+      'api::deposit.deposit'
+    >;
+    calculator: Attribute.Relation<
+      'api::deposits-page.deposits-page',
+      'oneToOne',
+      'api::billing-calculator.billing-calculator'
+    >;
+    processingMethods: Attribute.Component<'components.repetitive-with-title'> &
+      Attribute.Required;
+    infoAndDocsTitle: Attribute.String & Attribute.Required;
+    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 2;
+          max: 5;
+        },
+        number
+      >;
+    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
+    recommended_products: Attribute.Relation<
+      'api::deposits-page.deposits-page',
+      'oneToMany',
+      'api::recommended-product.recommended-product'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1469,12 +1803,61 @@ export interface ApiDepositsPageDepositsPage extends Schema.SingleType {
   };
 }
 
+export interface ApiDisclosuresPageDisclosuresPage extends Schema.SingleType {
+  collectionName: 'disclosures_pages';
+  info: {
+    singularName: 'disclosures-page';
+    pluralName: 'disclosures-pages';
+    displayName: '\u0420\u0430\u0441\u043A\u0440\u044B\u0442\u0438\u0435 \u0438\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u0438 \u0421\u0442\u0440\u0430\u043D\u0438\u0446\u0430';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    slug: Attribute.UID<'api::disclosures-page.disclosures-page', 'title'> &
+      Attribute.Required;
+    documents_rsa: Attribute.Relation<
+      'api::disclosures-page.disclosures-page',
+      'oneToMany',
+      'api::document.document'
+    >;
+    documents_ifrs: Attribute.Relation<
+      'api::disclosures-page.disclosures-page',
+      'oneToMany',
+      'api::document.document'
+    >;
+    documents_objectives: Attribute.Relation<
+      'api::disclosures-page.disclosures-page',
+      'oneToMany',
+      'api::document.document'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::disclosures-page.disclosures-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::disclosures-page.disclosures-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiDocumentDocument extends Schema.CollectionType {
   collectionName: 'documents';
   info: {
     singularName: 'document';
     pluralName: 'documents';
     displayName: '\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1482,6 +1865,7 @@ export interface ApiDocumentDocument extends Schema.CollectionType {
   attributes: {
     title: Attribute.String & Attribute.Required;
     document: Attribute.Media<'files'> & Attribute.Required;
+    datePosted: Attribute.Date;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1506,6 +1890,7 @@ export interface ApiEncashmentPageEncashmentPage extends Schema.SingleType {
     singularName: 'encashment-page';
     pluralName: 'encashment-pages';
     displayName: '\u0418\u043D\u043A\u0430\u0441\u0441\u0430\u0446\u0438\u044F \u0421\u0442\u0440\u0430\u043D\u0438\u0446\u0430';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1514,6 +1899,36 @@ export interface ApiEncashmentPageEncashmentPage extends Schema.SingleType {
     title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::encashment-page.encashment-page', 'title'> &
       Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+    mainImage: Attribute.Media<'images'> & Attribute.Required;
+    mainBtnText: Attribute.String & Attribute.Required;
+    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 3;
+          max: 8;
+        },
+        number
+      >;
+    processingMethods: Attribute.Component<'components.repetitive-with-title'> &
+      Attribute.Required;
+    infoAndDocsTitle: Attribute.String & Attribute.Required;
+    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 2;
+          max: 5;
+        },
+        number
+      >;
+    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
+    recommended_products: Attribute.Relation<
+      'api::encashment-page.encashment-page',
+      'oneToMany',
+      'api::recommended-product.recommended-product'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1532,12 +1947,202 @@ export interface ApiEncashmentPageEncashmentPage extends Schema.SingleType {
   };
 }
 
+export interface ApiFinancialSecurityPageFinancialSecurityPage
+  extends Schema.SingleType {
+  collectionName: 'financial_security_pages';
+  info: {
+    singularName: 'financial-security-page';
+    pluralName: 'financial-security-pages';
+    displayName: '\u0424\u0438\u043D\u0430\u043D\u0441\u043E\u0432\u0430\u044F \u0431\u0435\u0437\u043E\u043F\u0430\u0441\u043D\u043E\u0441\u0442\u044C \u0421\u0442\u0440\u0430\u043D\u0438\u0446\u0430';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    description: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
+    slug: Attribute.UID<
+      'api::financial-security-page.financial-security-page',
+      'title'
+    > &
+      Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::financial-security-page.financial-security-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::financial-security-page.financial-security-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiFooterLinkFooterLink extends Schema.CollectionType {
+  collectionName: 'footer_links';
+  info: {
+    singularName: 'footer-link';
+    pluralName: 'footer-links';
+    displayName: '\u041F\u043E\u0434\u0432\u0430\u043B (\u0421\u0441\u044B\u043B\u043A\u0438)';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    route: Attribute.String & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::footer-link.footer-link',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::footer-link.footer-link',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiGeneralInfoGeneralInfo extends Schema.SingleType {
+  collectionName: 'general_infos';
+  info: {
+    singularName: 'general-info';
+    pluralName: 'general-infos';
+    displayName: '\u041E\u0431\u0449\u0430\u044F \u0438\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u044F';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    aboutBankTitle: Attribute.String & Attribute.Required;
+    aboutBankDescription: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
+    credentialsTitle: Attribute.String & Attribute.Required;
+    credentialsDescription: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
+    licensesTitle: Attribute.String & Attribute.Required;
+    lcenses: Attribute.Relation<
+      'api::general-info.general-info',
+      'oneToMany',
+      'api::license.license'
+    >;
+    ratingsTitle: Attribute.String & Attribute.Required;
+    ratingsUpdateDate: Attribute.Date & Attribute.Required;
+    ratings: Attribute.Relation<
+      'api::general-info.general-info',
+      'oneToMany',
+      'api::rating.rating'
+    >;
+    ratingsDescription: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
+    auditTitle: Attribute.String & Attribute.Required;
+    auditDateUpdate: Attribute.Date & Attribute.Required;
+    auditDescription: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
+    slug: Attribute.UID<'api::general-info.general-info', 'title'> &
+      Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::general-info.general-info',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::general-info.general-info',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiGlobalGlobal extends Schema.SingleType {
+  collectionName: 'globals';
+  info: {
+    singularName: 'global';
+    pluralName: 'globals';
+    displayName: '\u0428\u0430\u043F\u043A\u0430/\u041F\u043E\u0434\u0432\u0430\u043B';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    footer: Attribute.Component<'components.footer'> & Attribute.Required;
+    header: Attribute.Component<'components.header'> & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::global.global',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::global.global',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiGoldenCrownPageGoldenCrownPage extends Schema.SingleType {
   collectionName: 'golden_crown_pages';
   info: {
     singularName: 'golden-crown-page';
     pluralName: 'golden-crown-pages';
     displayName: '\u0417\u043E\u043B\u043E\u0442\u0430\u044F \u043A\u043E\u0440\u043E\u043D\u0430';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1546,6 +2151,38 @@ export interface ApiGoldenCrownPageGoldenCrownPage extends Schema.SingleType {
     title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::golden-crown-page.golden-crown-page', 'title'> &
       Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+    benefits: Attribute.Component<'components.preimushhestvo-2', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 3;
+          max: 8;
+        },
+        number
+      >;
+    processingSendMethods: Attribute.Component<'components.repetitive-with-title'> &
+      Attribute.Required;
+    processingReceiveMethods: Attribute.Component<'components.repetitive-with-title'> &
+      Attribute.Required;
+    infoAndDocsTitle: Attribute.String & Attribute.Required;
+    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 2;
+          max: 5;
+        },
+        number
+      >;
+    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
+    recommended_products: Attribute.Relation<
+      'api::golden-crown-page.golden-crown-page',
+      'oneToMany',
+      'api::recommended-product.recommended-product'
+    >;
+    mainBtnText: Attribute.String & Attribute.Required;
+    mainImage: Attribute.Media<'images'> & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1571,6 +2208,7 @@ export interface ApiHeadOfficeContactsPageHeadOfficeContactsPage
     singularName: 'head-office-contacts-page';
     pluralName: 'head-office-contacts-pages';
     displayName: '\u041A\u043E\u043D\u0442\u0430\u043A\u0442\u044B \u0433\u043E\u043B\u043E\u0432\u043D\u043E\u0433\u043E \u043E\u0444\u0438\u0441\u0430 \u0421\u0442\u0440\u0430\u043D\u0438\u0446\u0430';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1582,6 +2220,15 @@ export interface ApiHeadOfficeContactsPageHeadOfficeContactsPage
       'title'
     > &
       Attribute.Required;
+    address: Attribute.String & Attribute.Required;
+    description: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1600,13 +2247,65 @@ export interface ApiHeadOfficeContactsPageHeadOfficeContactsPage
   };
 }
 
-export interface ApiHmbOnlineForBusinessPageHmbOnlineForBusinessPage
-  extends Schema.SingleType {
-  collectionName: 'hmb_online_for_business_pages';
+export interface ApiHeaderLinkHeaderLink extends Schema.CollectionType {
+  collectionName: 'header_links';
   info: {
-    singularName: 'hmb-online-for-business-page';
-    pluralName: 'hmb-online-for-business-pages';
-    displayName: '\u00AB\u0425\u041C\u0411-\u043E\u043D\u043B\u0430\u0439\u043D \u0434\u043B\u044F \u0431\u0438\u0437\u043D\u0435\u0441\u0430\u00BB';
+    singularName: 'header-link';
+    pluralName: 'header-links';
+    displayName: '\u0428\u0430\u043F\u043A\u0430 (\u0421\u0441\u044B\u043B\u043A\u0438)';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    allProductsRoute: Attribute.String & Attribute.Required;
+    allProductTitle: Attribute.String & Attribute.Required;
+    products: Attribute.DynamicZone<
+      [
+        'header.vklady',
+        'header.kredity',
+        'header.ipoteka',
+        'header.karty',
+        'header.scheta',
+        'header.depozity',
+        'header.staticheskaya-ssylka'
+      ]
+    > &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 1;
+        },
+        number
+      >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::header-link.header-link',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::header-link.header-link',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiHmbOnlineBusinessPageHmbOnlineBusinessPage
+  extends Schema.SingleType {
+  collectionName: 'hmb_online_business_pages';
+  info: {
+    singularName: 'hmb-online-business-page';
+    pluralName: 'hmb-online-business-pages';
+    displayName: '\u0425\u041C\u0411-\u043E\u043D\u043B\u0430\u0439\u043D \u042E\u041B \u0421\u0442\u0440\u0430\u043D\u0438\u0446\u0430';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1614,21 +2313,54 @@ export interface ApiHmbOnlineForBusinessPageHmbOnlineForBusinessPage
   attributes: {
     title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<
-      'api::hmb-online-for-business-page.hmb-online-for-business-page',
+      'api::hmb-online-business-page.hmb-online-business-page',
       'title'
     > &
       Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+    mainImage: Attribute.Media<'images'> & Attribute.Required;
+    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 3;
+          max: 8;
+        },
+        number
+      >;
+    CapabilitiesBlock1: Attribute.Component<'common.text-description'> &
+      Attribute.Required;
+    CapabilitiesBlock2: Attribute.Component<'common.text-description'> &
+      Attribute.Required;
+    CapabilitiesBlock3: Attribute.Component<'common.text-description'> &
+      Attribute.Required;
+    infoAndDocsTitle: Attribute.String & Attribute.Required;
+    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 2;
+          max: 5;
+        },
+        number
+      >;
+    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
+    recommended_products: Attribute.Relation<
+      'api::hmb-online-business-page.hmb-online-business-page',
+      'oneToMany',
+      'api::recommended-product.recommended-product'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::hmb-online-for-business-page.hmb-online-for-business-page',
+      'api::hmb-online-business-page.hmb-online-business-page',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::hmb-online-for-business-page.hmb-online-for-business-page',
+      'api::hmb-online-business-page.hmb-online-business-page',
       'oneToOne',
       'admin::user'
     > &
@@ -1641,7 +2373,8 @@ export interface ApiHmbOnlinePageHmbOnlinePage extends Schema.SingleType {
   info: {
     singularName: 'hmb-online-page';
     pluralName: 'hmb-online-pages';
-    displayName: '\u0418\u043D\u0442\u0435\u0440\u043D\u0435\u0442-\u0431\u0430\u043D\u043A \u00AB\u0425\u041C\u0411-\u043E\u043D\u043B\u0430\u0439\u043D\u00BB \u0421\u0442\u0440\u0430\u043D\u0438\u0446\u0430';
+    displayName: '\u0425\u041C\u0411-\u043E\u043D\u043B\u0430\u0439\u043D \u0424\u041B \u0421\u0442\u0440\u0430\u043D\u0438\u0446\u0430';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1650,6 +2383,41 @@ export interface ApiHmbOnlinePageHmbOnlinePage extends Schema.SingleType {
     title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::hmb-online-page.hmb-online-page', 'title'> &
       Attribute.Required;
+    description: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
+    mainImage: Attribute.Media<'images'> & Attribute.Required;
+    benefits: Attribute.Component<'components.preimushhestvo-2', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 3;
+          max: 8;
+        },
+        number
+      >;
+    processingMethods: Attribute.Component<'components.repetitive-with-title'> &
+      Attribute.Required;
+    infoAndDocsTitle: Attribute.String & Attribute.Required;
+    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 2;
+          max: 5;
+        },
+        number
+      >;
+    recommended_products: Attribute.Relation<
+      'api::hmb-online-page.hmb-online-page',
+      'oneToMany',
+      'api::recommended-product.recommended-product'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1674,6 +2442,7 @@ export interface ApiHmbSquarePageHmbSquarePage extends Schema.SingleType {
     singularName: 'hmb-square-page';
     pluralName: 'hmb-squares-page';
     displayName: '\u0425\u041C\u0411-\u043A\u0432\u0430\u0440\u0442\u043F\u043B\u0430\u0442\u0430 \u0421\u0442\u0440\u0430\u043D\u0438\u0446\u0430';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1682,6 +2451,36 @@ export interface ApiHmbSquarePageHmbSquarePage extends Schema.SingleType {
     title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::hmb-square-page.hmb-square-page', 'title'> &
       Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+    mainBtnText: Attribute.String & Attribute.Required;
+    mainImage: Attribute.Media<'images'> & Attribute.Required;
+    benefits: Attribute.Component<'components.preimushhestvo-2', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 3;
+          max: 8;
+        },
+        number
+      >;
+    processingMethods: Attribute.Component<'components.repetitive-with-title'> &
+      Attribute.Required;
+    infoAndDocsTitle: Attribute.String & Attribute.Required;
+    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 2;
+          max: 5;
+        },
+        number
+      >;
+    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
+    recommended_products: Attribute.Relation<
+      'api::hmb-square-page.hmb-square-page',
+      'oneToMany',
+      'api::recommended-product.recommended-product'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1706,6 +2505,7 @@ export interface ApiIbankPageIbankPage extends Schema.SingleType {
     singularName: 'ibank-page';
     pluralName: 'ibank-pages';
     displayName: '\u00AB\u041A\u043B\u0438\u0435\u043D\u0442-\u0411\u0430\u043D\u043A\u00BB (IBank) \u0421\u0442\u0440\u0430\u043D\u0438\u0446\u0430';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1714,6 +2514,43 @@ export interface ApiIbankPageIbankPage extends Schema.SingleType {
     title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::ibank-page.ibank-page', 'title'> &
       Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+    mainImage: Attribute.Media<'images'> & Attribute.Required;
+    mainBtnText: Attribute.String & Attribute.Required;
+    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 3;
+          max: 8;
+        },
+        number
+      >;
+    CapabilitiesBlock1: Attribute.Component<'common.text-description'> &
+      Attribute.Required;
+    CapabilitiesBlock2: Attribute.Component<'common.text-description'> &
+      Attribute.Required;
+    CapabilitiesBlock3: Attribute.Component<'common.text-description'> &
+      Attribute.Required;
+    CapabilitiesBlock4: Attribute.Component<'common.text-description'> &
+      Attribute.Required;
+    CapabilitiesBlock5: Attribute.Component<'common.text-description'> &
+      Attribute.Required;
+    infoAndDocsTitle: Attribute.String & Attribute.Required;
+    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 2;
+          max: 5;
+        },
+        number
+      >;
+    recommended_products: Attribute.Relation<
+      'api::ibank-page.ibank-page',
+      'oneToMany',
+      'api::recommended-product.recommended-product'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1739,6 +2576,7 @@ export interface ApiInterTransfersSwiftPageInterTransfersSwiftPage
     singularName: 'inter-transfers-swift-page';
     pluralName: 'inter-transfers-swift-pages';
     displayName: '\u041C\u0435\u0436. \u043F\u0435\u0440\u0435\u0432\u043E\u0434\u044B SWIFT \u0421\u0442\u0440\u0430\u043D\u0438\u0446\u0430';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1750,6 +2588,37 @@ export interface ApiInterTransfersSwiftPageInterTransfersSwiftPage
       'title'
     > &
       Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+    mainImage: Attribute.Media<'images'> & Attribute.Required;
+    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 3;
+          max: 8;
+        },
+        number
+      >;
+    rightSideBlock: Attribute.Component<'components.text-image-block'> &
+      Attribute.Required;
+    leftSideBlock: Attribute.Component<'components.text-image-block'> &
+      Attribute.Required;
+    infoAndDocsTitle: Attribute.String & Attribute.Required;
+    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 2;
+          max: 5;
+        },
+        number
+      >;
+    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
+    recommended_products: Attribute.Relation<
+      'api::inter-transfers-swift-page.inter-transfers-swift-page',
+      'oneToMany',
+      'api::recommended-product.recommended-product'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1774,6 +2643,7 @@ export interface ApiInvestmentInvestment extends Schema.CollectionType {
     singularName: 'investment';
     pluralName: 'investments';
     displayName: '\u0412\u043A\u043B\u0430\u0434\u044B';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1782,6 +2652,61 @@ export interface ApiInvestmentInvestment extends Schema.CollectionType {
     title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::investment.investment', 'title'> &
       Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+    mainBtxText: Attribute.String & Attribute.Required;
+    mainImage: Attribute.Media<'images'> & Attribute.Required;
+    passportBtnText: Attribute.String & Attribute.Required;
+    document: Attribute.Relation<
+      'api::investment.investment',
+      'oneToOne',
+      'api::document.document'
+    >;
+    conditions: Attribute.Component<'components.usloviya', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 3;
+          max: 3;
+        },
+        number
+      >;
+    investmentsInfoTitle: Attribute.String & Attribute.Required;
+    investmentsInfo: Attribute.DynamicZone<
+      ['unit.dokumentami', 'unit.tekstom']
+    > &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 2;
+          max: 5;
+        },
+        number
+      >;
+    calculator: Attribute.Relation<
+      'api::investment.investment',
+      'oneToOne',
+      'api::billing-calculator.billing-calculator'
+    >;
+    processingMethods: Attribute.Component<'components.repetitive-with-title'> &
+      Attribute.Required;
+    infoAndDocsTitle: Attribute.String & Attribute.Required;
+    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 2;
+          max: 5;
+        },
+        number
+      >;
+    depositInsurance: Attribute.Component<'common.title-image'> &
+      Attribute.Required;
+    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
+    recommended_products: Attribute.Relation<
+      'api::investment.investment',
+      'oneToMany',
+      'api::recommended-product.recommended-product'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1806,6 +2731,7 @@ export interface ApiInvestmentsPageInvestmentsPage extends Schema.SingleType {
     singularName: 'investments-page';
     pluralName: 'investments-pages';
     displayName: '\u0412\u043A\u043B\u0430\u0434\u044B \u0421\u0442\u0440\u0430\u043D\u0438\u0446\u0430';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1814,6 +2740,38 @@ export interface ApiInvestmentsPageInvestmentsPage extends Schema.SingleType {
     title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::investments-page.investments-page', 'title'> &
       Attribute.Required;
+    description: Attribute.String & Attribute.Required;
+    mainImage: Attribute.Media<'images'> & Attribute.Required;
+    mainBtnText: Attribute.String & Attribute.Required;
+    investments: Attribute.Relation<
+      'api::investments-page.investments-page',
+      'oneToMany',
+      'api::investment.investment'
+    >;
+    calculator: Attribute.Relation<
+      'api::investments-page.investments-page',
+      'oneToOne',
+      'api::billing-calculator.billing-calculator'
+    >;
+    processingMethods: Attribute.Component<'components.repetitive-with-title'> &
+      Attribute.Required;
+    infoAndDocsTitle: Attribute.String & Attribute.Required;
+    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+      Attribute.SetMinMax<
+        {
+          min: 2;
+          max: 5;
+        },
+        number
+      >;
+    depositInsurance: Attribute.Component<'common.title-image'> &
+      Attribute.Required;
+    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
+    recommended_products: Attribute.Relation<
+      'api::investments-page.investments-page',
+      'oneToMany',
+      'api::recommended-product.recommended-product'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1825,6 +2783,37 @@ export interface ApiInvestmentsPageInvestmentsPage extends Schema.SingleType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::investments-page.investments-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiLicenseLicense extends Schema.CollectionType {
+  collectionName: 'licenses';
+  info: {
+    singularName: 'license';
+    pluralName: 'licenses';
+    displayName: '\u041B\u0438\u0446\u0435\u043D\u0437\u0438\u0438';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    image: Attribute.Media<'images'> & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::license.license',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::license.license',
       'oneToOne',
       'admin::user'
     > &
@@ -1846,6 +2835,50 @@ export interface ApiLoanLoan extends Schema.CollectionType {
   attributes: {
     title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::loan.loan', 'title'> & Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+    mainImage: Attribute.Media<'images'> & Attribute.Required;
+    mainBtnText: Attribute.String & Attribute.Required;
+    conditions: Attribute.Component<'components.usloviya', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 3;
+          max: 3;
+        },
+        number
+      >;
+    benefits: Attribute.Component<'components.preimushhestvo-2', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 3;
+          max: 8;
+        },
+        number
+      >;
+    calculator: Attribute.Relation<
+      'api::loan.loan',
+      'oneToOne',
+      'api::billing-calculator.billing-calculator'
+    >;
+    processingMethods: Attribute.Component<'components.repetitive-with-title'> &
+      Attribute.Required;
+    infoAndDocsTitle: Attribute.String & Attribute.Required;
+    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 2;
+          max: 5;
+        },
+        number
+      >;
+    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
+    recommended_products: Attribute.Relation<
+      'api::loan.loan',
+      'oneToMany',
+      'api::recommended-product.recommended-product'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1863,6 +2896,7 @@ export interface ApiLoansCorporatePageLoansCorporatePage
     singularName: 'loans-corporate-page';
     pluralName: 'loans-corporate-pages';
     displayName: '\u041A\u0440\u0435\u0434\u0438\u0442\u044B \u042E\u041B \u0421\u0442\u0440\u0430\u043D\u0438\u0446\u0430';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1874,6 +2908,41 @@ export interface ApiLoansCorporatePageLoansCorporatePage
       'title'
     > &
       Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+    mainImage: Attribute.Media<'images'> & Attribute.Required;
+    mainBtnText: Attribute.String & Attribute.Required;
+    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 3;
+          max: 8;
+        },
+        number
+      >;
+    loans: Attribute.Relation<
+      'api::loans-corporate-page.loans-corporate-page',
+      'oneToOne',
+      'api::loan.loan'
+    >;
+    processingMethods: Attribute.Component<'components.repetitive-with-title'> &
+      Attribute.Required;
+    infoAndDocsTitle: Attribute.String & Attribute.Required;
+    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 2;
+          max: 5;
+        },
+        number
+      >;
+    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
+    recommended_products: Attribute.Relation<
+      'api::loans-corporate-page.loans-corporate-page',
+      'oneToMany',
+      'api::recommended-product.recommended-product'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1899,6 +2968,7 @@ export interface ApiLoansIndividualsPageLoansIndividualsPage
     singularName: 'loans-individuals-page';
     pluralName: 'loans-individuals-pages';
     displayName: '\u041A\u0440\u0435\u0434\u0438\u0442\u044B \u0424\u041B \u0421\u0442\u0440\u0430\u043D\u0438\u0446\u0430';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1910,6 +2980,46 @@ export interface ApiLoansIndividualsPageLoansIndividualsPage
       'title'
     > &
       Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+    mainBtnText: Attribute.String & Attribute.Required;
+    mainImage: Attribute.Media<'images'> & Attribute.Required;
+    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 3;
+          max: 8;
+        },
+        number
+      >;
+    calculator: Attribute.Relation<
+      'api::loans-individuals-page.loans-individuals-page',
+      'oneToOne',
+      'api::billing-calculator.billing-calculator'
+    >;
+    loans: Attribute.Relation<
+      'api::loans-individuals-page.loans-individuals-page',
+      'oneToMany',
+      'api::loan.loan'
+    >;
+    processingMethods: Attribute.Component<'components.repetitive-with-title'> &
+      Attribute.Required;
+    infoAndDocsTitle: Attribute.String & Attribute.Required;
+    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 2;
+          max: 5;
+        },
+        number
+      >;
+    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
+    recommended_products: Attribute.Relation<
+      'api::loans-individuals-page.loans-individuals-page',
+      'oneToMany',
+      'api::recommended-product.recommended-product'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1928,19 +3038,134 @@ export interface ApiLoansIndividualsPageLoansIndividualsPage
   };
 }
 
-export interface ApiMainPageMainPage extends Schema.SingleType {
-  collectionName: 'main_pages';
+export interface ApiMainJuridicalPageMainJuridicalPage
+  extends Schema.SingleType {
+  collectionName: 'main_juridical_pages';
   info: {
-    singularName: 'main-page';
-    pluralName: 'main-pages';
-    displayName: '\u0413\u043B\u0430\u0432\u043D\u0430\u044F \u0421\u0442\u0440\u0430\u043D\u0438\u0446\u0430';
+    singularName: 'main-juridical-page';
+    pluralName: 'main-juridical-pages';
+    displayName: '\u0413\u043B\u0430\u0432\u043D\u0430\u044F \u042E\u041B \u0421\u0442\u0440\u0430\u043D\u0438\u0446\u0430';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     title: Attribute.String & Attribute.Required;
-    slug: Attribute.UID<'api::main-page.main-page', 'title'>;
+    slug: Attribute.UID<
+      'api::main-juridical-page.main-juridical-page',
+      'title'
+    > &
+      Attribute.Required;
+    slider: Attribute.Relation<
+      'api::main-juridical-page.main-juridical-page',
+      'oneToMany',
+      'api::slider.slider'
+    >;
+    calculatorsBlockTitle: Attribute.String & Attribute.Required;
+    calculatorsBlock: Attribute.DynamicZone<['unit.calculator-field']> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 1;
+          max: 5;
+        },
+        number
+      >;
+    additionalUnit1: Attribute.Component<'components.malyj-blok'> &
+      Attribute.Required;
+    additionalUnit2: Attribute.Component<'components.malyj-blok'> &
+      Attribute.Required;
+    additionalUnit3: Attribute.Component<'components.bolshoj-blok'> &
+      Attribute.Required;
+    additionalUnit4: Attribute.Component<'components.malyj-blok'> &
+      Attribute.Required;
+    additionalUnit5: Attribute.Component<'components.malyj-blok'> &
+      Attribute.Required;
+    additionalUnit6: Attribute.Component<'components.bolshoj-blok'> &
+      Attribute.Required;
+    smallAdditionalBlocks: Attribute.Component<
+      'common.text-image-route',
+      true
+    > &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 4;
+          max: 4;
+        },
+        number
+      >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::main-juridical-page.main-juridical-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::main-juridical-page.main-juridical-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiMainPageMainPage extends Schema.SingleType {
+  collectionName: 'main_pages';
+  info: {
+    singularName: 'main-page';
+    pluralName: 'main-pages';
+    displayName: '\u0413\u043B\u0430\u0432\u043D\u0430\u044F \u0424\u041B \u0421\u0442\u0440\u0430\u043D\u0438\u0446\u0430';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    slug: Attribute.UID<'api::main-page.main-page', 'title'> &
+      Attribute.Required;
+    slider: Attribute.Relation<
+      'api::main-page.main-page',
+      'oneToMany',
+      'api::slider.slider'
+    >;
+    calculatorsBlockTitle: Attribute.String & Attribute.Required;
+    calculatorsBlock: Attribute.DynamicZone<['unit.calculator-field']> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 1;
+          max: 5;
+        },
+        number
+      >;
+    additionalUnit1: Attribute.Component<'components.malyj-blok'> &
+      Attribute.Required;
+    additionalUnit2: Attribute.Component<'components.malyj-blok'> &
+      Attribute.Required;
+    additionalUnit3: Attribute.Component<'components.bolshoj-blok'> &
+      Attribute.Required;
+    additionalUnit4: Attribute.Component<'components.malyj-blok'> &
+      Attribute.Required;
+    additionalUnit5: Attribute.Component<'components.malyj-blok'> &
+      Attribute.Required;
+    smallAdditionalBlocks: Attribute.Component<
+      'common.text-image-route',
+      true
+    > &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 8;
+          max: 8;
+        },
+        number
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1966,6 +3191,7 @@ export interface ApiMerchantAcquiringPageMerchantAcquiringPage
     singularName: 'merchant-acquiring-page';
     pluralName: 'merchant-acquiring-pages';
     displayName: '\u0422\u043E\u0440\u0433\u043E\u0432\u044B\u0439 \u044D\u043A\u0432\u0430\u0439\u0440\u0438\u043D\u0433 \u0421\u0442\u0440\u0430\u043D\u0438\u0446\u0430';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1977,6 +3203,36 @@ export interface ApiMerchantAcquiringPageMerchantAcquiringPage
       'title'
     > &
       Attribute.Required;
+    description: Attribute.Text;
+    mainImage: Attribute.Media<'images'> & Attribute.Required;
+    mainBtnText: Attribute.String & Attribute.Required;
+    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 3;
+          max: 8;
+        },
+        number
+      >;
+    processingMethods: Attribute.Component<'components.repetitive-with-title'> &
+      Attribute.Required;
+    infoAndDocsTitle: Attribute.String & Attribute.Required;
+    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 2;
+          max: 5;
+        },
+        number
+      >;
+    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
+    recommended_products: Attribute.Relation<
+      'api::merchant-acquiring-page.merchant-acquiring-page',
+      'oneToMany',
+      'api::recommended-product.recommended-product'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2010,6 +3266,44 @@ export interface ApiMirPayPageMirPayPage extends Schema.SingleType {
     title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::mir-pay-page.mir-pay-page', 'title'> &
       Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+    mainImage: Attribute.Media<'images'> & Attribute.Required;
+    mainBtnText: Attribute.String & Attribute.Required;
+    conditions: Attribute.Component<'components.usloviya', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 3;
+          max: 3;
+        },
+        number
+      >;
+    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 3;
+          max: 8;
+        },
+        number
+      >;
+    processingMethods: Attribute.Component<'components.repetitive-with-title'> &
+      Attribute.Required;
+    infoAndDocsTitle: Attribute.String & Attribute.Required;
+    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 2;
+          max: 5;
+        },
+        number
+      >;
+    recommended_products: Attribute.Relation<
+      'api::mir-pay-page.mir-pay-page',
+      'oneToMany',
+      'api::recommended-product.recommended-product'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2034,13 +3328,58 @@ export interface ApiMortgageMortgage extends Schema.CollectionType {
     singularName: 'mortgage';
     pluralName: 'mortgages';
     displayName: '\u0418\u043F\u043E\u0442\u0435\u043A\u0430';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     title: Attribute.String & Attribute.Required;
-    slug: Attribute.UID<'api::mortgage.mortgage', 'title'>;
+    slug: Attribute.UID<'api::mortgage.mortgage', 'title'> & Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+    mainBtnText: Attribute.String & Attribute.Required;
+    mainImage: Attribute.Media<'images'> & Attribute.Required;
+    conditions: Attribute.Component<'components.usloviya', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 3;
+          max: 3;
+        },
+        number
+      >;
+    benefits: Attribute.Component<'components.preimushhestvo-2', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 3;
+          max: 8;
+        },
+        number
+      >;
+    calculator: Attribute.Relation<
+      'api::mortgage.mortgage',
+      'oneToOne',
+      'api::billing-calculator.billing-calculator'
+    >;
+    processingMethods: Attribute.Component<'components.repetitive-with-title'> &
+      Attribute.Required;
+    infoAndDocsTitle: Attribute.String & Attribute.Required;
+    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 2;
+          max: 5;
+        },
+        number
+      >;
+    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
+    recommended_products: Attribute.Relation<
+      'api::mortgage.mortgage',
+      'oneToMany',
+      'api::recommended-product.recommended-product'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2065,6 +3404,7 @@ export interface ApiMortgagePageMortgagePage extends Schema.SingleType {
     singularName: 'mortgage-page';
     pluralName: 'mortgage-pages';
     displayName: '\u0418\u043F\u043E\u0442\u0435\u043A\u0430 \u0421\u0442\u0440\u0430\u043D\u0438\u0446\u0430';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -2073,6 +3413,37 @@ export interface ApiMortgagePageMortgagePage extends Schema.SingleType {
     title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::mortgage-page.mortgage-page', 'title'> &
       Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+    mainBtnText: Attribute.String & Attribute.Required;
+    mainImage: Attribute.Media<'images'> & Attribute.Required;
+    mortgages: Attribute.Relation<
+      'api::mortgage-page.mortgage-page',
+      'oneToMany',
+      'api::mortgage.mortgage'
+    >;
+    calculator: Attribute.Relation<
+      'api::mortgage-page.mortgage-page',
+      'oneToOne',
+      'api::billing-calculator.billing-calculator'
+    >;
+    processingMethods: Attribute.Component<'components.repetitive-with-title'> &
+      Attribute.Required;
+    infoAndDocsTitle: Attribute.String & Attribute.Required;
+    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 2;
+          max: 5;
+        },
+        number
+      >;
+    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
+    recommended_products: Attribute.Relation<
+      'api::mortgage-page.mortgage-page',
+      'oneToMany',
+      'api::recommended-product.recommended-product'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2180,6 +3551,7 @@ export interface ApiPaymentsByQrCodePagePaymentsByQrCodePage
     singularName: 'payments-by-qr-code-page';
     pluralName: 'payments-by-qr-code-pages';
     displayName: '\u041F\u0440\u0438\u0435\u043C \u043F\u043B\u0430\u0442\u0435\u0436\u0435\u0439 \u043F\u043E QR-\u043A\u043E\u0434\u0443 \u0421\u0442\u0440\u0430\u043D\u0438\u0446\u0430';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -2191,6 +3563,42 @@ export interface ApiPaymentsByQrCodePagePaymentsByQrCodePage
       'title'
     > &
       Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+    mainImage: Attribute.Media<'images'> & Attribute.Required;
+    mainBtnText: Attribute.String & Attribute.Required;
+    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 3;
+          max: 8;
+        },
+        number
+      >;
+    processingMethods1: Attribute.Component<'components.repetitive-with-title'> &
+      Attribute.Required;
+    leftSideBlock: Attribute.Component<'components.text-image-block'> &
+      Attribute.Required;
+    rightSideBlock: Attribute.Component<'components.text-image-block'> &
+      Attribute.Required;
+    processingMethods2: Attribute.Component<'components.repetitive-with-title'> &
+      Attribute.Required;
+    infoAndDocsTitle: Attribute.String & Attribute.Required;
+    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 2;
+          max: 5;
+        },
+        number
+      >;
+    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
+    recommended_products: Attribute.Relation<
+      'api::payments-by-qr-code-page.payments-by-qr-code-page',
+      'oneToMany',
+      'api::recommended-product.recommended-product'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2364,6 +3772,37 @@ export interface ApiPreciousMetalCoinPreciousMetalCoin
   };
 }
 
+export interface ApiRatingRating extends Schema.CollectionType {
+  collectionName: 'ratings';
+  info: {
+    singularName: 'rating';
+    pluralName: 'ratings';
+    displayName: '\u0420\u0435\u0439\u0442\u0438\u043D\u0433\u0438';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    image: Attribute.Media<'images'> & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::rating.rating',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::rating.rating',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiRecommendedProductRecommendedProduct
   extends Schema.CollectionType {
   collectionName: 'recommended_products';
@@ -2371,12 +3810,15 @@ export interface ApiRecommendedProductRecommendedProduct
     singularName: 'recommended-product';
     pluralName: 'recommended-products';
     displayName: '\u0420\u0435\u043A\u043E\u043C\u0435\u043D\u0434\u043E\u0432\u0430\u043D\u043D\u044B\u0435 \u043F\u0440\u043E\u0434\u0443\u043A\u0442\u044B';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    title: Attribute.String;
+    title: Attribute.String & Attribute.Required;
+    image: Attribute.Media<'images'> & Attribute.Required;
+    link: Attribute.String & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2401,6 +3843,7 @@ export interface ApiSafeDepositPageSafeDepositPage extends Schema.SingleType {
     singularName: 'safe-deposit-page';
     pluralName: 'safe-deposit-pages';
     displayName: '\u0410\u0440\u0435\u043D\u0434\u0430 \u0441\u0435\u0439\u0444\u043E\u0432\u044B\u0445 \u044F\u0447\u0435\u0435\u043A \u0421\u0442\u0440\u0430\u043D\u0438\u0446\u0430';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -2409,6 +3852,35 @@ export interface ApiSafeDepositPageSafeDepositPage extends Schema.SingleType {
     title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::safe-deposit-page.safe-deposit-page', 'title'> &
       Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+    mainImage: Attribute.Media<'images'> & Attribute.Required;
+    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 3;
+          max: 8;
+        },
+        number
+      >;
+    processingMethods: Attribute.Component<'components.repetitive-with-title'> &
+      Attribute.Required;
+    infoAndDocsTitle: Attribute.String & Attribute.Required;
+    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 2;
+          max: 5;
+        },
+        number
+      >;
+    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
+    recommended_products: Attribute.Relation<
+      'api::safe-deposit-page.safe-deposit-page',
+      'oneToMany',
+      'api::recommended-product.recommended-product'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2434,6 +3906,7 @@ export interface ApiSalaryProjectsPageSalaryProjectsPage
     singularName: 'salary-projects-page';
     pluralName: 'salary-projects-pages';
     displayName: '\u0417\u0430\u0440\u043F\u043B\u0430\u0442\u043D\u044B\u0435 \u043F\u0440\u043E\u0435\u043A\u0442\u044B \u0421\u0442\u0440\u0430\u043D\u0438\u0446\u0430';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -2445,6 +3918,36 @@ export interface ApiSalaryProjectsPageSalaryProjectsPage
       'title'
     > &
       Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+    mainImage: Attribute.Media<'images'> & Attribute.Required;
+    mainBtnText: Attribute.String & Attribute.Required;
+    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 3;
+          max: 8;
+        },
+        number
+      >;
+    processingMethods: Attribute.Component<'components.repetitive-with-title'> &
+      Attribute.Required;
+    infoAndDocsTitle: Attribute.String & Attribute.Required;
+    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 2;
+          max: 5;
+        },
+        number
+      >;
+    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
+    recommended_products: Attribute.Relation<
+      'api::salary-projects-page.salary-projects-page',
+      'oneToMany',
+      'api::recommended-product.recommended-product'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2463,12 +3966,44 @@ export interface ApiSalaryProjectsPageSalaryProjectsPage
   };
 }
 
+export interface ApiSliderSlider extends Schema.CollectionType {
+  collectionName: 'sliders';
+  info: {
+    singularName: 'slider';
+    pluralName: 'sliders';
+    displayName: '\u0421\u043B\u0430\u0439\u0434\u0435\u0440';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    image: Attribute.Media<'images'> & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::slider.slider',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::slider.slider',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiSmsNotificationSmsNotification extends Schema.SingleType {
   collectionName: 'sms_notifications';
   info: {
     singularName: 'sms-notification';
     pluralName: 'sms-notifications';
     displayName: '\u0421\u041C\u0421-\u0443\u0432\u0435\u0434\u043E\u043C\u043B\u0435\u043D\u0438\u044F';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -2477,6 +4012,44 @@ export interface ApiSmsNotificationSmsNotification extends Schema.SingleType {
     title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::sms-notification.sms-notification', 'title'> &
       Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+    mainImage: Attribute.Media<'images'> & Attribute.Required;
+    conditions: Attribute.Component<'components.usloviya', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 3;
+          max: 3;
+        },
+        number
+      >;
+    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 3;
+          max: 8;
+        },
+        number
+      >;
+    processingMethods: Attribute.Component<'components.repetitive-with-title'> &
+      Attribute.Required;
+    infoAndDocsTitle: Attribute.String & Attribute.Required;
+    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 2;
+          max: 5;
+        },
+        number
+      >;
+    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
+    recommended_products: Attribute.Relation<
+      'api::sms-notification.sms-notification',
+      'oneToMany',
+      'api::recommended-product.recommended-product'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2501,6 +4074,7 @@ export interface ApiSpbPageSpbPage extends Schema.SingleType {
     singularName: 'spb-page';
     pluralName: 'spb-pages';
     displayName: '\u0421\u041F\u0411 \u0421\u0442\u0440\u0430\u043D\u0438\u0446\u0430';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -2508,6 +4082,36 @@ export interface ApiSpbPageSpbPage extends Schema.SingleType {
   attributes: {
     title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::spb-page.spb-page', 'title'> & Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+    mainImage: Attribute.Media<'images'> & Attribute.Required;
+    mainBtnText: Attribute.String & Attribute.Required;
+    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 3;
+          max: 8;
+        },
+        number
+      >;
+    processingMethods: Attribute.Component<'components.repetitive-with-title'> &
+      Attribute.Required;
+    infoAndDocsTitle: Attribute.String & Attribute.Required;
+    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 2;
+          max: 5;
+        },
+        number
+      >;
+    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
+    recommended_products: Attribute.Relation<
+      'api::spb-page.spb-page',
+      'oneToMany',
+      'api::recommended-product.recommended-product'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2570,6 +4174,7 @@ export interface ApiTransferCardToCardPageTransferCardToCardPage
     singularName: 'transfer-card-to-card-page';
     pluralName: 'transfer-card-to-card-pages';
     displayName: '\u041F\u0435\u0440\u0435\u0432\u043E\u0434 \u0441 \u043A\u0430\u0440\u0442\u044B \u043D\u0430 \u043A\u0430\u0440\u0442\u0443 \u0421\u0442\u0440\u0430\u043D\u0438\u0446\u0430';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -2581,6 +4186,36 @@ export interface ApiTransferCardToCardPageTransferCardToCardPage
       'title'
     > &
       Attribute.Required;
+    description: Attribute.String & Attribute.Required;
+    mainImage: Attribute.Media<'images'> & Attribute.Required;
+    mainBtnText: Attribute.String & Attribute.Required;
+    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 3;
+          max: 8;
+        },
+        number
+      >;
+    processingMethods: Attribute.Component<'components.repetitive-with-title'> &
+      Attribute.Required;
+    infoAndDocsTitle: Attribute.String & Attribute.Required;
+    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 2;
+          max: 5;
+        },
+        number
+      >;
+    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
+    recommended_products: Attribute.Relation<
+      'api::transfer-card-to-card-page.transfer-card-to-card-page',
+      'oneToMany',
+      'api::recommended-product.recommended-product'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2638,12 +4273,22 @@ export interface ApiVacancyVacancy extends Schema.CollectionType {
     singularName: 'vacancy';
     pluralName: 'vacancies';
     displayName: '\u0412\u0430\u043A\u0430\u043D\u0441\u0438\u0438';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     title: Attribute.String & Attribute.Required;
+    office: Attribute.String & Attribute.Required;
+    description: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2687,7 +4332,7 @@ declare module '@strapi/types' {
       'api::branche-and-atm.branche-and-atm': ApiBrancheAndAtmBrancheAndAtm;
       'api::card.card': ApiCardCard;
       'api::card-page.card-page': ApiCardPageCardPage;
-      'api::cash-settlement-services-page.cash-settlement-services-page': ApiCashSettlementServicesPageCashSettlementServicesPage;
+      'api::cash-management.cash-management': ApiCashManagementCashManagement;
       'api::coins-country-type.coins-country-type': ApiCoinsCountryTypeCoinsCountryType;
       'api::coins-currency-type.coins-currency-type': ApiCoinsCurrencyTypeCoinsCurrencyType;
       'api::coins-metal-type.coins-metal-type': ApiCoinsMetalTypeCoinsMetalType;
@@ -2698,20 +4343,28 @@ declare module '@strapi/types' {
       'api::currency-exchange.currency-exchange': ApiCurrencyExchangeCurrencyExchange;
       'api::deposit.deposit': ApiDepositDeposit;
       'api::deposits-page.deposits-page': ApiDepositsPageDepositsPage;
+      'api::disclosures-page.disclosures-page': ApiDisclosuresPageDisclosuresPage;
       'api::document.document': ApiDocumentDocument;
       'api::encashment-page.encashment-page': ApiEncashmentPageEncashmentPage;
+      'api::financial-security-page.financial-security-page': ApiFinancialSecurityPageFinancialSecurityPage;
+      'api::footer-link.footer-link': ApiFooterLinkFooterLink;
+      'api::general-info.general-info': ApiGeneralInfoGeneralInfo;
+      'api::global.global': ApiGlobalGlobal;
       'api::golden-crown-page.golden-crown-page': ApiGoldenCrownPageGoldenCrownPage;
       'api::head-office-contacts-page.head-office-contacts-page': ApiHeadOfficeContactsPageHeadOfficeContactsPage;
-      'api::hmb-online-for-business-page.hmb-online-for-business-page': ApiHmbOnlineForBusinessPageHmbOnlineForBusinessPage;
+      'api::header-link.header-link': ApiHeaderLinkHeaderLink;
+      'api::hmb-online-business-page.hmb-online-business-page': ApiHmbOnlineBusinessPageHmbOnlineBusinessPage;
       'api::hmb-online-page.hmb-online-page': ApiHmbOnlinePageHmbOnlinePage;
       'api::hmb-square-page.hmb-square-page': ApiHmbSquarePageHmbSquarePage;
       'api::ibank-page.ibank-page': ApiIbankPageIbankPage;
       'api::inter-transfers-swift-page.inter-transfers-swift-page': ApiInterTransfersSwiftPageInterTransfersSwiftPage;
       'api::investment.investment': ApiInvestmentInvestment;
       'api::investments-page.investments-page': ApiInvestmentsPageInvestmentsPage;
+      'api::license.license': ApiLicenseLicense;
       'api::loan.loan': ApiLoanLoan;
       'api::loans-corporate-page.loans-corporate-page': ApiLoansCorporatePageLoansCorporatePage;
       'api::loans-individuals-page.loans-individuals-page': ApiLoansIndividualsPageLoansIndividualsPage;
+      'api::main-juridical-page.main-juridical-page': ApiMainJuridicalPageMainJuridicalPage;
       'api::main-page.main-page': ApiMainPageMainPage;
       'api::merchant-acquiring-page.merchant-acquiring-page': ApiMerchantAcquiringPageMerchantAcquiringPage;
       'api::mir-pay-page.mir-pay-page': ApiMirPayPageMirPayPage;
@@ -2722,9 +4375,11 @@ declare module '@strapi/types' {
       'api::payments-by-qr-code-page.payments-by-qr-code-page': ApiPaymentsByQrCodePagePaymentsByQrCodePage;
       'api::precious-metal.precious-metal': ApiPreciousMetalPreciousMetal;
       'api::precious-metal-coin.precious-metal-coin': ApiPreciousMetalCoinPreciousMetalCoin;
+      'api::rating.rating': ApiRatingRating;
       'api::recommended-product.recommended-product': ApiRecommendedProductRecommendedProduct;
       'api::safe-deposit-page.safe-deposit-page': ApiSafeDepositPageSafeDepositPage;
       'api::salary-projects-page.salary-projects-page': ApiSalaryProjectsPageSalaryProjectsPage;
+      'api::slider.slider': ApiSliderSlider;
       'api::sms-notification.sms-notification': ApiSmsNotificationSmsNotification;
       'api::spb-page.spb-page': ApiSpbPageSpbPage;
       'api::tage-news-collection.tage-news-collection': ApiTageNewsCollectionTageNewsCollection;

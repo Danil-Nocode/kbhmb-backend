@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_header_karty",
+  "info": {
+    "displayName": "Карты"
+  },
+  "options": {},
+  "attributes": {
+    "cards": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::card.card"
+    }
+  }
+}

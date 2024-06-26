@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_unit_calculator_fields",
+  "info": {
+    "displayName": "Калькулятор",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "calculator": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::billing-calculator.billing-calculator"
+    }
+  }
+}

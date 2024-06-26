@@ -4,7 +4,8 @@
   "info": {
     "singularName": "deposit",
     "pluralName": "deposits",
-    "displayName": "Депозиты"
+    "displayName": "Депозиты",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -19,6 +20,88 @@
       "type": "uid",
       "targetField": "title",
       "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "mainImage": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "mainBtnText": {
+      "type": "string",
+      "required": true
+    },
+    "conditions": {
+      "type": "component",
+      "repeatable": true,
+      "component": "components.usloviya",
+      "required": true,
+      "max": 3,
+      "min": 3
+    },
+    "benefits": {
+      "type": "component",
+      "repeatable": true,
+      "component": "components.preimushhestvo-2",
+      "max": 8,
+      "required": true,
+      "min": 3
+    },
+    "depositRatesTitle": {
+      "type": "string",
+      "required": true
+    },
+    "depositRatesBlock": {
+      "type": "dynamiczone",
+      "components": [
+        "unit.dokumentami",
+        "unit.tekstom"
+      ],
+      "required": true,
+      "min": 2,
+      "max": 5
+    },
+    "calculator": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::billing-calculator.billing-calculator"
+    },
+    "processingMethods": {
+      "type": "component",
+      "repeatable": false,
+      "component": "components.repetitive-with-title",
+      "required": true
+    },
+    "infoAndDocsTitle": {
+      "type": "string",
+      "required": true
+    },
+    "infoAndDocs": {
+      "type": "dynamiczone",
+      "components": [
+        "unit.dokumentami",
+        "unit.tekstom"
+      ],
+      "required": true,
+      "max": 5,
+      "min": 2
+    },
+    "banner": {
+      "type": "component",
+      "repeatable": false,
+      "component": "components.bolshoj-blok",
+      "required": true
+    },
+    "recommended_products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::recommended-product.recommended-product"
     }
   }
 }

@@ -4,7 +4,8 @@
   "info": {
     "singularName": "investments-page",
     "pluralName": "investments-pages",
-    "displayName": "Вклады Страница"
+    "displayName": "Вклады Страница",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -19,6 +20,68 @@
       "type": "uid",
       "targetField": "title",
       "required": true
+    },
+    "description": {
+      "type": "string",
+      "required": true
+    },
+    "mainImage": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "mainBtnText": {
+      "type": "string",
+      "required": true
+    },
+    "investments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::investment.investment"
+    },
+    "calculator": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::billing-calculator.billing-calculator"
+    },
+    "processingMethods": {
+      "type": "component",
+      "repeatable": false,
+      "component": "components.repetitive-with-title",
+      "required": true
+    },
+    "infoAndDocsTitle": {
+      "type": "string",
+      "required": true
+    },
+    "infoAndDocs": {
+      "type": "dynamiczone",
+      "components": [
+        "unit.dokumentami",
+        "unit.tekstom"
+      ],
+      "min": 2,
+      "max": 5
+    },
+    "depositInsurance": {
+      "type": "component",
+      "repeatable": false,
+      "component": "common.title-image",
+      "required": true
+    },
+    "banner": {
+      "type": "component",
+      "repeatable": false,
+      "component": "components.bolshoj-blok",
+      "required": true
+    },
+    "recommended_products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::recommended-product.recommended-product"
     }
   }
 }

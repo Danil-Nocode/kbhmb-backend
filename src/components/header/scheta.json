@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_header_scheta",
+  "info": {
+    "displayName": "Счета"
+  },
+  "options": {},
+  "attributes": {
+    "accounts": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::account.account"
+    }
+  }
+}

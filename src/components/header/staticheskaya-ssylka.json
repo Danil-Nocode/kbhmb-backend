@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_header_staticheskaya_ssylka",
+  "info": {
+    "displayName": "Статическая ссылка"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "route": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

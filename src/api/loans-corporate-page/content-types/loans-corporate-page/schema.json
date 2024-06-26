@@ -4,7 +4,8 @@
   "info": {
     "singularName": "loans-corporate-page",
     "pluralName": "loans-corporate-pages",
-    "displayName": "Кредиты ЮЛ Страница"
+    "displayName": "Кредиты ЮЛ Страница",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -19,6 +20,66 @@
       "type": "uid",
       "targetField": "title",
       "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "mainImage": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "mainBtnText": {
+      "type": "string",
+      "required": true
+    },
+    "benefits": {
+      "type": "component",
+      "repeatable": true,
+      "component": "components.preimushhestvo-karty",
+      "max": 8,
+      "required": true,
+      "min": 3
+    },
+    "loans": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::loan.loan"
+    },
+    "processingMethods": {
+      "type": "component",
+      "repeatable": false,
+      "required": true,
+      "component": "components.repetitive-with-title"
+    },
+    "infoAndDocsTitle": {
+      "type": "string",
+      "required": true
+    },
+    "infoAndDocs": {
+      "type": "dynamiczone",
+      "components": [
+        "unit.dokumentami",
+        "unit.tekstom"
+      ],
+      "required": true,
+      "min": 2,
+      "max": 5
+    },
+    "banner": {
+      "type": "component",
+      "repeatable": false,
+      "component": "components.bolshoj-blok",
+      "required": true
+    },
+    "recommended_products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::recommended-product.recommended-product"
     }
   }
 }

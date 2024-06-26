@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_calculator_kredit",
+  "info": {
+    "displayName": "Кредит",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "loans": {
+      "displayName": "CreditItem",
+      "type": "component",
+      "repeatable": true,
+      "component": "calculator.credit-item",
+      "required": true,
+      "min": 1
+    }
+  }
+}

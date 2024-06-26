@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_header_vklady",
+  "info": {
+    "displayName": "Вклады"
+  },
+  "options": {},
+  "attributes": {
+    "investments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::investment.investment"
+    }
+  }
+}

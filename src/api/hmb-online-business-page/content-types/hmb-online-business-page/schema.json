@@ -1,0 +1,88 @@
+{
+  "kind": "singleType",
+  "collectionName": "hmb_online_business_pages",
+  "info": {
+    "singularName": "hmb-online-business-page",
+    "pluralName": "hmb-online-business-pages",
+    "displayName": "ХМБ-онлайн ЮЛ Страница",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "mainImage": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "benefits": {
+      "type": "component",
+      "repeatable": true,
+      "required": true,
+      "max": 8,
+      "min": 3,
+      "component": "components.preimushhestvo-karty"
+    },
+    "CapabilitiesBlock1": {
+      "type": "component",
+      "repeatable": false,
+      "component": "common.text-description",
+      "required": true
+    },
+    "CapabilitiesBlock2": {
+      "type": "component",
+      "repeatable": false,
+      "component": "common.text-description",
+      "required": true
+    },
+    "CapabilitiesBlock3": {
+      "type": "component",
+      "repeatable": false,
+      "component": "common.text-description",
+      "required": true
+    },
+    "infoAndDocsTitle": {
+      "type": "string",
+      "required": true
+    },
+    "infoAndDocs": {
+      "type": "dynamiczone",
+      "components": [
+        "unit.dokumentami",
+        "unit.tekstom"
+      ],
+      "required": true,
+      "min": 2,
+      "max": 5
+    },
+    "banner": {
+      "type": "component",
+      "repeatable": false,
+      "required": true,
+      "component": "components.bolshoj-blok"
+    },
+    "recommended_products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::recommended-product.recommended-product"
+    }
+  }
+}

@@ -4,7 +4,8 @@
   "info": {
     "singularName": "document",
     "pluralName": "documents",
-    "displayName": "Документы"
+    "displayName": "Документы",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -16,12 +17,16 @@
       "required": true
     },
     "document": {
-      "allowedTypes": [
-        "files"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "files"
+      ]
+    },
+    "datePosted": {
+      "type": "date",
+      "required": false
     }
   }
 }

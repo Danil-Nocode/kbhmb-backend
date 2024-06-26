@@ -4,7 +4,8 @@
   "info": {
     "singularName": "billing-calculator",
     "pluralName": "billing-calculators",
-    "displayName": "Калькуляторы"
+    "displayName": "Калькуляторы",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -14,6 +15,18 @@
     "title": {
       "type": "string",
       "required": true
+    },
+    "item": {
+      "type": "dynamiczone",
+      "components": [
+        "calculator.kredit",
+        "calculator.vklad",
+        "calculator.ipoteka",
+        "calculator.depozit"
+      ],
+      "required": true,
+      "min": 1,
+      "max": 1
     }
   }
 }

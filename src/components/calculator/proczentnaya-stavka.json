@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_calculator_proczentnaya_stavka",
+  "info": {
+    "displayName": "Процентная ставка",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "amountFrom": {
+      "type": "integer",
+      "required": true,
+      "min": 0
+    },
+    "percent": {
+      "type": "float",
+      "required": true
+    }
+  }
+}

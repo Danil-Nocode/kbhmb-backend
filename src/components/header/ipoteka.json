@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_header_ipoteka",
+  "info": {
+    "displayName": "Ипотека"
+  },
+  "options": {},
+  "attributes": {
+    "mortgages": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::mortgage.mortgage"
+    }
+  }
+}

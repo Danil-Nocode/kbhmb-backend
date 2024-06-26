@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_components_headers",
+  "info": {
+    "displayName": "Header",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "individuals_links": {
+      "displayName": "Пункт меню",
+      "type": "component",
+      "repeatable": true,
+      "component": "header.punkt-menyu",
+      "required": true,
+      "min": 1
+    },
+    "juridical_links": {
+      "displayName": "Пункт меню",
+      "type": "component",
+      "repeatable": true,
+      "component": "header.punkt-menyu",
+      "required": true,
+      "min": 1
+    }
+  }
+}

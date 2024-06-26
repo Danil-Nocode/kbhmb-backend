@@ -1,0 +1,54 @@
+{
+  "collectionName": "components_calculator_srok_vklada",
+  "info": {
+    "displayName": "Срок вклада",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "days": {
+      "type": "integer",
+      "required": true
+    },
+    "monthlyInterestOnline": {
+      "type": "float",
+      "required": false,
+      "min": 0
+    },
+    "monthlyInterestOffice": {
+      "type": "float"
+    },
+    "expiryDateOnline": {
+      "type": "float",
+      "min": 0
+    },
+    "expiryDateOffice": {
+      "type": "float",
+      "min": 0
+    },
+    "capitalization": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "deposit": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "amountFrom": {
+      "type": "integer",
+      "required": true,
+      "min": 0
+    },
+    "amountTo": {
+      "type": "integer",
+      "required": true,
+      "min": 0
+    }
+  }
+}

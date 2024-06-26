@@ -4,7 +4,8 @@
   "info": {
     "singularName": "main-page",
     "pluralName": "main-pages",
-    "displayName": "Главная Страница"
+    "displayName": "Главная ФЛ Страница",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -18,7 +19,65 @@
     },
     "slug": {
       "type": "uid",
-      "targetField": "title"
+      "targetField": "title",
+      "required": true
+    },
+    "slider": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::slider.slider"
+    },
+    "calculatorsBlockTitle": {
+      "type": "string",
+      "required": true
+    },
+    "calculatorsBlock": {
+      "type": "dynamiczone",
+      "components": [
+        "unit.calculator-field"
+      ],
+      "required": true,
+      "min": 1,
+      "max": 5
+    },
+    "additionalUnit1": {
+      "type": "component",
+      "repeatable": false,
+      "component": "components.malyj-blok",
+      "required": true
+    },
+    "additionalUnit2": {
+      "type": "component",
+      "repeatable": false,
+      "component": "components.malyj-blok",
+      "required": true
+    },
+    "additionalUnit3": {
+      "type": "component",
+      "repeatable": false,
+      "component": "components.bolshoj-blok",
+      "required": true
+    },
+    "additionalUnit4": {
+      "type": "component",
+      "repeatable": false,
+      "required": true,
+      "component": "components.malyj-blok"
+    },
+    "additionalUnit5": {
+      "type": "component",
+      "repeatable": false,
+      "required": true,
+      "component": "components.malyj-blok"
+    },
+    "smallAdditionalBlocks": {
+      "displayName": "TextImageRoute",
+      "type": "component",
+      "repeatable": true,
+      "component": "common.text-image-route",
+      "required": true,
+      "max": 8,
+      "min": 8
     }
   }
 }

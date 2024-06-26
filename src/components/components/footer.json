@@ -1,0 +1,57 @@
+{
+  "collectionName": "components_components_footers",
+  "info": {
+    "displayName": "footer",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "logo": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "phoneNumbers": {
+      "displayName": "Номер телефона",
+      "type": "component",
+      "repeatable": true,
+      "component": "common.nomer-telefona",
+      "required": true,
+      "max": 4,
+      "min": 1
+    },
+    "socialLinks": {
+      "displayName": "Социальные сети",
+      "type": "component",
+      "repeatable": true,
+      "component": "common.soczialnye-seti",
+      "required": false,
+      "max": 4
+    },
+    "individuals_links": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::footer-link.footer-link"
+    },
+    "business_links": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::footer-link.footer-link"
+    },
+    "about_links": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::footer-link.footer-link"
+    },
+    "appBlock": {
+      "displayName": "QRBlock",
+      "type": "component",
+      "repeatable": false,
+      "component": "common.qr-block",
+      "required": true
+    }
+  }
+}

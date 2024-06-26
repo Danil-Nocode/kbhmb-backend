@@ -1,0 +1,50 @@
+{
+  "collectionName": "components_calculator_deposit_items",
+  "info": {
+    "displayName": "depositItem",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "ЮЛ",
+        "ИП"
+      ],
+      "required": true
+    },
+    "amountFrom": {
+      "type": "integer",
+      "required": true,
+      "min": 0
+    },
+    "amountTo": {
+      "type": "integer",
+      "required": true,
+      "min": 0
+    },
+    "termFrom": {
+      "type": "integer",
+      "required": true,
+      "min": 0
+    },
+    "termTo": {
+      "type": "integer",
+      "required": true,
+      "min": 0
+    },
+    "interest_rate": {
+      "displayName": "Процентная ставка",
+      "type": "component",
+      "repeatable": true,
+      "component": "calculator.proczentnaya-stavka",
+      "required": true,
+      "min": 1
+    }
+  }
+}

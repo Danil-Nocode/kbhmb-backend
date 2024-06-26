@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_calculator_vklad",
+  "info": {
+    "displayName": "Вклад",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "terms": {
+      "displayName": "Срок вклада",
+      "type": "component",
+      "repeatable": true,
+      "component": "calculator.srok-vklada",
+      "required": true,
+      "min": 0
+    }
+  }
+}

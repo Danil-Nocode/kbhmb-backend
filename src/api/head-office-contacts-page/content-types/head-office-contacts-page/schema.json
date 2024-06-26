@@ -4,7 +4,8 @@
   "info": {
     "singularName": "head-office-contacts-page",
     "pluralName": "head-office-contacts-pages",
-    "displayName": "Контакты головного офиса Страница"
+    "displayName": "Контакты головного офиса Страница",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -18,6 +19,18 @@
     "slug": {
       "type": "uid",
       "targetField": "title",
+      "required": true
+    },
+    "address": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "customField",
+      "options": {
+        "preset": "toolbar"
+      },
+      "customField": "plugin::ckeditor5.CKEditor",
       "required": true
     }
   }

@@ -1,0 +1,52 @@
+{
+  "collectionName": "components_calculator_credit_items",
+  "info": {
+    "displayName": "CreditItem",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "amountFrom": {
+      "type": "integer",
+      "required": true,
+      "min": 0
+    },
+    "amountTo": {
+      "type": "integer",
+      "required": true,
+      "min": 0
+    },
+    "termFrom": {
+      "type": "integer",
+      "required": true,
+      "min": 0
+    },
+    "termTo": {
+      "type": "integer",
+      "required": true,
+      "min": 0
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "interest_rate": {
+      "displayName": "Процентная ставка",
+      "type": "component",
+      "repeatable": true,
+      "component": "calculator.proczentnaya-stavka",
+      "required": true,
+      "min": 1
+    },
+    "assurance": {
+      "type": "float",
+      "required": false,
+      "min": 0
+    },
+    "paymaster": {
+      "type": "float",
+      "required": false,
+      "min": 0
+    }
+  }
+}

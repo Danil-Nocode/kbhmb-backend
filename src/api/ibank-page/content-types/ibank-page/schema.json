@@ -4,7 +4,8 @@
   "info": {
     "singularName": "ibank-page",
     "pluralName": "ibank-pages",
-    "displayName": "«Клиент-Банк» (IBank) Страница"
+    "displayName": "«Клиент-Банк» (IBank) Страница",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -19,6 +20,80 @@
       "type": "uid",
       "targetField": "title",
       "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "mainImage": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "mainBtnText": {
+      "type": "string",
+      "required": true
+    },
+    "benefits": {
+      "type": "component",
+      "repeatable": true,
+      "component": "components.preimushhestvo-karty",
+      "required": true,
+      "max": 8,
+      "min": 3
+    },
+    "CapabilitiesBlock1": {
+      "displayName": "TextDescription",
+      "type": "component",
+      "repeatable": false,
+      "component": "common.text-description",
+      "required": true
+    },
+    "CapabilitiesBlock2": {
+      "type": "component",
+      "repeatable": false,
+      "component": "common.text-description",
+      "required": true
+    },
+    "CapabilitiesBlock3": {
+      "type": "component",
+      "repeatable": false,
+      "component": "common.text-description",
+      "required": true
+    },
+    "CapabilitiesBlock4": {
+      "type": "component",
+      "repeatable": false,
+      "required": true,
+      "component": "common.text-description"
+    },
+    "CapabilitiesBlock5": {
+      "type": "component",
+      "repeatable": false,
+      "required": true,
+      "component": "common.text-description"
+    },
+    "infoAndDocsTitle": {
+      "type": "string",
+      "required": true
+    },
+    "infoAndDocs": {
+      "type": "dynamiczone",
+      "components": [
+        "unit.dokumentami",
+        "unit.tekstom"
+      ],
+      "required": true,
+      "max": 5,
+      "min": 2
+    },
+    "recommended_products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::recommended-product.recommended-product"
     }
   }
 }

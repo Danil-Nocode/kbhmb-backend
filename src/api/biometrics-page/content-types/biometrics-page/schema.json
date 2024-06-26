@@ -4,7 +4,8 @@
   "info": {
     "singularName": "biometrics-page",
     "pluralName": "biometrics-pages",
-    "displayName": "Биометрические данные Страница"
+    "displayName": "Биометрические данные Страница",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -19,6 +20,51 @@
       "type": "uid",
       "targetField": "title",
       "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "mainImage": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "benefits": {
+      "type": "component",
+      "repeatable": true,
+      "component": "components.preimushhestvo-karty",
+      "required": true,
+      "max": 8,
+      "min": 3
+    },
+    "processingMethods": {
+      "type": "component",
+      "repeatable": false,
+      "component": "components.repetitive-with-title",
+      "required": true
+    },
+    "infoAndDocsTitle": {
+      "type": "string",
+      "required": true
+    },
+    "infoAndDocs": {
+      "type": "dynamiczone",
+      "components": [
+        "unit.dokumentami",
+        "unit.tekstom"
+      ],
+      "required": true,
+      "min": 2,
+      "max": 5
+    },
+    "recommended_products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::recommended-product.recommended-product"
     }
   }
 }

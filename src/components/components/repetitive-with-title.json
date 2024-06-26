@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_repetitive_with_title",
+  "info": {
+    "displayName": "RepetitiveWithTitle ",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "item": {
+      "type": "component",
+      "repeatable": true,
+      "component": "common.tekst",
+      "max": 5,
+      "min": 2,
+      "required": true
+    }
+  }
+}

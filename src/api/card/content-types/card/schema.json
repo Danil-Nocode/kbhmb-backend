@@ -4,7 +4,8 @@
   "info": {
     "singularName": "card",
     "pluralName": "cards",
-    "displayName": "Карты"
+    "displayName": "Карты",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -18,6 +19,70 @@
     "slug": {
       "type": "uid",
       "targetField": "title",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "makeCardBtnText": {
+      "type": "string",
+      "required": true
+    },
+    "mainImage": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "conditions": {
+      "displayName": "Условия",
+      "type": "component",
+      "repeatable": true,
+      "component": "components.usloviya",
+      "max": 3,
+      "min": 3,
+      "required": false
+    },
+    "benefits": {
+      "type": "component",
+      "repeatable": true,
+      "component": "components.preimushhestvo-karty",
+      "max": 8,
+      "min": 3,
+      "required": true
+    },
+    "processingMethods": {
+      "type": "component",
+      "repeatable": false,
+      "component": "components.repetitive-with-title",
+      "required": true
+    },
+    "banner": {
+      "type": "component",
+      "repeatable": false,
+      "component": "components.bolshoj-blok",
+      "required": true
+    },
+    "recommended_products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::recommended-product.recommended-product"
+    },
+    "InfoAndDocs": {
+      "type": "dynamiczone",
+      "components": [
+        "unit.dokumentami",
+        "unit.tekstom"
+      ],
+      "required": true,
+      "min": 2,
+      "max": 5
+    },
+    "infoAndDocsTitle": {
+      "type": "string",
       "required": true
     }
   }

@@ -4,7 +4,8 @@
   "info": {
     "singularName": "recommended-product",
     "pluralName": "recommended-products",
-    "displayName": "Рекомендованные продукты"
+    "displayName": "Рекомендованные продукты",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -12,7 +13,20 @@
   "pluginOptions": {},
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "string",
+      "required": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "link": {
+      "type": "string",
+      "required": true
     }
   }
 }

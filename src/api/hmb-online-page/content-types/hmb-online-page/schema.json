@@ -4,7 +4,8 @@
   "info": {
     "singularName": "hmb-online-page",
     "pluralName": "hmb-online-pages",
-    "displayName": "Интернет-банк «ХМБ-онлайн» Страница"
+    "displayName": "ХМБ-онлайн ФЛ Страница",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -19,6 +20,55 @@
       "type": "uid",
       "targetField": "title",
       "required": true
+    },
+    "description": {
+      "type": "customField",
+      "options": {
+        "preset": "toolbar"
+      },
+      "required": true,
+      "customField": "plugin::ckeditor5.CKEditor"
+    },
+    "mainImage": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "benefits": {
+      "type": "component",
+      "repeatable": true,
+      "component": "components.preimushhestvo-2",
+      "required": true,
+      "max": 8,
+      "min": 3
+    },
+    "processingMethods": {
+      "type": "component",
+      "repeatable": false,
+      "component": "components.repetitive-with-title",
+      "required": true
+    },
+    "infoAndDocsTitle": {
+      "type": "string",
+      "required": true
+    },
+    "infoAndDocs": {
+      "type": "dynamiczone",
+      "components": [
+        "unit.dokumentami",
+        "unit.tekstom"
+      ],
+      "required": true,
+      "min": 2,
+      "max": 5
+    },
+    "recommended_products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::recommended-product.recommended-product"
     }
   }
 }
