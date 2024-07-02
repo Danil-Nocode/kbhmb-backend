@@ -73,8 +73,6 @@ export interface CalculatorDepositItem extends Schema.Component {
   };
   attributes: {
     title: Attribute.String & Attribute.Required;
-    type: Attribute.Enumeration<['\u042E\u041B', '\u0418\u041F']> &
-      Attribute.Required;
     amountFrom: Attribute.Integer &
       Attribute.Required &
       Attribute.SetMinMax<
@@ -112,6 +110,22 @@ export interface CalculatorDepositItem extends Schema.Component {
       Attribute.SetMinMax<
         {
           min: 1;
+        },
+        number
+      >;
+    rateLegalEntity: Attribute.Float &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      >;
+    rateIndividualEntrepreneurs: Attribute.Float &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 0;
         },
         number
       >;
@@ -260,7 +274,7 @@ export interface CalculatorProczentnayaStavka extends Schema.Component {
     description: '';
   };
   attributes: {
-    amountFrom: Attribute.Integer &
+    daysFrom: Attribute.Integer &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -346,6 +360,17 @@ export interface CalculatorVklad extends Schema.Component {
   };
 }
 
+export interface CommonLink extends Schema.Component {
+  collectionName: 'components_common_links';
+  info: {
+    displayName: 'Link';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    url: Attribute.String & Attribute.Required;
+  };
+}
+
 export interface CommonNomerTelefona extends Schema.Component {
   collectionName: 'components_common_nomer_telefona';
   info: {
@@ -361,6 +386,7 @@ export interface CommonQrBlock extends Schema.Component {
   collectionName: 'components_common_qr_blocks';
   info: {
     displayName: 'QRBlock';
+    description: '';
   };
   attributes: {
     title: Attribute.String & Attribute.Required;
@@ -369,13 +395,12 @@ export interface CommonQrBlock extends Schema.Component {
     googlePlayQR: Attribute.Media<'images'> & Attribute.Required;
     appStoreTitle: Attribute.String & Attribute.Required;
     appStoreQR: Attribute.Media<'images'> & Attribute.Required;
-    description: Attribute.RichText &
-      Attribute.Required &
-      Attribute.CustomField<
-        'plugin::ckeditor5.CKEditor',
+    links: Attribute.Component<'common.link', true> &
+      Attribute.SetMinMax<
         {
-          preset: 'toolbar';
-        }
+          min: 1;
+        },
+        number
       >;
   };
 }
@@ -384,9 +409,9 @@ export interface CommonSoczialnyeSeti extends Schema.Component {
   collectionName: 'components_common_soczialnye_seti';
   info: {
     displayName: '\u0421\u043E\u0446\u0438\u0430\u043B\u044C\u043D\u044B\u0435 \u0441\u0435\u0442\u0438';
+    description: '';
   };
   attributes: {
-    title: Attribute.String;
     link: Attribute.String;
     icon: Attribute.Media<'images'> & Attribute.Required;
   };
@@ -472,7 +497,7 @@ export interface ComponentsFooter extends Schema.Component {
     description: '';
   };
   attributes: {
-    logo: Attribute.Media<'images', true> & Attribute.Required;
+    logo: Attribute.Media<'images'> & Attribute.Required;
     phoneNumbers: Attribute.Component<'common.nomer-telefona', true> &
       Attribute.Required &
       Attribute.SetMinMax<
@@ -489,21 +514,27 @@ export interface ComponentsFooter extends Schema.Component {
         },
         number
       >;
-    individuals_links: Attribute.Relation<
-      'components.footer',
-      'oneToMany',
-      'api::footer-link.footer-link'
-    >;
-    business_links: Attribute.Relation<
-      'components.footer',
-      'oneToMany',
-      'api::footer-link.footer-link'
-    >;
-    about_links: Attribute.Relation<
-      'components.footer',
-      'oneToMany',
-      'api::footer-link.footer-link'
-    >;
+    individuals_links: Attribute.Component<'common.link', true> &
+      Attribute.SetMinMax<
+        {
+          min: 1;
+        },
+        number
+      >;
+    business_links: Attribute.Component<'common.link', true> &
+      Attribute.SetMinMax<
+        {
+          min: 1;
+        },
+        number
+      >;
+    about_links: Attribute.Component<'common.link', true> &
+      Attribute.SetMinMax<
+        {
+          min: 1;
+        },
+        number
+      >;
     appBlock: Attribute.Component<'common.qr-block'> & Attribute.Required;
   };
 }
@@ -831,6 +862,7 @@ declare module '@strapi/types' {
       'calculator.proczentnaya-stavka': CalculatorProczentnayaStavka;
       'calculator.srok-vklada': CalculatorSrokVklada;
       'calculator.vklad': CalculatorVklad;
+      'common.link': CommonLink;
       'common.nomer-telefona': CommonNomerTelefona;
       'common.qr-block': CommonQrBlock;
       'common.soczialnye-seti': CommonSoczialnyeSeti;

@@ -8,7 +8,7 @@
   "attributes": {
     "logo": {
       "type": "media",
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "allowedTypes": [
         "images"
@@ -32,19 +32,28 @@
       "max": 4
     },
     "individuals_links": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::footer-link.footer-link"
+      "displayName": "Ссылки (Физическим лицам)",
+      "type": "component",
+      "repeatable": true,
+      "component": "common.link",
+      "required": false,
+      "min": 1
     },
     "business_links": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::footer-link.footer-link"
+      "displayName": "Ссылки (Бизнесу)",
+      "type": "component",
+      "repeatable": true,
+      "component": "common.link",
+      "required": false,
+      "min": 1
     },
     "about_links": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::footer-link.footer-link"
+      "displayName": "Ссылки (О банке)",
+      "type": "component",
+      "repeatable": true,
+      "component": "common.link",
+      "required": false,
+      "min": 1
     },
     "appBlock": {
       "displayName": "QRBlock",

@@ -1,7 +1,8 @@
 {
   "collectionName": "components_common_qr_blocks",
   "info": {
-    "displayName": "QRBlock"
+    "displayName": "QRBlock",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -18,32 +19,32 @@
       "required": true
     },
     "googlePlayQR": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "appStoreTitle": {
       "type": "string",
       "required": true
     },
     "appStoreQR": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
-    },
-    "description": {
-      "type": "customField",
-      "options": {
-        "preset": "toolbar"
-      },
       "required": true,
-      "customField": "plugin::ckeditor5.CKEditor"
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "links": {
+      "displayName": "Cсылки",
+      "type": "component",
+      "repeatable": true,
+      "component": "common.link",
+      "required": false,
+      "min": 1
     }
   }
 }

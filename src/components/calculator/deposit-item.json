@@ -10,14 +10,6 @@
       "type": "string",
       "required": true
     },
-    "type": {
-      "type": "enumeration",
-      "enum": [
-        "ЮЛ",
-        "ИП"
-      ],
-      "required": true
-    },
     "amountFrom": {
       "type": "integer",
       "required": true,
@@ -45,6 +37,16 @@
       "component": "calculator.proczentnaya-stavka",
       "required": true,
       "min": 1
+    },
+    "rateLegalEntity": {
+      "type": "float",
+      "required": true,
+      "min": 0
+    },
+    "rateIndividualEntrepreneurs": {
+      "type": "float",
+      "required": true,
+      "min": 0
     }
   }
 }
