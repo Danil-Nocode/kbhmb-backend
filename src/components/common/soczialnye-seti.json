@@ -1,23 +1,21 @@
 {
   "collectionName": "components_common_soczialnye_seti",
   "info": {
-    "displayName": "Социальные сети"
+    "displayName": "Социальные сети",
+    "description": ""
   },
   "options": {},
   "attributes": {
-    "title": {
-      "type": "string"
-    },
     "link": {
       "type": "string"
     },
     "icon": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     }
   }
 }

@@ -9,16 +9,17 @@
     "build": "strapi build",
     "strapi": "strapi"
   },
-  "devDependencies": {},
   "dependencies": {
     "@_sh/strapi-plugin-ckeditor": "^2.1.1",
     "@creazy231/strapi-plugin-apollo-sandbox": "^0.0.13",
+    "@elastic/elasticsearch": "^8.14.0",
     "@strapi/plugin-cloud": "4.24.4",
     "@strapi/plugin-graphql": "^4.24.4",
     "@strapi/plugin-i18n": "4.24.4",
     "@strapi/plugin-users-permissions": "4.24.4",
     "@strapi/strapi": "4.24.4",
     "better-sqlite3": "8.6.0",
+    "fuse.js": "^7.0.0",
     "mysql": "2.18.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
