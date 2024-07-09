@@ -25,17 +25,17 @@
       "type": "text",
       "required": true
     },
-    "mainBtxText": {
+    "mainBtnText": {
       "type": "string",
       "required": true
     },
     "mainImage": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "passportBtnText": {
       "type": "string",
@@ -62,7 +62,8 @@
       "type": "dynamiczone",
       "components": [
         "unit.dokumentami",
-        "unit.tekstom"
+        "unit.tekstom",
+        "unit.spojlery"
       ],
       "required": true,
       "min": 2,
@@ -87,7 +88,8 @@
       "type": "dynamiczone",
       "components": [
         "unit.dokumentami",
-        "unit.tekstom"
+        "unit.tekstom",
+        "unit.spojlery"
       ],
       "required": true,
       "max": 5,
@@ -99,16 +101,15 @@
       "component": "common.title-image",
       "required": true
     },
-    "banner": {
-      "type": "component",
-      "repeatable": false,
-      "component": "components.bolshoj-blok",
-      "required": true
-    },
     "recommended_products": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::recommended-product.recommended-product"
+    },
+    "banner": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::banner.banner"
     }
   }
 }

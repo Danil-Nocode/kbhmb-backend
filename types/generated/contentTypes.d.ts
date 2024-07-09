@@ -820,7 +820,9 @@ export interface ApiAccountAccount extends Schema.CollectionType {
         number
       >;
     infoAndDocsTitle: Attribute.String & Attribute.Required;
-    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+    infoAndDocs: Attribute.DynamicZone<
+      ['unit.dokumentami', 'unit.tekstom', 'unit.spojlery']
+    > &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -833,11 +835,15 @@ export interface ApiAccountAccount extends Schema.CollectionType {
       Attribute.Required;
     processingMethods: Attribute.Component<'components.repetitive-with-title'> &
       Attribute.Required;
-    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
     recommended_products: Attribute.Relation<
       'api::account.account',
       'oneToMany',
       'api::recommended-product.recommended-product'
+    >;
+    banner: Attribute.Relation<
+      'api::account.account',
+      'oneToOne',
+      'api::banner.banner'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -882,7 +888,9 @@ export interface ApiAccountPageAccountPage extends Schema.SingleType {
     processingMethods: Attribute.Component<'components.repetitive-with-title'> &
       Attribute.Required;
     InfoAndDocsTitle: Attribute.String & Attribute.Required;
-    InfoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+    InfoAndDocs: Attribute.DynamicZone<
+      ['unit.dokumentami', 'unit.tekstom', 'unit.spojlery']
+    > &
       Attribute.SetMinMax<
         {
           min: 2;
@@ -890,7 +898,6 @@ export interface ApiAccountPageAccountPage extends Schema.SingleType {
         },
         number
       >;
-    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
     recommended_products: Attribute.Relation<
       'api::account-page.account-page',
       'oneToMany',
@@ -898,6 +905,11 @@ export interface ApiAccountPageAccountPage extends Schema.SingleType {
     >;
     depositInsurance: Attribute.Component<'common.title-image'> &
       Attribute.Required;
+    banner: Attribute.Relation<
+      'api::account-page.account-page',
+      'oneToOne',
+      'api::banner.banner'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -909,6 +921,47 @@ export interface ApiAccountPageAccountPage extends Schema.SingleType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::account-page.account-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiBannerBanner extends Schema.CollectionType {
+  collectionName: 'banners';
+  info: {
+    singularName: 'banner';
+    pluralName: 'banners';
+    displayName: '\u0411\u0430\u043D\u043D\u0435\u0440\u044B';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    image: Attribute.Media<'images'> & Attribute.Required;
+    description: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
+    buttonText: Attribute.String & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::banner.banner',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::banner.banner',
       'oneToOne',
       'admin::user'
     > &
@@ -993,7 +1046,9 @@ export interface ApiBiometricsPageBiometricsPage extends Schema.SingleType {
     processingMethods: Attribute.Component<'components.repetitive-with-title'> &
       Attribute.Required;
     infoAndDocsTitle: Attribute.String & Attribute.Required;
-    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+    infoAndDocs: Attribute.DynamicZone<
+      ['unit.dokumentami', 'unit.tekstom', 'unit.spojlery']
+    > &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -1078,7 +1133,7 @@ export interface ApiCardCard extends Schema.CollectionType {
     title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::card.card', 'title'> & Attribute.Required;
     description: Attribute.Text & Attribute.Required;
-    makeCardBtnText: Attribute.String & Attribute.Required;
+    mainBtnText: Attribute.String & Attribute.Required;
     mainImage: Attribute.Media<'images'> & Attribute.Required;
     conditions: Attribute.Component<'components.usloviya', true> &
       Attribute.SetMinMax<
@@ -1099,13 +1154,14 @@ export interface ApiCardCard extends Schema.CollectionType {
       >;
     processingMethods: Attribute.Component<'components.repetitive-with-title'> &
       Attribute.Required;
-    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
     recommended_products: Attribute.Relation<
       'api::card.card',
       'oneToMany',
       'api::recommended-product.recommended-product'
     >;
-    InfoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+    infoAndDocs: Attribute.DynamicZone<
+      ['unit.dokumentami', 'unit.tekstom', 'unit.spojlery']
+    > &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -1115,6 +1171,11 @@ export interface ApiCardCard extends Schema.CollectionType {
         number
       >;
     infoAndDocsTitle: Attribute.String & Attribute.Required;
+    banner: Attribute.Relation<
+      'api::card.card',
+      'oneToOne',
+      'api::banner.banner'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1156,25 +1217,9 @@ export interface ApiCardPageCardPage extends Schema.SingleType {
       'api::card.card'
     >;
     additionalServicesTitle: Attribute.String & Attribute.Required;
-    InfoAdditionalTitle1: Attribute.String & Attribute.Private;
-    InfoAdditionalTitle2: Attribute.String;
-    InfoAdditionalTitle3: Attribute.String;
-    firstAdditionalBlockTitle: Attribute.String & Attribute.Required;
-    secondAdditionalBlockTitle: Attribute.String & Attribute.Required;
-    thirdAdditionalBlockTitle: Attribute.String & Attribute.Required;
-    firstAdditionalBtnText: Attribute.String & Attribute.Required;
-    secondAdditionalBtnText: Attribute.String & Attribute.Required;
-    thirdAdditionalBtnText: Attribute.String & Attribute.Required;
-    thirdAdditionalImage: Attribute.Media<'images'> & Attribute.Required;
-    thirdAdditionalDescription: Attribute.RichText &
-      Attribute.Required &
-      Attribute.CustomField<
-        'plugin::ckeditor5.CKEditor',
-        {
-          preset: 'toolbar';
-        }
-      >;
-    InfoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+    infoAndDocs: Attribute.DynamicZone<
+      ['unit.dokumentami', 'unit.tekstom', 'unit.spojlery']
+    > &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -1184,12 +1229,21 @@ export interface ApiCardPageCardPage extends Schema.SingleType {
         number
       >;
     infoAndDocsTitle: Attribute.String & Attribute.Required;
-    makeCardBtnText: Attribute.String & Attribute.Required;
+    mainBtnText: Attribute.String & Attribute.Required;
     mainImage: Attribute.Media<'images'> & Attribute.Required;
     recommended_products: Attribute.Relation<
       'api::card-page.card-page',
       'oneToMany',
       'api::recommended-product.recommended-product'
+    >;
+    additionalUnit1: Attribute.Component<'components.malyj-blok'> &
+      Attribute.Required;
+    additionalUnit2: Attribute.Component<'components.malyj-blok'> &
+      Attribute.Required;
+    additionalUnit3: Attribute.Relation<
+      'api::card-page.card-page',
+      'oneToOne',
+      'api::banner.banner'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1215,6 +1269,7 @@ export interface ApiCashManagementCashManagement extends Schema.SingleType {
     singularName: 'cash-management';
     pluralName: 'cash-managements';
     displayName: '\u0420\u0430\u0441\u0447\u0435\u0442\u043D\u043E-\u043A\u0430\u0441\u0441\u043E\u0432\u043E\u0435 \u043E\u0431\u0441\u043B\u0443\u0436\u0438\u0432\u0430\u043D\u0438\u0435';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1225,7 +1280,7 @@ export interface ApiCashManagementCashManagement extends Schema.SingleType {
     description: Attribute.Text & Attribute.Required;
     mainImage: Attribute.Media<'images'> & Attribute.Required;
     mainBtnText: Attribute.String & Attribute.Required;
-    benefits: Attribute.Component<'components.preimushhestvo-2', true> &
+    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -1237,7 +1292,9 @@ export interface ApiCashManagementCashManagement extends Schema.SingleType {
     processingMethods: Attribute.Component<'components.repetitive-with-title'> &
       Attribute.Required;
     infoAndDocsTitle: Attribute.String & Attribute.Required;
-    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+    infoAndDocs: Attribute.DynamicZone<
+      ['unit.dokumentami', 'unit.tekstom', 'unit.spojlery']
+    > &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -1246,11 +1303,15 @@ export interface ApiCashManagementCashManagement extends Schema.SingleType {
         },
         number
       >;
-    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
     recommended_products: Attribute.Relation<
       'api::cash-management.cash-management',
       'oneToMany',
       'api::recommended-product.recommended-product'
+    >;
+    banner: Attribute.Relation<
+      'api::cash-management.cash-management',
+      'oneToOne',
+      'api::banner.banner'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1428,7 +1489,9 @@ export interface ApiCorporateCardsPageCorporateCardsPage
     processingMethods: Attribute.Component<'components.repetitive-with-title'> &
       Attribute.Required;
     infoAndDocsTitle: Attribute.String & Attribute.Required;
-    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+    infoAndDocs: Attribute.DynamicZone<
+      ['unit.dokumentami', 'unit.tekstom', 'unit.spojlery']
+    > &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -1441,11 +1504,15 @@ export interface ApiCorporateCardsPageCorporateCardsPage
       Attribute.Required;
     additionalUnit2: Attribute.Component<'components.malyj-blok'> &
       Attribute.Required;
-    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
     recommended_products: Attribute.Relation<
       'api::corporate-cards-page.corporate-cards-page',
       'oneToMany',
       'api::recommended-product.recommended-product'
+    >;
+    additionalUnit3: Attribute.Relation<
+      'api::corporate-cards-page.corporate-cards-page',
+      'oneToOne',
+      'api::banner.banner'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1564,7 +1631,9 @@ export interface ApiCurrencyControlPageCurrencyControlPage
         }
       >;
     infoAndDocsTitle: Attribute.String & Attribute.Required;
-    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+    infoAndDocs: Attribute.DynamicZone<
+      ['unit.dokumentami', 'unit.tekstom', 'unit.spojlery']
+    > &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -1573,11 +1642,15 @@ export interface ApiCurrencyControlPageCurrencyControlPage
         },
         number
       >;
-    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
     recommended_products: Attribute.Relation<
       'api::currency-control-page.currency-control-page',
       'oneToMany',
       'api::recommended-product.recommended-product'
+    >;
+    banner: Attribute.Relation<
+      'api::currency-control-page.currency-control-page',
+      'oneToOne',
+      'api::banner.banner'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1668,7 +1741,7 @@ export interface ApiDepositDeposit extends Schema.CollectionType {
         },
         number
       >;
-    benefits: Attribute.Component<'components.preimushhestvo-2', true> &
+    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -1697,7 +1770,9 @@ export interface ApiDepositDeposit extends Schema.CollectionType {
     processingMethods: Attribute.Component<'components.repetitive-with-title'> &
       Attribute.Required;
     infoAndDocsTitle: Attribute.String & Attribute.Required;
-    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+    infoAndDocs: Attribute.DynamicZone<
+      ['unit.dokumentami', 'unit.tekstom', 'unit.spojlery']
+    > &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -1706,11 +1781,15 @@ export interface ApiDepositDeposit extends Schema.CollectionType {
         },
         number
       >;
-    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
     recommended_products: Attribute.Relation<
       'api::deposit.deposit',
       'oneToMany',
       'api::recommended-product.recommended-product'
+    >;
+    banner: Attribute.Relation<
+      'api::deposit.deposit',
+      'oneToOne',
+      'api::banner.banner'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1770,7 +1849,9 @@ export interface ApiDepositsPageDepositsPage extends Schema.SingleType {
     processingMethods: Attribute.Component<'components.repetitive-with-title'> &
       Attribute.Required;
     infoAndDocsTitle: Attribute.String & Attribute.Required;
-    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+    infoAndDocs: Attribute.DynamicZone<
+      ['unit.dokumentami', 'unit.tekstom', 'unit.spojlery']
+    > &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -1779,11 +1860,15 @@ export interface ApiDepositsPageDepositsPage extends Schema.SingleType {
         },
         number
       >;
-    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
     recommended_products: Attribute.Relation<
       'api::deposits-page.deposits-page',
       'oneToMany',
       'api::recommended-product.recommended-product'
+    >;
+    banner: Attribute.Relation<
+      'api::deposits-page.deposits-page',
+      'oneToOne',
+      'api::banner.banner'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1914,7 +1999,9 @@ export interface ApiEncashmentPageEncashmentPage extends Schema.SingleType {
     processingMethods: Attribute.Component<'components.repetitive-with-title'> &
       Attribute.Required;
     infoAndDocsTitle: Attribute.String & Attribute.Required;
-    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+    infoAndDocs: Attribute.DynamicZone<
+      ['unit.dokumentami', 'unit.tekstom', 'unit.spojlery']
+    > &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -1923,11 +2010,15 @@ export interface ApiEncashmentPageEncashmentPage extends Schema.SingleType {
         },
         number
       >;
-    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
     recommended_products: Attribute.Relation<
       'api::encashment-page.encashment-page',
       'oneToMany',
       'api::recommended-product.recommended-product'
+    >;
+    banner: Attribute.Relation<
+      'api::encashment-page.encashment-page',
+      'oneToOne',
+      'api::banner.banner'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -2152,7 +2243,7 @@ export interface ApiGoldenCrownPageGoldenCrownPage extends Schema.SingleType {
     slug: Attribute.UID<'api::golden-crown-page.golden-crown-page', 'title'> &
       Attribute.Required;
     description: Attribute.Text & Attribute.Required;
-    benefits: Attribute.Component<'components.preimushhestvo-2', true> &
+    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -2166,7 +2257,9 @@ export interface ApiGoldenCrownPageGoldenCrownPage extends Schema.SingleType {
     processingReceiveMethods: Attribute.Component<'components.repetitive-with-title'> &
       Attribute.Required;
     infoAndDocsTitle: Attribute.String & Attribute.Required;
-    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+    infoAndDocs: Attribute.DynamicZone<
+      ['unit.dokumentami', 'unit.tekstom', 'unit.spojlery']
+    > &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -2175,7 +2268,6 @@ export interface ApiGoldenCrownPageGoldenCrownPage extends Schema.SingleType {
         },
         number
       >;
-    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
     recommended_products: Attribute.Relation<
       'api::golden-crown-page.golden-crown-page',
       'oneToMany',
@@ -2183,6 +2275,11 @@ export interface ApiGoldenCrownPageGoldenCrownPage extends Schema.SingleType {
     >;
     mainBtnText: Attribute.String & Attribute.Required;
     mainImage: Attribute.Media<'images'> & Attribute.Required;
+    banner: Attribute.Relation<
+      'api::golden-crown-page.golden-crown-page',
+      'oneToOne',
+      'api::banner.banner'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2335,7 +2432,9 @@ export interface ApiHmbOnlineBusinessPageHmbOnlineBusinessPage
     CapabilitiesBlock3: Attribute.Component<'common.text-description'> &
       Attribute.Required;
     infoAndDocsTitle: Attribute.String & Attribute.Required;
-    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+    infoAndDocs: Attribute.DynamicZone<
+      ['unit.dokumentami', 'unit.tekstom', 'unit.spojlery']
+    > &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -2344,12 +2443,18 @@ export interface ApiHmbOnlineBusinessPageHmbOnlineBusinessPage
         },
         number
       >;
-    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
     recommended_products: Attribute.Relation<
       'api::hmb-online-business-page.hmb-online-business-page',
       'oneToMany',
       'api::recommended-product.recommended-product'
     >;
+    banner: Attribute.Relation<
+      'api::hmb-online-business-page.hmb-online-business-page',
+      'oneToOne',
+      'api::banner.banner'
+    >;
+    appStoreLink: Attribute.String & Attribute.Required;
+    playMarketLink: Attribute.String & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2392,7 +2497,7 @@ export interface ApiHmbOnlinePageHmbOnlinePage extends Schema.SingleType {
         }
       >;
     mainImage: Attribute.Media<'images'> & Attribute.Required;
-    benefits: Attribute.Component<'components.preimushhestvo-2', true> &
+    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -2404,7 +2509,9 @@ export interface ApiHmbOnlinePageHmbOnlinePage extends Schema.SingleType {
     processingMethods: Attribute.Component<'components.repetitive-with-title'> &
       Attribute.Required;
     infoAndDocsTitle: Attribute.String & Attribute.Required;
-    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+    infoAndDocs: Attribute.DynamicZone<
+      ['unit.dokumentami', 'unit.tekstom', 'unit.spojlery']
+    > &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -2418,6 +2525,8 @@ export interface ApiHmbOnlinePageHmbOnlinePage extends Schema.SingleType {
       'oneToMany',
       'api::recommended-product.recommended-product'
     >;
+    appStoreLink: Attribute.String & Attribute.Required;
+    playMarketLink: Attribute.String & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2454,7 +2563,7 @@ export interface ApiHmbSquarePageHmbSquarePage extends Schema.SingleType {
     description: Attribute.Text & Attribute.Required;
     mainBtnText: Attribute.String & Attribute.Required;
     mainImage: Attribute.Media<'images'> & Attribute.Required;
-    benefits: Attribute.Component<'components.preimushhestvo-2', true> &
+    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -2466,7 +2575,9 @@ export interface ApiHmbSquarePageHmbSquarePage extends Schema.SingleType {
     processingMethods: Attribute.Component<'components.repetitive-with-title'> &
       Attribute.Required;
     infoAndDocsTitle: Attribute.String & Attribute.Required;
-    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+    infoAndDocs: Attribute.DynamicZone<
+      ['unit.dokumentami', 'unit.tekstom', 'unit.spojlery']
+    > &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -2475,11 +2586,15 @@ export interface ApiHmbSquarePageHmbSquarePage extends Schema.SingleType {
         },
         number
       >;
-    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
     recommended_products: Attribute.Relation<
       'api::hmb-square-page.hmb-square-page',
       'oneToMany',
       'api::recommended-product.recommended-product'
+    >;
+    banner: Attribute.Relation<
+      'api::hmb-square-page.hmb-square-page',
+      'oneToOne',
+      'api::banner.banner'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -2537,7 +2652,9 @@ export interface ApiIbankPageIbankPage extends Schema.SingleType {
     CapabilitiesBlock5: Attribute.Component<'common.text-description'> &
       Attribute.Required;
     infoAndDocsTitle: Attribute.String & Attribute.Required;
-    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+    infoAndDocs: Attribute.DynamicZone<
+      ['unit.dokumentami', 'unit.tekstom', 'unit.spojlery']
+    > &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -2604,7 +2721,9 @@ export interface ApiInterTransfersSwiftPageInterTransfersSwiftPage
     leftSideBlock: Attribute.Component<'components.text-image-block'> &
       Attribute.Required;
     infoAndDocsTitle: Attribute.String & Attribute.Required;
-    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+    infoAndDocs: Attribute.DynamicZone<
+      ['unit.dokumentami', 'unit.tekstom', 'unit.spojlery']
+    > &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -2613,11 +2732,15 @@ export interface ApiInterTransfersSwiftPageInterTransfersSwiftPage
         },
         number
       >;
-    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
     recommended_products: Attribute.Relation<
       'api::inter-transfers-swift-page.inter-transfers-swift-page',
       'oneToMany',
       'api::recommended-product.recommended-product'
+    >;
+    banner: Attribute.Relation<
+      'api::inter-transfers-swift-page.inter-transfers-swift-page',
+      'oneToOne',
+      'api::banner.banner'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -2653,7 +2776,7 @@ export interface ApiInvestmentInvestment extends Schema.CollectionType {
     slug: Attribute.UID<'api::investment.investment', 'title'> &
       Attribute.Required;
     description: Attribute.Text & Attribute.Required;
-    mainBtxText: Attribute.String & Attribute.Required;
+    mainBtnText: Attribute.String & Attribute.Required;
     mainImage: Attribute.Media<'images'> & Attribute.Required;
     passportBtnText: Attribute.String & Attribute.Required;
     document: Attribute.Relation<
@@ -2672,7 +2795,7 @@ export interface ApiInvestmentInvestment extends Schema.CollectionType {
       >;
     investmentsInfoTitle: Attribute.String & Attribute.Required;
     investmentsInfo: Attribute.DynamicZone<
-      ['unit.dokumentami', 'unit.tekstom']
+      ['unit.dokumentami', 'unit.tekstom', 'unit.spojlery']
     > &
       Attribute.Required &
       Attribute.SetMinMax<
@@ -2690,7 +2813,9 @@ export interface ApiInvestmentInvestment extends Schema.CollectionType {
     processingMethods: Attribute.Component<'components.repetitive-with-title'> &
       Attribute.Required;
     infoAndDocsTitle: Attribute.String & Attribute.Required;
-    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+    infoAndDocs: Attribute.DynamicZone<
+      ['unit.dokumentami', 'unit.tekstom', 'unit.spojlery']
+    > &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -2701,11 +2826,15 @@ export interface ApiInvestmentInvestment extends Schema.CollectionType {
       >;
     depositInsurance: Attribute.Component<'common.title-image'> &
       Attribute.Required;
-    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
     recommended_products: Attribute.Relation<
       'api::investment.investment',
       'oneToMany',
       'api::recommended-product.recommended-product'
+    >;
+    banner: Attribute.Relation<
+      'api::investment.investment',
+      'oneToOne',
+      'api::banner.banner'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -2740,7 +2869,7 @@ export interface ApiInvestmentsPageInvestmentsPage extends Schema.SingleType {
     title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::investments-page.investments-page', 'title'> &
       Attribute.Required;
-    description: Attribute.String & Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
     mainImage: Attribute.Media<'images'> & Attribute.Required;
     mainBtnText: Attribute.String & Attribute.Required;
     investments: Attribute.Relation<
@@ -2756,7 +2885,9 @@ export interface ApiInvestmentsPageInvestmentsPage extends Schema.SingleType {
     processingMethods: Attribute.Component<'components.repetitive-with-title'> &
       Attribute.Required;
     infoAndDocsTitle: Attribute.String & Attribute.Required;
-    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+    infoAndDocs: Attribute.DynamicZone<
+      ['unit.dokumentami', 'unit.tekstom', 'unit.spojlery']
+    > &
       Attribute.SetMinMax<
         {
           min: 2;
@@ -2766,11 +2897,15 @@ export interface ApiInvestmentsPageInvestmentsPage extends Schema.SingleType {
       >;
     depositInsurance: Attribute.Component<'common.title-image'> &
       Attribute.Required;
-    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
     recommended_products: Attribute.Relation<
       'api::investments-page.investments-page',
       'oneToMany',
       'api::recommended-product.recommended-product'
+    >;
+    banner: Attribute.Relation<
+      'api::investments-page.investments-page',
+      'oneToOne',
+      'api::banner.banner'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -2847,7 +2982,7 @@ export interface ApiLoanLoan extends Schema.CollectionType {
         },
         number
       >;
-    benefits: Attribute.Component<'components.preimushhestvo-2', true> &
+    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -2864,7 +2999,9 @@ export interface ApiLoanLoan extends Schema.CollectionType {
     processingMethods: Attribute.Component<'components.repetitive-with-title'> &
       Attribute.Required;
     infoAndDocsTitle: Attribute.String & Attribute.Required;
-    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+    infoAndDocs: Attribute.DynamicZone<
+      ['unit.dokumentami', 'unit.tekstom', 'unit.spojlery']
+    > &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -2873,11 +3010,15 @@ export interface ApiLoanLoan extends Schema.CollectionType {
         },
         number
       >;
-    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
     recommended_products: Attribute.Relation<
       'api::loan.loan',
       'oneToMany',
       'api::recommended-product.recommended-product'
+    >;
+    banner: Attribute.Relation<
+      'api::loan.loan',
+      'oneToOne',
+      'api::banner.banner'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -2928,7 +3069,9 @@ export interface ApiLoansCorporatePageLoansCorporatePage
     processingMethods: Attribute.Component<'components.repetitive-with-title'> &
       Attribute.Required;
     infoAndDocsTitle: Attribute.String & Attribute.Required;
-    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+    infoAndDocs: Attribute.DynamicZone<
+      ['unit.dokumentami', 'unit.tekstom', 'unit.spojlery']
+    > &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -2937,11 +3080,15 @@ export interface ApiLoansCorporatePageLoansCorporatePage
         },
         number
       >;
-    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
     recommended_products: Attribute.Relation<
       'api::loans-corporate-page.loans-corporate-page',
       'oneToMany',
       'api::recommended-product.recommended-product'
+    >;
+    banner: Attribute.Relation<
+      'api::loans-corporate-page.loans-corporate-page',
+      'oneToOne',
+      'api::banner.banner'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -3005,7 +3152,9 @@ export interface ApiLoansIndividualsPageLoansIndividualsPage
     processingMethods: Attribute.Component<'components.repetitive-with-title'> &
       Attribute.Required;
     infoAndDocsTitle: Attribute.String & Attribute.Required;
-    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+    infoAndDocs: Attribute.DynamicZone<
+      ['unit.dokumentami', 'unit.tekstom', 'unit.spojlery']
+    > &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -3014,11 +3163,15 @@ export interface ApiLoansIndividualsPageLoansIndividualsPage
         },
         number
       >;
-    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
     recommended_products: Attribute.Relation<
       'api::loans-individuals-page.loans-individuals-page',
       'oneToMany',
       'api::recommended-product.recommended-product'
+    >;
+    banner: Attribute.Relation<
+      'api::loans-individuals-page.loans-individuals-page',
+      'oneToOne',
+      'api::banner.banner'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -3218,7 +3371,9 @@ export interface ApiMerchantAcquiringPageMerchantAcquiringPage
     processingMethods: Attribute.Component<'components.repetitive-with-title'> &
       Attribute.Required;
     infoAndDocsTitle: Attribute.String & Attribute.Required;
-    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+    infoAndDocs: Attribute.DynamicZone<
+      ['unit.dokumentami', 'unit.tekstom', 'unit.spojlery']
+    > &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -3227,11 +3382,15 @@ export interface ApiMerchantAcquiringPageMerchantAcquiringPage
         },
         number
       >;
-    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
     recommended_products: Attribute.Relation<
       'api::merchant-acquiring-page.merchant-acquiring-page',
       'oneToMany',
       'api::recommended-product.recommended-product'
+    >;
+    banner: Attribute.Relation<
+      'api::merchant-acquiring-page.merchant-acquiring-page',
+      'oneToOne',
+      'api::banner.banner'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -3290,7 +3449,9 @@ export interface ApiMirPayPageMirPayPage extends Schema.SingleType {
     processingMethods: Attribute.Component<'components.repetitive-with-title'> &
       Attribute.Required;
     infoAndDocsTitle: Attribute.String & Attribute.Required;
-    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+    infoAndDocs: Attribute.DynamicZone<
+      ['unit.dokumentami', 'unit.tekstom', 'unit.spojlery']
+    > &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -3348,7 +3509,7 @@ export interface ApiMortgageMortgage extends Schema.CollectionType {
         },
         number
       >;
-    benefits: Attribute.Component<'components.preimushhestvo-2', true> &
+    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -3365,7 +3526,9 @@ export interface ApiMortgageMortgage extends Schema.CollectionType {
     processingMethods: Attribute.Component<'components.repetitive-with-title'> &
       Attribute.Required;
     infoAndDocsTitle: Attribute.String & Attribute.Required;
-    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+    infoAndDocs: Attribute.DynamicZone<
+      ['unit.dokumentami', 'unit.tekstom', 'unit.spojlery']
+    > &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -3374,11 +3537,15 @@ export interface ApiMortgageMortgage extends Schema.CollectionType {
         },
         number
       >;
-    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
     recommended_products: Attribute.Relation<
       'api::mortgage.mortgage',
       'oneToMany',
       'api::recommended-product.recommended-product'
+    >;
+    banner: Attribute.Relation<
+      'api::mortgage.mortgage',
+      'oneToOne',
+      'api::banner.banner'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -3429,7 +3596,9 @@ export interface ApiMortgagePageMortgagePage extends Schema.SingleType {
     processingMethods: Attribute.Component<'components.repetitive-with-title'> &
       Attribute.Required;
     infoAndDocsTitle: Attribute.String & Attribute.Required;
-    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+    infoAndDocs: Attribute.DynamicZone<
+      ['unit.dokumentami', 'unit.tekstom', 'unit.spojlery']
+    > &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -3438,11 +3607,15 @@ export interface ApiMortgagePageMortgagePage extends Schema.SingleType {
         },
         number
       >;
-    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
     recommended_products: Attribute.Relation<
       'api::mortgage-page.mortgage-page',
       'oneToMany',
       'api::recommended-product.recommended-product'
+    >;
+    banner: Attribute.Relation<
+      'api::mortgage-page.mortgage-page',
+      'oneToOne',
+      'api::banner.banner'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -3584,7 +3757,9 @@ export interface ApiPaymentsByQrCodePagePaymentsByQrCodePage
     processingMethods2: Attribute.Component<'components.repetitive-with-title'> &
       Attribute.Required;
     infoAndDocsTitle: Attribute.String & Attribute.Required;
-    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+    infoAndDocs: Attribute.DynamicZone<
+      ['unit.dokumentami', 'unit.tekstom', 'unit.spojlery']
+    > &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -3593,11 +3768,15 @@ export interface ApiPaymentsByQrCodePagePaymentsByQrCodePage
         },
         number
       >;
-    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
     recommended_products: Attribute.Relation<
       'api::payments-by-qr-code-page.payments-by-qr-code-page',
       'oneToMany',
       'api::recommended-product.recommended-product'
+    >;
+    banner: Attribute.Relation<
+      'api::payments-by-qr-code-page.payments-by-qr-code-page',
+      'oneToOne',
+      'api::banner.banner'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -3818,7 +3997,7 @@ export interface ApiRecommendedProductRecommendedProduct
   attributes: {
     title: Attribute.String & Attribute.Required;
     image: Attribute.Media<'images'> & Attribute.Required;
-    link: Attribute.String & Attribute.Required;
+    route: Attribute.String & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -3866,7 +4045,9 @@ export interface ApiSafeDepositPageSafeDepositPage extends Schema.SingleType {
     processingMethods: Attribute.Component<'components.repetitive-with-title'> &
       Attribute.Required;
     infoAndDocsTitle: Attribute.String & Attribute.Required;
-    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+    infoAndDocs: Attribute.DynamicZone<
+      ['unit.dokumentami', 'unit.tekstom', 'unit.spojlery']
+    > &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -3875,11 +4056,15 @@ export interface ApiSafeDepositPageSafeDepositPage extends Schema.SingleType {
         },
         number
       >;
-    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
     recommended_products: Attribute.Relation<
       'api::safe-deposit-page.safe-deposit-page',
       'oneToMany',
       'api::recommended-product.recommended-product'
+    >;
+    banner: Attribute.Relation<
+      'api::safe-deposit-page.safe-deposit-page',
+      'oneToOne',
+      'api::banner.banner'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -3933,7 +4118,9 @@ export interface ApiSalaryProjectsPageSalaryProjectsPage
     processingMethods: Attribute.Component<'components.repetitive-with-title'> &
       Attribute.Required;
     infoAndDocsTitle: Attribute.String & Attribute.Required;
-    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+    infoAndDocs: Attribute.DynamicZone<
+      ['unit.dokumentami', 'unit.tekstom', 'unit.spojlery']
+    > &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -3942,11 +4129,15 @@ export interface ApiSalaryProjectsPageSalaryProjectsPage
         },
         number
       >;
-    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
     recommended_products: Attribute.Relation<
       'api::salary-projects-page.salary-projects-page',
       'oneToMany',
       'api::recommended-product.recommended-product'
+    >;
+    banner: Attribute.Relation<
+      'api::salary-projects-page.salary-projects-page',
+      'oneToOne',
+      'api::banner.banner'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -4035,7 +4226,9 @@ export interface ApiSmsNotificationSmsNotification extends Schema.SingleType {
     processingMethods: Attribute.Component<'components.repetitive-with-title'> &
       Attribute.Required;
     infoAndDocsTitle: Attribute.String & Attribute.Required;
-    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+    infoAndDocs: Attribute.DynamicZone<
+      ['unit.dokumentami', 'unit.tekstom', 'unit.spojlery']
+    > &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -4044,11 +4237,15 @@ export interface ApiSmsNotificationSmsNotification extends Schema.SingleType {
         },
         number
       >;
-    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
     recommended_products: Attribute.Relation<
       'api::sms-notification.sms-notification',
       'oneToMany',
       'api::recommended-product.recommended-product'
+    >;
+    banner: Attribute.Relation<
+      'api::sms-notification.sms-notification',
+      'oneToOne',
+      'api::banner.banner'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -4097,7 +4294,9 @@ export interface ApiSpbPageSpbPage extends Schema.SingleType {
     processingMethods: Attribute.Component<'components.repetitive-with-title'> &
       Attribute.Required;
     infoAndDocsTitle: Attribute.String & Attribute.Required;
-    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+    infoAndDocs: Attribute.DynamicZone<
+      ['unit.dokumentami', 'unit.tekstom', 'unit.spojlery']
+    > &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -4106,11 +4305,15 @@ export interface ApiSpbPageSpbPage extends Schema.SingleType {
         },
         number
       >;
-    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
     recommended_products: Attribute.Relation<
       'api::spb-page.spb-page',
       'oneToMany',
       'api::recommended-product.recommended-product'
+    >;
+    banner: Attribute.Relation<
+      'api::spb-page.spb-page',
+      'oneToOne',
+      'api::banner.banner'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -4186,7 +4389,7 @@ export interface ApiTransferCardToCardPageTransferCardToCardPage
       'title'
     > &
       Attribute.Required;
-    description: Attribute.String & Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
     mainImage: Attribute.Media<'images'> & Attribute.Required;
     mainBtnText: Attribute.String & Attribute.Required;
     benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
@@ -4201,7 +4404,9 @@ export interface ApiTransferCardToCardPageTransferCardToCardPage
     processingMethods: Attribute.Component<'components.repetitive-with-title'> &
       Attribute.Required;
     infoAndDocsTitle: Attribute.String & Attribute.Required;
-    infoAndDocs: Attribute.DynamicZone<['unit.dokumentami', 'unit.tekstom']> &
+    infoAndDocs: Attribute.DynamicZone<
+      ['unit.dokumentami', 'unit.tekstom', 'unit.spojlery']
+    > &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -4210,11 +4415,15 @@ export interface ApiTransferCardToCardPageTransferCardToCardPage
         },
         number
       >;
-    banner: Attribute.Component<'components.bolshoj-blok'> & Attribute.Required;
     recommended_products: Attribute.Relation<
       'api::transfer-card-to-card-page.transfer-card-to-card-page',
       'oneToMany',
       'api::recommended-product.recommended-product'
+    >;
+    banner: Attribute.Relation<
+      'api::transfer-card-to-card-page.transfer-card-to-card-page',
+      'oneToOne',
+      'api::banner.banner'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -4327,6 +4536,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::account.account': ApiAccountAccount;
       'api::account-page.account-page': ApiAccountPageAccountPage;
+      'api::banner.banner': ApiBannerBanner;
       'api::billing-calculator.billing-calculator': ApiBillingCalculatorBillingCalculator;
       'api::biometrics-page.biometrics-page': ApiBiometricsPageBiometricsPage;
       'api::branche-and-atm.branche-and-atm': ApiBrancheAndAtmBrancheAndAtm;

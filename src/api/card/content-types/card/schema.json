@@ -25,7 +25,7 @@
       "type": "text",
       "required": true
     },
-    "makeCardBtnText": {
+    "mainBtnText": {
       "type": "string",
       "required": true
     },
@@ -60,22 +60,17 @@
       "component": "components.repetitive-with-title",
       "required": true
     },
-    "banner": {
-      "type": "component",
-      "repeatable": false,
-      "component": "components.bolshoj-blok",
-      "required": true
-    },
     "recommended_products": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::recommended-product.recommended-product"
     },
-    "InfoAndDocs": {
+    "infoAndDocs": {
       "type": "dynamiczone",
       "components": [
         "unit.dokumentami",
-        "unit.tekstom"
+        "unit.tekstom",
+        "unit.spojlery"
       ],
       "required": true,
       "min": 2,
@@ -84,6 +79,11 @@
     "infoAndDocsTitle": {
       "type": "string",
       "required": true
+    },
+    "banner": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::banner.banner"
     }
   }
 }

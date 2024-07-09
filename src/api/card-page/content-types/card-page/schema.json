@@ -43,61 +43,12 @@
       "type": "string",
       "required": true
     },
-    "InfoAdditionalTitle1": {
-      "type": "string",
-      "private": true
-    },
-    "InfoAdditionalTitle2": {
-      "type": "string"
-    },
-    "InfoAdditionalTitle3": {
-      "type": "string"
-    },
-    "firstAdditionalBlockTitle": {
-      "type": "string",
-      "required": true
-    },
-    "secondAdditionalBlockTitle": {
-      "type": "string",
-      "required": true
-    },
-    "thirdAdditionalBlockTitle": {
-      "type": "string",
-      "required": true
-    },
-    "firstAdditionalBtnText": {
-      "type": "string",
-      "required": true
-    },
-    "secondAdditionalBtnText": {
-      "type": "string",
-      "required": true
-    },
-    "thirdAdditionalBtnText": {
-      "type": "string",
-      "required": true
-    },
-    "thirdAdditionalImage": {
-      "type": "media",
-      "multiple": false,
-      "required": true,
-      "allowedTypes": [
-        "images"
-      ]
-    },
-    "thirdAdditionalDescription": {
-      "type": "customField",
-      "options": {
-        "preset": "toolbar"
-      },
-      "required": true,
-      "customField": "plugin::ckeditor5.CKEditor"
-    },
-    "InfoAndDocs": {
+    "infoAndDocs": {
       "type": "dynamiczone",
       "components": [
         "unit.dokumentami",
-        "unit.tekstom"
+        "unit.tekstom",
+        "unit.spojlery"
       ],
       "required": true,
       "max": 5,
@@ -107,7 +58,7 @@
       "type": "string",
       "required": true
     },
-    "makeCardBtnText": {
+    "mainBtnText": {
       "type": "string",
       "required": true
     },
@@ -123,6 +74,23 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::recommended-product.recommended-product"
+    },
+    "additionalUnit1": {
+      "type": "component",
+      "repeatable": false,
+      "component": "components.malyj-blok",
+      "required": true
+    },
+    "additionalUnit2": {
+      "type": "component",
+      "repeatable": false,
+      "component": "components.malyj-blok",
+      "required": true
+    },
+    "additionalUnit3": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::banner.banner"
     }
   }
 }

@@ -20,11 +20,6 @@
       "required": true,
       "min": 0
     },
-    "initialPaymentFrom": {
-      "type": "integer",
-      "required": true,
-      "min": 0
-    },
     "initialPaymentTo": {
       "type": "integer",
       "required": true,
@@ -52,6 +47,23 @@
     "noInsurance": {
       "type": "integer",
       "min": 0
+    },
+    "range_rate": {
+      "displayName": "Процентная ставка",
+      "type": "component",
+      "repeatable": true,
+      "component": "calculator.stavka-diapazon",
+      "min": 1,
+      "max": 5,
+      "required": true
+    },
+    "interest_rate": {
+      "displayName": "Процентная ставка",
+      "type": "component",
+      "repeatable": true,
+      "component": "calculator.stavka-ipoteka",
+      "min": 1,
+      "max": 5
     }
   }
 }

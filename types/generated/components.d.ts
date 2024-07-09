@@ -157,7 +157,7 @@ export interface CalculatorIpoteka extends Schema.Component {
     description: '';
   };
   attributes: {
-    mortrage: Attribute.Component<'calculator.mortrage-item', true> &
+    mortgage: Attribute.Component<'calculator.mortgage-item', true> &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -186,7 +186,7 @@ export interface CalculatorKredit extends Schema.Component {
   };
 }
 
-export interface CalculatorMortrageItem extends Schema.Component {
+export interface CalculatorMortgageItem extends Schema.Component {
   collectionName: 'components_calculator_mortrage_items';
   info: {
     displayName: 'mortgageItem';
@@ -203,14 +203,6 @@ export interface CalculatorMortrageItem extends Schema.Component {
         number
       >;
     amountTo: Attribute.Integer &
-      Attribute.Required &
-      Attribute.SetMinMax<
-        {
-          min: 0;
-        },
-        number
-      >;
-    initialPaymentFrom: Attribute.Integer &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -264,6 +256,23 @@ export interface CalculatorMortrageItem extends Schema.Component {
         },
         number
       >;
+    range_rate: Attribute.Component<'calculator.stavka-diapazon', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 1;
+          max: 5;
+        },
+        number
+      >;
+    interest_rate: Attribute.Component<'calculator.stavka-ipoteka', true> &
+      Attribute.SetMinMax<
+        {
+          min: 1;
+          max: 5;
+        },
+        number
+      >;
   };
 }
 
@@ -294,7 +303,6 @@ export interface CalculatorSrokVklada extends Schema.Component {
   };
   attributes: {
     title: Attribute.String & Attribute.Required;
-    days: Attribute.Integer & Attribute.Required;
     monthlyInterestOnline: Attribute.Float &
       Attribute.SetMinMax<
         {
@@ -323,6 +331,14 @@ export interface CalculatorSrokVklada extends Schema.Component {
     deposit: Attribute.Boolean &
       Attribute.Required &
       Attribute.DefaultTo<false>;
+    interest_rate: Attribute.Component<'calculator.stavka-vklad', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 1;
+        },
+        number
+      >;
     amountFrom: Attribute.Integer &
       Attribute.Required &
       Attribute.SetMinMax<
@@ -339,6 +355,69 @@ export interface CalculatorSrokVklada extends Schema.Component {
         },
         number
       >;
+  };
+}
+
+export interface CalculatorStavkaDiapazon extends Schema.Component {
+  collectionName: 'components_calculator_stavka_diapazon_s';
+  info: {
+    displayName: '\u0421\u0442\u0430\u0432\u043A\u0430 (\u0414\u0438\u0430\u043F\u0430\u0437\u043E\u043D)';
+  };
+  attributes: {
+    fromInitPayPercent: Attribute.Float &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      >;
+    percent: Attribute.Float &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      >;
+  };
+}
+
+export interface CalculatorStavkaIpoteka extends Schema.Component {
+  collectionName: 'components_calculator_stavka_ipoteka_s';
+  info: {
+    displayName: '\u0421\u0442\u0430\u0432\u043A\u0430 (\u041E\u0431\u044A\u0435\u043A\u0442)';
+    description: '';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    percent: Attribute.Float &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      >;
+  };
+}
+
+export interface CalculatorStavkaVklad extends Schema.Component {
+  collectionName: 'components_calculator_stavka_vklad_s';
+  info: {
+    displayName: '\u0421\u0442\u0430\u0432\u043A\u0430 (\u0412\u043A\u043B\u0430\u0434)';
+    description: '';
+  };
+  attributes: {
+    days: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      >;
+    title: Attribute.String & Attribute.Required;
   };
 }
 
@@ -417,6 +496,25 @@ export interface CommonSoczialnyeSeti extends Schema.Component {
   };
 }
 
+export interface CommonSpojler extends Schema.Component {
+  collectionName: 'components_unit_spojler';
+  info: {
+    displayName: 'Spoiler';
+    description: '';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    description: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
+  };
+}
+
 export interface CommonTekst extends Schema.Component {
   collectionName: 'components_common_tekst';
   info: {
@@ -487,6 +585,7 @@ export interface ComponentsBolshojBlok extends Schema.Component {
         }
       >;
     buttonText: Attribute.String & Attribute.Required;
+    route: Attribute.String & Attribute.Required;
   };
 }
 
@@ -570,10 +669,13 @@ export interface ComponentsMalyjBlok extends Schema.Component {
   collectionName: 'components_components_malyj_blok';
   info: {
     displayName: '\u041C\u0430\u043B\u044B\u0439 \u0431\u043B\u043E\u043A';
+    description: '';
   };
   attributes: {
     title: Attribute.String & Attribute.Required;
     buttonText: Attribute.String & Attribute.Required;
+    image: Attribute.Media<'images'>;
+    route: Attribute.String & Attribute.Required;
   };
 }
 
@@ -597,7 +699,7 @@ export interface ComponentsPreimushhestvoKarty extends Schema.Component {
   };
   attributes: {
     icon: Attribute.Media<'images'> & Attribute.Required;
-    title: Attribute.String;
+    title: Attribute.String & Attribute.Required;
   };
 }
 
@@ -831,6 +933,24 @@ export interface UnitDokumentami extends Schema.Component {
   };
 }
 
+export interface UnitSpojlery extends Schema.Component {
+  collectionName: 'components_unit_spojlery';
+  info: {
+    displayName: '\u0421\u043F\u043E\u0439\u043B\u0435\u0440\u044B';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    spoilers: Attribute.Component<'common.spojler', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 1;
+        },
+        number
+      >;
+  };
+}
+
 export interface UnitTekstom extends Schema.Component {
   collectionName: 'components_unit_tekstom';
   info: {
@@ -847,6 +967,7 @@ export interface UnitTekstom extends Schema.Component {
           preset: 'toolbar';
         }
       >;
+    isTableStyled: Attribute.Boolean & Attribute.DefaultTo<false>;
   };
 }
 
@@ -858,14 +979,18 @@ declare module '@strapi/types' {
       'calculator.depozit': CalculatorDepozit;
       'calculator.ipoteka': CalculatorIpoteka;
       'calculator.kredit': CalculatorKredit;
-      'calculator.mortrage-item': CalculatorMortrageItem;
+      'calculator.mortgage-item': CalculatorMortgageItem;
       'calculator.proczentnaya-stavka': CalculatorProczentnayaStavka;
       'calculator.srok-vklada': CalculatorSrokVklada;
+      'calculator.stavka-diapazon': CalculatorStavkaDiapazon;
+      'calculator.stavka-ipoteka': CalculatorStavkaIpoteka;
+      'calculator.stavka-vklad': CalculatorStavkaVklad;
       'calculator.vklad': CalculatorVklad;
       'common.link': CommonLink;
       'common.nomer-telefona': CommonNomerTelefona;
       'common.qr-block': CommonQrBlock;
       'common.soczialnye-seti': CommonSoczialnyeSeti;
+      'common.spojler': CommonSpojler;
       'common.tekst': CommonTekst;
       'common.text-description': CommonTextDescription;
       'common.text-image-route': CommonTextImageRoute;
@@ -892,6 +1017,7 @@ declare module '@strapi/types' {
       'header.vklady': HeaderVklady;
       'unit.calculator-field': UnitCalculatorField;
       'unit.dokumentami': UnitDokumentami;
+      'unit.spojlery': UnitSpojlery;
       'unit.tekstom': UnitTekstom;
     }
   }

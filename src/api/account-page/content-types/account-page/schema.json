@@ -52,16 +52,11 @@
       "type": "dynamiczone",
       "components": [
         "unit.dokumentami",
-        "unit.tekstom"
+        "unit.tekstom",
+        "unit.spojlery"
       ],
       "min": 2,
       "max": 5
-    },
-    "banner": {
-      "type": "component",
-      "repeatable": false,
-      "component": "components.bolshoj-blok",
-      "required": true
     },
     "recommended_products": {
       "type": "relation",
@@ -74,6 +69,11 @@
       "repeatable": false,
       "component": "common.title-image",
       "required": true
+    },
+    "banner": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::banner.banner"
     }
   }
 }

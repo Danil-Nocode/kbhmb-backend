@@ -24,7 +24,7 @@
         "images"
       ]
     },
-    "link": {
+    "route": {
       "type": "string",
       "required": true
     }
