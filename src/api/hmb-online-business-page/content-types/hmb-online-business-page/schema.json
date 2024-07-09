@@ -26,12 +26,12 @@
       "required": true
     },
     "mainImage": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "benefits": {
       "type": "component",
@@ -67,22 +67,30 @@
       "type": "dynamiczone",
       "components": [
         "unit.dokumentami",
-        "unit.tekstom"
+        "unit.tekstom",
+        "unit.spojlery"
       ],
       "required": true,
       "min": 2,
       "max": 5
     },
-    "banner": {
-      "type": "component",
-      "repeatable": false,
-      "required": true,
-      "component": "components.bolshoj-blok"
-    },
     "recommended_products": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::recommended-product.recommended-product"
+    },
+    "banner": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::banner.banner"
+    },
+    "appStoreLink": {
+      "type": "string",
+      "required": true
+    },
+    "playMarketLink": {
+      "type": "string",
+      "required": true
     }
   }
 }

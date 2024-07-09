@@ -48,7 +48,7 @@
     "benefits": {
       "type": "component",
       "repeatable": true,
-      "component": "components.preimushhestvo-2",
+      "component": "components.preimushhestvo-karty",
       "max": 8,
       "required": true,
       "min": 3
@@ -86,22 +86,22 @@
       "type": "dynamiczone",
       "components": [
         "unit.dokumentami",
-        "unit.tekstom"
+        "unit.tekstom",
+        "unit.spojlery"
       ],
       "required": true,
       "max": 5,
       "min": 2
     },
-    "banner": {
-      "type": "component",
-      "repeatable": false,
-      "component": "components.bolshoj-blok",
-      "required": true
-    },
     "recommended_products": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::recommended-product.recommended-product"
+    },
+    "banner": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::banner.banner"
     }
   }
 }

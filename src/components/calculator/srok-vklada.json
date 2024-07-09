@@ -10,10 +10,6 @@
       "type": "string",
       "required": true
     },
-    "days": {
-      "type": "integer",
-      "required": true
-    },
     "monthlyInterestOnline": {
       "type": "float",
       "required": false,
@@ -39,6 +35,14 @@
       "type": "boolean",
       "default": false,
       "required": true
+    },
+    "interest_rate": {
+      "displayName": "Процентная ставка",
+      "type": "component",
+      "repeatable": true,
+      "component": "calculator.stavka-vklad",
+      "required": true,
+      "min": 1
     },
     "amountFrom": {
       "type": "integer",

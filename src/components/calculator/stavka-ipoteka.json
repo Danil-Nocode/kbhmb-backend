@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_calculator_stavka_ipoteka_s",
+  "info": {
+    "displayName": "Ставка (Объект)",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "percent": {
+      "type": "float",
+      "required": true,
+      "min": 0
+    }
+  }
+}

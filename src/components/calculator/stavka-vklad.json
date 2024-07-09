@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_calculator_stavka_vklad_s",
+  "info": {
+    "displayName": "Ставка (Вклад)",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "days": {
+      "type": "integer",
+      "required": true,
+      "min": 0
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

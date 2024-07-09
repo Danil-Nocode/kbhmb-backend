@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_calculator_stavka_diapazon_s",
+  "info": {
+    "displayName": "Ставка (Диапазон)"
+  },
+  "options": {},
+  "attributes": {
+    "fromInitPayPercent": {
+      "type": "float",
+      "required": true,
+      "min": 0
+    },
+    "percent": {
+      "type": "float",
+      "min": 0,
+      "required": true
+    }
+  }
+}

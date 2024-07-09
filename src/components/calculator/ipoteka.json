@@ -6,11 +6,11 @@
   },
   "options": {},
   "attributes": {
-    "mortrage": {
-      "displayName": "mortrageItem",
+    "mortgage": {
+      "displayName": "mortgageItem",
       "type": "component",
       "repeatable": true,
-      "component": "calculator.mortrage-item",
+      "component": "calculator.mortgage-item",
       "required": true,
       "min": 1
     }

@@ -22,7 +22,7 @@
       "required": true
     },
     "description": {
-      "type": "string",
+      "type": "text",
       "required": true
     },
     "mainImage": {
@@ -61,7 +61,8 @@
       "type": "dynamiczone",
       "components": [
         "unit.dokumentami",
-        "unit.tekstom"
+        "unit.tekstom",
+        "unit.spojlery"
       ],
       "min": 2,
       "max": 5
@@ -72,16 +73,15 @@
       "component": "common.title-image",
       "required": true
     },
-    "banner": {
-      "type": "component",
-      "repeatable": false,
-      "component": "components.bolshoj-blok",
-      "required": true
-    },
     "recommended_products": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::recommended-product.recommended-product"
+    },
+    "banner": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::banner.banner"
     }
   }
 }

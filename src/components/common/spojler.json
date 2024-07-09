@@ -1,7 +1,7 @@
 {
-  "collectionName": "components_unit_tekstom",
+  "collectionName": "components_unit_spojler",
   "info": {
-    "displayName": "Текст/Таблица",
+    "displayName": "Spoiler",
     "description": ""
   },
   "options": {},
@@ -15,12 +15,8 @@
       "options": {
         "preset": "toolbar"
       },
-      "customField": "plugin::ckeditor5.CKEditor",
-      "required": true
-    },
-    "isTableStyled": {
-      "type": "boolean",
-      "default": false
+      "required": true,
+      "customField": "plugin::ckeditor5.CKEditor"
     }
   }
 }
