@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_header_ssylka",
+  "info": {
+    "displayName": "Ссылка"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "route": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

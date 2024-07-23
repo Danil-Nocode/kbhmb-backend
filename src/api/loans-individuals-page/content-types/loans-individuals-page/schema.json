@@ -21,10 +21,6 @@
       "targetField": "title",
       "required": true
     },
-    "description": {
-      "type": "text",
-      "required": true
-    },
     "mainBtnText": {
       "type": "string",
       "required": true
@@ -40,7 +36,7 @@
     "benefits": {
       "type": "component",
       "repeatable": true,
-      "component": "components.preimushhestvo-karty",
+      "component": "components.preimushhestvo-2",
       "max": 8,
       "min": 3,
       "required": true
@@ -85,6 +81,14 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::banner.banner"
+    },
+    "description": {
+      "type": "customField",
+      "options": {
+        "preset": "toolbar"
+      },
+      "required": true,
+      "customField": "plugin::ckeditor5.CKEditor"
     }
   }
 }

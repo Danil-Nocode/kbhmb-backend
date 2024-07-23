@@ -20,6 +20,9 @@
       "type": "uid",
       "targetField": "title",
       "required": true
+    },
+    "description": {
+      "type": "text"
     }
   }
 }

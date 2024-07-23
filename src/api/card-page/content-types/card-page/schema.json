@@ -21,15 +21,11 @@
       "targetField": "title",
       "required": true
     },
-    "description": {
-      "type": "text",
-      "required": true
-    },
     "benefits": {
       "displayName": "Преимущество - Карты",
       "type": "component",
       "repeatable": true,
-      "component": "components.preimushhestvo-karty",
+      "component": "components.preimushhestvo-2",
       "min": 3,
       "max": 8,
       "required": true
@@ -91,6 +87,14 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::banner.banner"
+    },
+    "description": {
+      "type": "customField",
+      "options": {
+        "preset": "toolbar"
+      },
+      "required": true,
+      "customField": "plugin::ckeditor5.CKEditor"
     }
   }
 }

@@ -522,7 +522,13 @@ export interface CommonTekst extends Schema.Component {
     description: '';
   };
   attributes: {
-    title: Attribute.String & Attribute.Required;
+    title: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
   };
 }
 
@@ -683,11 +689,12 @@ export interface ComponentsPreimushhestvo2 extends Schema.Component {
   collectionName: 'components_components_preimushhestvo_2s';
   info: {
     displayName: '\u041F\u0440\u0435\u0438\u043C\u0443\u0449\u0435\u0441\u0442\u0432\u043E 2';
+    description: '';
   };
   attributes: {
-    image: Attribute.Media<'images'> & Attribute.Required;
-    title: Attribute.String & Attribute.Required;
-    description: Attribute.Text & Attribute.Required;
+    image: Attribute.Media<'images'>;
+    title: Attribute.String;
+    description: Attribute.Text;
   };
 }
 
@@ -710,7 +717,6 @@ export interface ComponentsRepetitiveWithTitle extends Schema.Component {
     description: '';
   };
   attributes: {
-    title: Attribute.String & Attribute.Required;
     item: Attribute.Component<'common.tekst', true> &
       Attribute.Required &
       Attribute.SetMinMax<
@@ -720,6 +726,7 @@ export interface ComponentsRepetitiveWithTitle extends Schema.Component {
         },
         number
       >;
+    title: Attribute.String & Attribute.Required;
   };
 }
 
@@ -791,6 +798,24 @@ export interface HeaderDepozity extends Schema.Component {
       'oneToMany',
       'api::deposit.deposit'
     >;
+  };
+}
+
+export interface HeaderGruppa extends Schema.Component {
+  collectionName: 'components_header_gruppa';
+  info: {
+    displayName: '\u0413\u0440\u0443\u043F\u043F\u0430';
+  };
+  attributes: {
+    item: Attribute.Component<'header.ssylka', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 1;
+          max: 10;
+        },
+        number
+      >;
   };
 }
 
@@ -872,6 +897,17 @@ export interface HeaderScheta extends Schema.Component {
       'oneToMany',
       'api::account.account'
     >;
+  };
+}
+
+export interface HeaderSsylka extends Schema.Component {
+  collectionName: 'components_header_ssylka';
+  info: {
+    displayName: '\u0421\u0441\u044B\u043B\u043A\u0430';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    route: Attribute.String & Attribute.Required;
   };
 }
 
@@ -1007,12 +1043,14 @@ declare module '@strapi/types' {
       'components.usloviya': ComponentsUsloviya;
       'components.vozmozhnosti': ComponentsVozmozhnosti;
       'header.depozity': HeaderDepozity;
+      'header.gruppa': HeaderGruppa;
       'header.gruppy-menyu': HeaderGruppyMenyu;
       'header.ipoteka': HeaderIpoteka;
       'header.karty': HeaderKarty;
       'header.kredity': HeaderKredity;
       'header.punkt-menyu': HeaderPunktMenyu;
       'header.scheta': HeaderScheta;
+      'header.ssylka': HeaderSsylka;
       'header.staticheskaya-ssylka': HeaderStaticheskayaSsylka;
       'header.vklady': HeaderVklady;
       'unit.calculator-field': UnitCalculatorField;

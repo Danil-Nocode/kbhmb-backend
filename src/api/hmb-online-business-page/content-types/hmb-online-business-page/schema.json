@@ -21,10 +21,6 @@
       "targetField": "title",
       "required": true
     },
-    "description": {
-      "type": "text",
-      "required": true
-    },
     "mainImage": {
       "type": "media",
       "multiple": false,
@@ -39,21 +35,21 @@
       "required": true,
       "max": 8,
       "min": 3,
-      "component": "components.preimushhestvo-karty"
+      "component": "components.preimushhestvo-2"
     },
-    "CapabilitiesBlock1": {
+    "capabilitiesBlock1": {
       "type": "component",
       "repeatable": false,
       "component": "common.text-description",
       "required": true
     },
-    "CapabilitiesBlock2": {
+    "capabilitiesBlock2": {
       "type": "component",
       "repeatable": false,
       "component": "common.text-description",
       "required": true
     },
-    "CapabilitiesBlock3": {
+    "capabilitiesBlock3": {
       "type": "component",
       "repeatable": false,
       "component": "common.text-description",
@@ -86,11 +82,25 @@
     },
     "appStoreLink": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "playMarketLink": {
       "type": "string",
-      "required": true
+      "required": false
+    },
+    "ruStoreLink": {
+      "type": "string"
+    },
+    "description": {
+      "type": "customField",
+      "options": {
+        "preset": "toolbar"
+      },
+      "required": true,
+      "customField": "plugin::ckeditor5.CKEditor"
+    },
+    "capabilitiesTitle": {
+      "type": "string"
     }
   }
 }

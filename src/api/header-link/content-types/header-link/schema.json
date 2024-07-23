@@ -16,26 +16,12 @@
       "type": "string",
       "required": true
     },
-    "allProductsRoute": {
-      "type": "string",
-      "required": true
-    },
-    "allProductTitle": {
-      "type": "string",
-      "required": true
-    },
-    "products": {
-      "type": "dynamiczone",
-      "components": [
-        "header.vklady",
-        "header.kredity",
-        "header.ipoteka",
-        "header.karty",
-        "header.scheta",
-        "header.depozity",
-        "header.staticheskaya-ssylka"
-      ],
+    "item": {
+      "type": "component",
+      "repeatable": true,
+      "component": "header.ssylka",
       "required": true,
+      "max": 10,
       "min": 1
     }
   }
