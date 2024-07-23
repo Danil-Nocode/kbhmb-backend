@@ -17,12 +17,12 @@
       "required": true
     },
     "image": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "description": {
       "type": "customField",
@@ -33,6 +33,10 @@
       "customField": "plugin::ckeditor5.CKEditor"
     },
     "buttonText": {
+      "type": "string",
+      "required": true
+    },
+    "route": {
       "type": "string",
       "required": true
     }

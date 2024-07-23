@@ -21,10 +21,6 @@
       "targetField": "title",
       "required": true
     },
-    "description": {
-      "type": "text",
-      "required": true
-    },
     "mainImage": {
       "type": "media",
       "multiple": false,
@@ -40,37 +36,37 @@
     "benefits": {
       "type": "component",
       "repeatable": true,
-      "component": "components.preimushhestvo-karty",
+      "component": "components.preimushhestvo-2",
       "required": true,
       "max": 8,
       "min": 3
     },
-    "CapabilitiesBlock1": {
+    "capabilitiesBlock1": {
       "displayName": "TextDescription",
       "type": "component",
       "repeatable": false,
       "component": "common.text-description",
       "required": true
     },
-    "CapabilitiesBlock2": {
+    "capabilitiesBlock2": {
       "type": "component",
       "repeatable": false,
       "component": "common.text-description",
       "required": true
     },
-    "CapabilitiesBlock3": {
+    "capabilitiesBlock3": {
       "type": "component",
       "repeatable": false,
       "component": "common.text-description",
       "required": true
     },
-    "CapabilitiesBlock4": {
+    "capabilitiesBlock4": {
       "type": "component",
       "repeatable": false,
       "required": true,
       "component": "common.text-description"
     },
-    "CapabilitiesBlock5": {
+    "capabilitiesBlock5": {
       "type": "component",
       "repeatable": false,
       "required": true,
@@ -95,6 +91,17 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::recommended-product.recommended-product"
+    },
+    "description": {
+      "type": "customField",
+      "options": {
+        "preset": "toolbar"
+      },
+      "required": true,
+      "customField": "plugin::ckeditor5.CKEditor"
+    },
+    "capabilitiesTitle": {
+      "type": "string"
     }
   }
 }

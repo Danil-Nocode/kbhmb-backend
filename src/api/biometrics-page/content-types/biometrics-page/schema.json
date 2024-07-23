@@ -21,22 +21,18 @@
       "targetField": "title",
       "required": true
     },
-    "description": {
-      "type": "text",
-      "required": true
-    },
     "mainImage": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "benefits": {
       "type": "component",
       "repeatable": true,
-      "component": "components.preimushhestvo-karty",
+      "component": "components.preimushhestvo-2",
       "required": true,
       "max": 8,
       "min": 3
@@ -66,6 +62,14 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::recommended-product.recommended-product"
+    },
+    "description": {
+      "type": "customField",
+      "options": {
+        "preset": "toolbar"
+      },
+      "required": true,
+      "customField": "plugin::ckeditor5.CKEditor"
     }
   }
 }

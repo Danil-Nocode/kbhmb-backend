@@ -802,7 +802,6 @@ export interface ApiAccountAccount extends Schema.CollectionType {
   attributes: {
     title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::account.account', 'title'> & Attribute.Required;
-    description: Attribute.Text & Attribute.Required;
     mainImage: Attribute.Media<'images'> & Attribute.Required;
     mainBtnText: Attribute.String & Attribute.Required;
     document: Attribute.Relation<
@@ -845,6 +844,14 @@ export interface ApiAccountAccount extends Schema.CollectionType {
       'oneToOne',
       'api::banner.banner'
     >;
+    description: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -878,7 +885,6 @@ export interface ApiAccountPageAccountPage extends Schema.SingleType {
     title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::account-page.account-page', 'title'> &
       Attribute.Required;
-    description: Attribute.Text & Attribute.Required;
     mainImage: Attribute.Media<'images'> & Attribute.Required;
     accounts: Attribute.Relation<
       'api::account-page.account-page',
@@ -910,6 +916,14 @@ export interface ApiAccountPageAccountPage extends Schema.SingleType {
       'oneToOne',
       'api::banner.banner'
     >;
+    description: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -951,6 +965,7 @@ export interface ApiBannerBanner extends Schema.CollectionType {
         }
       >;
     buttonText: Attribute.String & Attribute.Required;
+    route: Attribute.String & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1032,9 +1047,8 @@ export interface ApiBiometricsPageBiometricsPage extends Schema.SingleType {
     title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::biometrics-page.biometrics-page', 'title'> &
       Attribute.Required;
-    description: Attribute.Text & Attribute.Required;
     mainImage: Attribute.Media<'images'> & Attribute.Required;
-    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
+    benefits: Attribute.Component<'components.preimushhestvo-2', true> &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -1062,6 +1076,14 @@ export interface ApiBiometricsPageBiometricsPage extends Schema.SingleType {
       'oneToMany',
       'api::recommended-product.recommended-product'
     >;
+    description: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1132,7 +1154,6 @@ export interface ApiCardCard extends Schema.CollectionType {
   attributes: {
     title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::card.card', 'title'> & Attribute.Required;
-    description: Attribute.Text & Attribute.Required;
     mainBtnText: Attribute.String & Attribute.Required;
     mainImage: Attribute.Media<'images'> & Attribute.Required;
     conditions: Attribute.Component<'components.usloviya', true> &
@@ -1143,7 +1164,7 @@ export interface ApiCardCard extends Schema.CollectionType {
         },
         number
       >;
-    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
+    benefits: Attribute.Component<'components.preimushhestvo-2', true> &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -1176,6 +1197,17 @@ export interface ApiCardCard extends Schema.CollectionType {
       'oneToOne',
       'api::banner.banner'
     >;
+    description: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
+    type: Attribute.Enumeration<['\u0424\u041B', '\u042E\u041B']> &
+      Attribute.Required &
+      Attribute.DefaultTo<'\u0424\u041B'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1201,8 +1233,7 @@ export interface ApiCardPageCardPage extends Schema.SingleType {
     title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::card-page.card-page', 'title'> &
       Attribute.Required;
-    description: Attribute.Text & Attribute.Required;
-    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
+    benefits: Attribute.Component<'components.preimushhestvo-2', true> &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -1245,6 +1276,14 @@ export interface ApiCardPageCardPage extends Schema.SingleType {
       'oneToOne',
       'api::banner.banner'
     >;
+    description: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1277,10 +1316,9 @@ export interface ApiCashManagementCashManagement extends Schema.SingleType {
   attributes: {
     title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::cash-management.cash-management', 'title'>;
-    description: Attribute.Text & Attribute.Required;
     mainImage: Attribute.Media<'images'> & Attribute.Required;
     mainBtnText: Attribute.String & Attribute.Required;
-    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
+    benefits: Attribute.Component<'components.preimushhestvo-2', true> &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -1313,6 +1351,14 @@ export interface ApiCashManagementCashManagement extends Schema.SingleType {
       'oneToOne',
       'api::banner.banner'
     >;
+    description: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1441,6 +1487,7 @@ export interface ApiCoinsPageCoinsPage extends Schema.SingleType {
     title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::coins-page.coins-page', 'title'> &
       Attribute.Required;
+    description: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1478,7 +1525,6 @@ export interface ApiCorporateCardsPageCorporateCardsPage
       'title'
     > &
       Attribute.Required;
-    description: Attribute.Text & Attribute.Required;
     mainImage: Attribute.Media<'images'> & Attribute.Required;
     mainBtnText: Attribute.String;
     cards: Attribute.Relation<
@@ -1514,6 +1560,14 @@ export interface ApiCorporateCardsPageCorporateCardsPage
       'oneToOne',
       'api::banner.banner'
     >;
+    description: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1585,6 +1639,7 @@ export interface ApiCurrencyCurrency extends Schema.CollectionType {
     purchasePrevious: Attribute.Float;
     salePrevious: Attribute.Float;
     centralBankPrevious: Attribute.Float;
+    currencyCode: Attribute.String & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1697,6 +1752,8 @@ export interface ApiCurrencyExchangeCurrencyExchange extends Schema.SingleType {
     >;
     currencyTableDescription: Attribute.String & Attribute.Required;
     metalsTableDescription: Attribute.String & Attribute.Required;
+    currencyTableTitle: Attribute.String & Attribute.Required;
+    metalsTableTitle: Attribute.String & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1729,7 +1786,6 @@ export interface ApiDepositDeposit extends Schema.CollectionType {
   attributes: {
     title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::deposit.deposit', 'title'> & Attribute.Required;
-    description: Attribute.Text & Attribute.Required;
     mainImage: Attribute.Media<'images'> & Attribute.Required;
     mainBtnText: Attribute.String & Attribute.Required;
     conditions: Attribute.Component<'components.usloviya', true> &
@@ -1741,7 +1797,7 @@ export interface ApiDepositDeposit extends Schema.CollectionType {
         },
         number
       >;
-    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
+    benefits: Attribute.Component<'components.preimushhestvo-2', true> &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -1791,6 +1847,14 @@ export interface ApiDepositDeposit extends Schema.CollectionType {
       'oneToOne',
       'api::banner.banner'
     >;
+    description: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1824,10 +1888,9 @@ export interface ApiDepositsPageDepositsPage extends Schema.SingleType {
     title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::deposits-page.deposits-page', 'title'> &
       Attribute.Required;
-    description: Attribute.String & Attribute.Required;
-    mainImage: Attribute.Media<'images', true> & Attribute.Required;
+    mainImage: Attribute.Media<'images'> & Attribute.Required;
     mainBtnText: Attribute.String & Attribute.Required;
-    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
+    benefits: Attribute.Component<'components.preimushhestvo-2', true> &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -1870,6 +1933,14 @@ export interface ApiDepositsPageDepositsPage extends Schema.SingleType {
       'oneToOne',
       'api::banner.banner'
     >;
+    description: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1984,10 +2055,9 @@ export interface ApiEncashmentPageEncashmentPage extends Schema.SingleType {
     title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::encashment-page.encashment-page', 'title'> &
       Attribute.Required;
-    description: Attribute.Text & Attribute.Required;
     mainImage: Attribute.Media<'images'> & Attribute.Required;
     mainBtnText: Attribute.String & Attribute.Required;
-    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
+    benefits: Attribute.Component<'components.preimushhestvo-2', true> &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -2020,6 +2090,14 @@ export interface ApiEncashmentPageEncashmentPage extends Schema.SingleType {
       'oneToOne',
       'api::banner.banner'
     >;
+    description: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2075,37 +2153,6 @@ export interface ApiFinancialSecurityPageFinancialSecurityPage
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::financial-security-page.financial-security-page',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiFooterLinkFooterLink extends Schema.CollectionType {
-  collectionName: 'footer_links';
-  info: {
-    singularName: 'footer-link';
-    pluralName: 'footer-links';
-    displayName: '\u041F\u043E\u0434\u0432\u0430\u043B (\u0421\u0441\u044B\u043B\u043A\u0438)';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required;
-    route: Attribute.String & Attribute.Required;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::footer-link.footer-link',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::footer-link.footer-link',
       'oneToOne',
       'admin::user'
     > &
@@ -2242,8 +2289,7 @@ export interface ApiGoldenCrownPageGoldenCrownPage extends Schema.SingleType {
     title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::golden-crown-page.golden-crown-page', 'title'> &
       Attribute.Required;
-    description: Attribute.Text & Attribute.Required;
-    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
+    benefits: Attribute.Component<'components.preimushhestvo-2', true> &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -2280,6 +2326,14 @@ export interface ApiGoldenCrownPageGoldenCrownPage extends Schema.SingleType {
       'oneToOne',
       'api::banner.banner'
     >;
+    description: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2357,23 +2411,12 @@ export interface ApiHeaderLinkHeaderLink extends Schema.CollectionType {
   };
   attributes: {
     title: Attribute.String & Attribute.Required;
-    allProductsRoute: Attribute.String & Attribute.Required;
-    allProductTitle: Attribute.String & Attribute.Required;
-    products: Attribute.DynamicZone<
-      [
-        'header.vklady',
-        'header.kredity',
-        'header.ipoteka',
-        'header.karty',
-        'header.scheta',
-        'header.depozity',
-        'header.staticheskaya-ssylka'
-      ]
-    > &
+    item: Attribute.Component<'header.ssylka', true> &
       Attribute.Required &
       Attribute.SetMinMax<
         {
           min: 1;
+          max: 10;
         },
         number
       >;
@@ -2414,9 +2457,8 @@ export interface ApiHmbOnlineBusinessPageHmbOnlineBusinessPage
       'title'
     > &
       Attribute.Required;
-    description: Attribute.Text & Attribute.Required;
     mainImage: Attribute.Media<'images'> & Attribute.Required;
-    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
+    benefits: Attribute.Component<'components.preimushhestvo-2', true> &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -2425,11 +2467,11 @@ export interface ApiHmbOnlineBusinessPageHmbOnlineBusinessPage
         },
         number
       >;
-    CapabilitiesBlock1: Attribute.Component<'common.text-description'> &
+    capabilitiesBlock1: Attribute.Component<'common.text-description'> &
       Attribute.Required;
-    CapabilitiesBlock2: Attribute.Component<'common.text-description'> &
+    capabilitiesBlock2: Attribute.Component<'common.text-description'> &
       Attribute.Required;
-    CapabilitiesBlock3: Attribute.Component<'common.text-description'> &
+    capabilitiesBlock3: Attribute.Component<'common.text-description'> &
       Attribute.Required;
     infoAndDocsTitle: Attribute.String & Attribute.Required;
     infoAndDocs: Attribute.DynamicZone<
@@ -2453,8 +2495,18 @@ export interface ApiHmbOnlineBusinessPageHmbOnlineBusinessPage
       'oneToOne',
       'api::banner.banner'
     >;
-    appStoreLink: Attribute.String & Attribute.Required;
-    playMarketLink: Attribute.String & Attribute.Required;
+    appStoreLink: Attribute.String;
+    playMarketLink: Attribute.String;
+    ruStoreLink: Attribute.String;
+    description: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
+    capabilitiesTitle: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2497,7 +2549,7 @@ export interface ApiHmbOnlinePageHmbOnlinePage extends Schema.SingleType {
         }
       >;
     mainImage: Attribute.Media<'images'> & Attribute.Required;
-    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
+    benefits: Attribute.Component<'components.preimushhestvo-2', true> &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -2525,8 +2577,9 @@ export interface ApiHmbOnlinePageHmbOnlinePage extends Schema.SingleType {
       'oneToMany',
       'api::recommended-product.recommended-product'
     >;
-    appStoreLink: Attribute.String & Attribute.Required;
-    playMarketLink: Attribute.String & Attribute.Required;
+    appStoreLink: Attribute.String;
+    playMarketLink: Attribute.String;
+    ruStoreLink: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2560,10 +2613,9 @@ export interface ApiHmbSquarePageHmbSquarePage extends Schema.SingleType {
     title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::hmb-square-page.hmb-square-page', 'title'> &
       Attribute.Required;
-    description: Attribute.Text & Attribute.Required;
     mainBtnText: Attribute.String & Attribute.Required;
     mainImage: Attribute.Media<'images'> & Attribute.Required;
-    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
+    benefits: Attribute.Component<'components.preimushhestvo-2', true> &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -2596,6 +2648,14 @@ export interface ApiHmbSquarePageHmbSquarePage extends Schema.SingleType {
       'oneToOne',
       'api::banner.banner'
     >;
+    description: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2629,10 +2689,9 @@ export interface ApiIbankPageIbankPage extends Schema.SingleType {
     title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::ibank-page.ibank-page', 'title'> &
       Attribute.Required;
-    description: Attribute.Text & Attribute.Required;
     mainImage: Attribute.Media<'images'> & Attribute.Required;
     mainBtnText: Attribute.String & Attribute.Required;
-    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
+    benefits: Attribute.Component<'components.preimushhestvo-2', true> &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -2641,15 +2700,15 @@ export interface ApiIbankPageIbankPage extends Schema.SingleType {
         },
         number
       >;
-    CapabilitiesBlock1: Attribute.Component<'common.text-description'> &
+    capabilitiesBlock1: Attribute.Component<'common.text-description'> &
       Attribute.Required;
-    CapabilitiesBlock2: Attribute.Component<'common.text-description'> &
+    capabilitiesBlock2: Attribute.Component<'common.text-description'> &
       Attribute.Required;
-    CapabilitiesBlock3: Attribute.Component<'common.text-description'> &
+    capabilitiesBlock3: Attribute.Component<'common.text-description'> &
       Attribute.Required;
-    CapabilitiesBlock4: Attribute.Component<'common.text-description'> &
+    capabilitiesBlock4: Attribute.Component<'common.text-description'> &
       Attribute.Required;
-    CapabilitiesBlock5: Attribute.Component<'common.text-description'> &
+    capabilitiesBlock5: Attribute.Component<'common.text-description'> &
       Attribute.Required;
     infoAndDocsTitle: Attribute.String & Attribute.Required;
     infoAndDocs: Attribute.DynamicZone<
@@ -2668,6 +2727,15 @@ export interface ApiIbankPageIbankPage extends Schema.SingleType {
       'oneToMany',
       'api::recommended-product.recommended-product'
     >;
+    description: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
+    capabilitiesTitle: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2705,9 +2773,8 @@ export interface ApiInterTransfersSwiftPageInterTransfersSwiftPage
       'title'
     > &
       Attribute.Required;
-    description: Attribute.Text & Attribute.Required;
     mainImage: Attribute.Media<'images'> & Attribute.Required;
-    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
+    benefits: Attribute.Component<'components.preimushhestvo-2', true> &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -2742,6 +2809,14 @@ export interface ApiInterTransfersSwiftPageInterTransfersSwiftPage
       'oneToOne',
       'api::banner.banner'
     >;
+    description: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2775,7 +2850,6 @@ export interface ApiInvestmentInvestment extends Schema.CollectionType {
     title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::investment.investment', 'title'> &
       Attribute.Required;
-    description: Attribute.Text & Attribute.Required;
     mainBtnText: Attribute.String & Attribute.Required;
     mainImage: Attribute.Media<'images'> & Attribute.Required;
     passportBtnText: Attribute.String & Attribute.Required;
@@ -2836,6 +2910,14 @@ export interface ApiInvestmentInvestment extends Schema.CollectionType {
       'oneToOne',
       'api::banner.banner'
     >;
+    description: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2869,7 +2951,6 @@ export interface ApiInvestmentsPageInvestmentsPage extends Schema.SingleType {
     title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::investments-page.investments-page', 'title'> &
       Attribute.Required;
-    description: Attribute.Text & Attribute.Required;
     mainImage: Attribute.Media<'images'> & Attribute.Required;
     mainBtnText: Attribute.String & Attribute.Required;
     investments: Attribute.Relation<
@@ -2907,6 +2988,14 @@ export interface ApiInvestmentsPageInvestmentsPage extends Schema.SingleType {
       'oneToOne',
       'api::banner.banner'
     >;
+    description: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2970,7 +3059,6 @@ export interface ApiLoanLoan extends Schema.CollectionType {
   attributes: {
     title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::loan.loan', 'title'> & Attribute.Required;
-    description: Attribute.Text & Attribute.Required;
     mainImage: Attribute.Media<'images'> & Attribute.Required;
     mainBtnText: Attribute.String & Attribute.Required;
     conditions: Attribute.Component<'components.usloviya', true> &
@@ -2982,7 +3070,7 @@ export interface ApiLoanLoan extends Schema.CollectionType {
         },
         number
       >;
-    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
+    benefits: Attribute.Component<'components.preimushhestvo-2', true> &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -3020,6 +3108,17 @@ export interface ApiLoanLoan extends Schema.CollectionType {
       'oneToOne',
       'api::banner.banner'
     >;
+    description: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
+    type: Attribute.Enumeration<['\u0424\u041B', '\u042E\u041B']> &
+      Attribute.Required &
+      Attribute.DefaultTo<'\u0424\u041B'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -3049,10 +3148,9 @@ export interface ApiLoansCorporatePageLoansCorporatePage
       'title'
     > &
       Attribute.Required;
-    description: Attribute.Text & Attribute.Required;
     mainImage: Attribute.Media<'images'> & Attribute.Required;
     mainBtnText: Attribute.String & Attribute.Required;
-    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
+    benefits: Attribute.Component<'components.preimushhestvo-2', true> &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -3063,7 +3161,7 @@ export interface ApiLoansCorporatePageLoansCorporatePage
       >;
     loans: Attribute.Relation<
       'api::loans-corporate-page.loans-corporate-page',
-      'oneToOne',
+      'oneToMany',
       'api::loan.loan'
     >;
     processingMethods: Attribute.Component<'components.repetitive-with-title'> &
@@ -3090,6 +3188,14 @@ export interface ApiLoansCorporatePageLoansCorporatePage
       'oneToOne',
       'api::banner.banner'
     >;
+    description: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -3127,10 +3233,9 @@ export interface ApiLoansIndividualsPageLoansIndividualsPage
       'title'
     > &
       Attribute.Required;
-    description: Attribute.Text & Attribute.Required;
     mainBtnText: Attribute.String & Attribute.Required;
     mainImage: Attribute.Media<'images'> & Attribute.Required;
-    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
+    benefits: Attribute.Component<'components.preimushhestvo-2', true> &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -3173,6 +3278,14 @@ export interface ApiLoansIndividualsPageLoansIndividualsPage
       'oneToOne',
       'api::banner.banner'
     >;
+    description: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -3356,10 +3469,9 @@ export interface ApiMerchantAcquiringPageMerchantAcquiringPage
       'title'
     > &
       Attribute.Required;
-    description: Attribute.Text;
     mainImage: Attribute.Media<'images'> & Attribute.Required;
     mainBtnText: Attribute.String & Attribute.Required;
-    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
+    benefits: Attribute.Component<'components.preimushhestvo-2', true> &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -3392,6 +3504,14 @@ export interface ApiMerchantAcquiringPageMerchantAcquiringPage
       'oneToOne',
       'api::banner.banner'
     >;
+    description: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -3425,7 +3545,6 @@ export interface ApiMirPayPageMirPayPage extends Schema.SingleType {
     title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::mir-pay-page.mir-pay-page', 'title'> &
       Attribute.Required;
-    description: Attribute.Text & Attribute.Required;
     mainImage: Attribute.Media<'images'> & Attribute.Required;
     mainBtnText: Attribute.String & Attribute.Required;
     conditions: Attribute.Component<'components.usloviya', true> &
@@ -3437,7 +3556,7 @@ export interface ApiMirPayPageMirPayPage extends Schema.SingleType {
         },
         number
       >;
-    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
+    benefits: Attribute.Component<'components.preimushhestvo-2', true> &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -3465,6 +3584,14 @@ export interface ApiMirPayPageMirPayPage extends Schema.SingleType {
       'oneToMany',
       'api::recommended-product.recommended-product'
     >;
+    description: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -3497,7 +3624,6 @@ export interface ApiMortgageMortgage extends Schema.CollectionType {
   attributes: {
     title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::mortgage.mortgage', 'title'> & Attribute.Required;
-    description: Attribute.Text & Attribute.Required;
     mainBtnText: Attribute.String & Attribute.Required;
     mainImage: Attribute.Media<'images'> & Attribute.Required;
     conditions: Attribute.Component<'components.usloviya', true> &
@@ -3509,7 +3635,7 @@ export interface ApiMortgageMortgage extends Schema.CollectionType {
         },
         number
       >;
-    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
+    benefits: Attribute.Component<'components.preimushhestvo-2', true> &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -3547,6 +3673,14 @@ export interface ApiMortgageMortgage extends Schema.CollectionType {
       'oneToOne',
       'api::banner.banner'
     >;
+    description: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -3580,7 +3714,6 @@ export interface ApiMortgagePageMortgagePage extends Schema.SingleType {
     title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::mortgage-page.mortgage-page', 'title'> &
       Attribute.Required;
-    description: Attribute.Text & Attribute.Required;
     mainBtnText: Attribute.String & Attribute.Required;
     mainImage: Attribute.Media<'images'> & Attribute.Required;
     mortgages: Attribute.Relation<
@@ -3617,6 +3750,13 @@ export interface ApiMortgagePageMortgagePage extends Schema.SingleType {
       'oneToOne',
       'api::banner.banner'
     >;
+    description: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -3736,10 +3876,9 @@ export interface ApiPaymentsByQrCodePagePaymentsByQrCodePage
       'title'
     > &
       Attribute.Required;
-    description: Attribute.Text & Attribute.Required;
     mainImage: Attribute.Media<'images'> & Attribute.Required;
     mainBtnText: Attribute.String & Attribute.Required;
-    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
+    benefits: Attribute.Component<'components.preimushhestvo-2', true> &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -3778,6 +3917,14 @@ export interface ApiPaymentsByQrCodePagePaymentsByQrCodePage
       'oneToOne',
       'api::banner.banner'
     >;
+    description: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -3849,6 +3996,7 @@ export interface ApiPreciousMetalPreciousMetal extends Schema.CollectionType {
     purchasePrevious: Attribute.Float;
     salePrevious: Attribute.Float;
     centralBankPrevious: Attribute.Float;
+    metalCode: Attribute.String & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -4031,9 +4179,8 @@ export interface ApiSafeDepositPageSafeDepositPage extends Schema.SingleType {
     title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::safe-deposit-page.safe-deposit-page', 'title'> &
       Attribute.Required;
-    description: Attribute.Text & Attribute.Required;
     mainImage: Attribute.Media<'images'> & Attribute.Required;
-    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
+    benefits: Attribute.Component<'components.preimushhestvo-2', true> &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -4066,6 +4213,14 @@ export interface ApiSafeDepositPageSafeDepositPage extends Schema.SingleType {
       'oneToOne',
       'api::banner.banner'
     >;
+    description: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -4103,10 +4258,9 @@ export interface ApiSalaryProjectsPageSalaryProjectsPage
       'title'
     > &
       Attribute.Required;
-    description: Attribute.Text & Attribute.Required;
     mainImage: Attribute.Media<'images'> & Attribute.Required;
     mainBtnText: Attribute.String & Attribute.Required;
-    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
+    benefits: Attribute.Component<'components.preimushhestvo-2', true> &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -4139,6 +4293,14 @@ export interface ApiSalaryProjectsPageSalaryProjectsPage
       'oneToOne',
       'api::banner.banner'
     >;
+    description: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -4203,7 +4365,6 @@ export interface ApiSmsNotificationSmsNotification extends Schema.SingleType {
     title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::sms-notification.sms-notification', 'title'> &
       Attribute.Required;
-    description: Attribute.Text & Attribute.Required;
     mainImage: Attribute.Media<'images'> & Attribute.Required;
     conditions: Attribute.Component<'components.usloviya', true> &
       Attribute.Required &
@@ -4214,7 +4375,7 @@ export interface ApiSmsNotificationSmsNotification extends Schema.SingleType {
         },
         number
       >;
-    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
+    benefits: Attribute.Component<'components.preimushhestvo-2', true> &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -4247,6 +4408,14 @@ export interface ApiSmsNotificationSmsNotification extends Schema.SingleType {
       'oneToOne',
       'api::banner.banner'
     >;
+    description: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -4279,10 +4448,9 @@ export interface ApiSpbPageSpbPage extends Schema.SingleType {
   attributes: {
     title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::spb-page.spb-page', 'title'> & Attribute.Required;
-    description: Attribute.Text & Attribute.Required;
     mainImage: Attribute.Media<'images'> & Attribute.Required;
     mainBtnText: Attribute.String & Attribute.Required;
-    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
+    benefits: Attribute.Component<'components.preimushhestvo-2', true> &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -4315,6 +4483,14 @@ export interface ApiSpbPageSpbPage extends Schema.SingleType {
       'oneToOne',
       'api::banner.banner'
     >;
+    description: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -4389,10 +4565,9 @@ export interface ApiTransferCardToCardPageTransferCardToCardPage
       'title'
     > &
       Attribute.Required;
-    description: Attribute.Text & Attribute.Required;
     mainImage: Attribute.Media<'images'> & Attribute.Required;
     mainBtnText: Attribute.String & Attribute.Required;
-    benefits: Attribute.Component<'components.preimushhestvo-karty', true> &
+    benefits: Attribute.Component<'components.preimushhestvo-2', true> &
       Attribute.Required &
       Attribute.SetMinMax<
         {
@@ -4425,6 +4600,14 @@ export interface ApiTransferCardToCardPageTransferCardToCardPage
       'oneToOne',
       'api::banner.banner'
     >;
+    description: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -4557,7 +4740,6 @@ declare module '@strapi/types' {
       'api::document.document': ApiDocumentDocument;
       'api::encashment-page.encashment-page': ApiEncashmentPageEncashmentPage;
       'api::financial-security-page.financial-security-page': ApiFinancialSecurityPageFinancialSecurityPage;
-      'api::footer-link.footer-link': ApiFooterLinkFooterLink;
       'api::general-info.general-info': ApiGeneralInfoGeneralInfo;
       'api::global.global': ApiGlobalGlobal;
       'api::golden-crown-page.golden-crown-page': ApiGoldenCrownPageGoldenCrownPage;

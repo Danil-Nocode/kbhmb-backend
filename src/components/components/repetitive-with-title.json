@@ -6,16 +6,16 @@
   },
   "options": {},
   "attributes": {
-    "title": {
-      "type": "string",
-      "required": true
-    },
     "item": {
       "type": "component",
       "repeatable": true,
       "component": "common.tekst",
       "max": 5,
       "min": 2,
+      "required": true
+    },
+    "title": {
+      "type": "string",
       "required": true
     }
   }

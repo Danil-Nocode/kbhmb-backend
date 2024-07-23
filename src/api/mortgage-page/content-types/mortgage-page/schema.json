@@ -21,10 +21,6 @@
       "targetField": "title",
       "required": true
     },
-    "description": {
-      "type": "text",
-      "required": true
-    },
     "mainBtnText": {
       "type": "string",
       "required": true
@@ -77,6 +73,13 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::banner.banner"
+    },
+    "description": {
+      "type": "customField",
+      "options": {
+        "preset": "toolbar"
+      },
+      "customField": "plugin::ckeditor5.CKEditor"
     }
   }
 }

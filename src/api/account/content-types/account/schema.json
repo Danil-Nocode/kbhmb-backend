@@ -21,10 +21,6 @@
       "targetField": "title",
       "required": true
     },
-    "description": {
-      "type": "text",
-      "required": true
-    },
     "mainImage": {
       "type": "media",
       "multiple": false,
@@ -86,6 +82,14 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::banner.banner"
+    },
+    "description": {
+      "type": "customField",
+      "options": {
+        "preset": "toolbar"
+      },
+      "required": true,
+      "customField": "plugin::ckeditor5.CKEditor"
     }
   }
 }

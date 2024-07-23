@@ -38,6 +38,14 @@
     "metalsTableDescription": {
       "type": "string",
       "required": true
+    },
+    "currencyTableTitle": {
+      "type": "string",
+      "required": true
+    },
+    "metalsTableTitle": {
+      "type": "string",
+      "required": true
     }
   }
 }

@@ -1,25 +1,26 @@
 {
   "collectionName": "components_components_preimushhestvo_2s",
   "info": {
-    "displayName": "Преимущество 2"
+    "displayName": "Преимущество 2",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "image": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "title": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "description": {
       "type": "text",
-      "required": true
+      "required": false
     }
   }
 }
