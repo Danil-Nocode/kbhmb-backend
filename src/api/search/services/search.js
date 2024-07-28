@@ -50,7 +50,19 @@ async function getSearchableFields(types) {
   return Array.from(fields);
 }
 
+async function deleteData(type, id) {
+  try {
+    await client.delete({
+      index: type.split("::").pop(),
+      id,
+    });
+  } catch (error) {
+    console.error(`Failed to delete from Elasticsearch: ${error.message}`);
+  }
+}
+
 module.exports = {
   indexData,
   search,
+  deleteData,
 };

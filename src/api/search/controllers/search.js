@@ -60,7 +60,10 @@ module.exports = {
       .service("api::search.search")
       .search(query, searchTypes);
 
-    const paginatedResults = results.slice(
+    // Фильтруем результаты, чтобы включить только опубликованные элементы
+    const publishedResults = results.filter((item) => item.publishedAt);
+
+    const paginatedResults = publishedResults.slice(
       (page - 1) * pageSize,
       page * pageSize
     );
@@ -70,8 +73,8 @@ module.exports = {
       pagination: {
         page,
         pageSize,
-        total: results.length,
-        totalPages: Math.ceil(results.length / pageSize),
+        total: publishedResults.length,
+        totalPages: Math.ceil(publishedResults.length / pageSize),
       },
     });
   },

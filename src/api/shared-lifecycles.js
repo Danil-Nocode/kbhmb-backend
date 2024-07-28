@@ -1,4 +1,4 @@
-const { indexData } = require('./search/services/search');
+const { indexData, deleteData } = require("./search/services/search");
 
 module.exports = (modelName) => {
   return {
@@ -9,7 +9,8 @@ module.exports = (modelName) => {
       await indexData(modelName);
     },
     async afterDelete(event) {
-      await indexData(modelName);
+      const { result } = event;
+      await deleteData(modelName, result.id);
     },
   };
 };

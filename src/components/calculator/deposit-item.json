@@ -47,6 +47,11 @@
       "type": "float",
       "required": true,
       "min": 0
+    },
+    "deposit_link": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::deposit.deposit"
     }
   }
 }
