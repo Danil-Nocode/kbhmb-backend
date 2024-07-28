@@ -47,6 +47,11 @@
       "type": "float",
       "required": false,
       "min": 0
+    },
+    "loan_link": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::loan.loan"
     }
   }
 }

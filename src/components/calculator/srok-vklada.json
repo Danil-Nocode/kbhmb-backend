@@ -10,28 +10,7 @@
       "type": "string",
       "required": true
     },
-    "monthlyInterestOnline": {
-      "type": "float",
-      "required": false,
-      "min": 0
-    },
-    "monthlyInterestOffice": {
-      "type": "float"
-    },
-    "expiryDateOnline": {
-      "type": "float",
-      "min": 0
-    },
-    "expiryDateOffice": {
-      "type": "float",
-      "min": 0
-    },
     "capitalization": {
-      "type": "boolean",
-      "default": false,
-      "required": true
-    },
-    "deposit": {
       "type": "boolean",
       "default": false,
       "required": true
@@ -53,6 +32,11 @@
       "type": "integer",
       "required": true,
       "min": 0
+    },
+    "term_link": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::investment.investment"
     }
   }
 }

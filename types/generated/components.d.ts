@@ -62,6 +62,11 @@ export interface CalculatorCreditItem extends Schema.Component {
         },
         number
       >;
+    loan_link: Attribute.Relation<
+      'calculator.credit-item',
+      'oneToOne',
+      'api::loan.loan'
+    >;
   };
 }
 
@@ -129,6 +134,11 @@ export interface CalculatorDepositItem extends Schema.Component {
         },
         number
       >;
+    deposit_link: Attribute.Relation<
+      'calculator.deposit-item',
+      'oneToOne',
+      'api::deposit.deposit'
+    >;
   };
 }
 
@@ -273,6 +283,11 @@ export interface CalculatorMortgageItem extends Schema.Component {
         },
         number
       >;
+    mortgage_link: Attribute.Relation<
+      'calculator.mortgage-item',
+      'oneToOne',
+      'api::mortgage.mortgage'
+    >;
   };
 }
 
@@ -303,32 +318,7 @@ export interface CalculatorSrokVklada extends Schema.Component {
   };
   attributes: {
     title: Attribute.String & Attribute.Required;
-    monthlyInterestOnline: Attribute.Float &
-      Attribute.SetMinMax<
-        {
-          min: 0;
-        },
-        number
-      >;
-    monthlyInterestOffice: Attribute.Float;
-    expiryDateOnline: Attribute.Float &
-      Attribute.SetMinMax<
-        {
-          min: 0;
-        },
-        number
-      >;
-    expiryDateOffice: Attribute.Float &
-      Attribute.SetMinMax<
-        {
-          min: 0;
-        },
-        number
-      >;
     capitalization: Attribute.Boolean &
-      Attribute.Required &
-      Attribute.DefaultTo<false>;
-    deposit: Attribute.Boolean &
       Attribute.Required &
       Attribute.DefaultTo<false>;
     interest_rate: Attribute.Component<'calculator.stavka-vklad', true> &
@@ -355,6 +345,11 @@ export interface CalculatorSrokVklada extends Schema.Component {
         },
         number
       >;
+    term_link: Attribute.Relation<
+      'calculator.srok-vklada',
+      'oneToOne',
+      'api::investment.investment'
+    >;
   };
 }
 
@@ -418,6 +413,38 @@ export interface CalculatorStavkaVklad extends Schema.Component {
         number
       >;
     title: Attribute.String & Attribute.Required;
+    monthlyInterestOnline: Attribute.Float &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      >;
+    monthlyInterestOffice: Attribute.Float &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      >;
+    expiryDateOnline: Attribute.Float &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      >;
+    expiryDateOffice: Attribute.Float &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      >;
   };
 }
 

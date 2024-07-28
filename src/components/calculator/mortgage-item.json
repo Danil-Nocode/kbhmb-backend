@@ -64,6 +64,11 @@
       "component": "calculator.stavka-ipoteka",
       "min": 1,
       "max": 5
+    },
+    "mortgage_link": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::mortgage.mortgage"
     }
   }
 }
