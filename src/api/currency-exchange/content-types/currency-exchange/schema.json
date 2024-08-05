@@ -46,6 +46,22 @@
     "metalsTableTitle": {
       "type": "string",
       "required": true
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "ФЛ",
+        "ЮЛ",
+        "ОБЩ"
+      ]
+    },
+    "dateUpdateCurrency": {
+      "type": "date",
+      "required": true
+    },
+    "dateUpdateMetals": {
+      "type": "date",
+      "required": true
     }
   }
 }

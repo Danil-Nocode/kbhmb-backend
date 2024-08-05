@@ -53,6 +53,14 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::banner.banner"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "ФЛ",
+        "ЮЛ",
+        "ОБЩ"
+      ]
     }
   }
 }

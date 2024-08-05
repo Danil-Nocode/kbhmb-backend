@@ -90,6 +90,18 @@
       },
       "required": true,
       "customField": "plugin::ckeditor5.CKEditor"
+    },
+    "parentSlug": {
+      "type": "string"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "ФЛ",
+        "ЮЛ",
+        "ОБЩ"
+      ],
+      "default": "ФЛ"
     }
   }
 }

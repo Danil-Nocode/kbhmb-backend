@@ -35,6 +35,17 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::document.document"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "ФЛ",
+        "ЮЛ",
+        "ОБЩ"
+      ]
+    },
+    "parentSlug": {
+      "type": "string"
     }
   }
 }

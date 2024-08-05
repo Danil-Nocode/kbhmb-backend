@@ -95,6 +95,14 @@
       },
       "required": true,
       "customField": "plugin::ckeditor5.CKEditor"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "ФЛ",
+        "ЮЛ",
+        "ОБЩ"
+      ]
     }
   }
 }

@@ -90,6 +90,14 @@
       "type": "uid",
       "targetField": "title",
       "required": true
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "ФЛ",
+        "ЮЛ",
+        "ОБЩ"
+      ]
     }
   }
 }

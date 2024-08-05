@@ -101,6 +101,9 @@
       ],
       "default": "ФЛ",
       "required": true
+    },
+    "parentSlug": {
+      "type": "string"
     }
   }
 }
