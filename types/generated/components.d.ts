@@ -898,11 +898,11 @@ export interface HeaderPunktMenyu extends Schema.Component {
   collectionName: 'components_header_punkt_menyu';
   info: {
     displayName: '\u041F\u0443\u043D\u043A\u0442 \u043C\u0435\u043D\u044E';
+    description: '';
   };
   attributes: {
     title: Attribute.String & Attribute.Required;
     group: Attribute.Component<'header.gruppy-menyu', true> &
-      Attribute.Required &
       Attribute.SetMinMax<
         {
           min: 1;
@@ -910,6 +910,7 @@ export interface HeaderPunktMenyu extends Schema.Component {
         },
         number
       >;
+    url: Attribute.String;
   };
 }
 

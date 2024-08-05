@@ -852,6 +852,11 @@ export interface ApiAccountAccount extends Schema.CollectionType {
           preset: 'toolbar';
         }
       >;
+    parentSlug: Attribute.String;
+    type: Attribute.Enumeration<
+      ['\u0424\u041B', '\u042E\u041B', '\u041E\u0411\u0429']
+    > &
+      Attribute.DefaultTo<'\u0424\u041B'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -924,6 +929,9 @@ export interface ApiAccountPageAccountPage extends Schema.SingleType {
           preset: 'toolbar';
         }
       >;
+    type: Attribute.Enumeration<
+      ['\u0424\u041B', '\u042E\u041B', '\u041E\u0411\u0429']
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1084,6 +1092,9 @@ export interface ApiBiometricsPageBiometricsPage extends Schema.SingleType {
           preset: 'toolbar';
         }
       >;
+    type: Attribute.Enumeration<
+      ['\u0424\u041B', '\u042E\u041B', '\u041E\u0411\u0429']
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1208,6 +1219,7 @@ export interface ApiCardCard extends Schema.CollectionType {
     type: Attribute.Enumeration<['\u0424\u041B', '\u042E\u041B']> &
       Attribute.Required &
       Attribute.DefaultTo<'\u0424\u041B'>;
+    parentSlug: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1284,6 +1296,9 @@ export interface ApiCardPageCardPage extends Schema.SingleType {
           preset: 'toolbar';
         }
       >;
+    type: Attribute.Enumeration<
+      ['\u0424\u041B', '\u042E\u041B', '\u041E\u0411\u0429']
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1359,6 +1374,9 @@ export interface ApiCashManagementCashManagement extends Schema.SingleType {
           preset: 'toolbar';
         }
       >;
+    type: Attribute.Enumeration<
+      ['\u0424\u041B', '\u042E\u041B', '\u041E\u0411\u0429']
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1488,6 +1506,9 @@ export interface ApiCoinsPageCoinsPage extends Schema.SingleType {
     slug: Attribute.UID<'api::coins-page.coins-page', 'title'> &
       Attribute.Required;
     description: Attribute.Text;
+    type: Attribute.Enumeration<
+      ['\u0424\u041B', '\u042E\u041B', '\u041E\u0411\u0429']
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1568,6 +1589,9 @@ export interface ApiCorporateCardsPageCorporateCardsPage
           preset: 'toolbar';
         }
       >;
+    type: Attribute.Enumeration<
+      ['\u0424\u041B', '\u042E\u041B', '\u041E\u0411\u0429']
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1707,6 +1731,9 @@ export interface ApiCurrencyControlPageCurrencyControlPage
       'oneToOne',
       'api::banner.banner'
     >;
+    type: Attribute.Enumeration<
+      ['\u0424\u041B', '\u042E\u041B', '\u041E\u0411\u0429']
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1754,6 +1781,11 @@ export interface ApiCurrencyExchangeCurrencyExchange extends Schema.SingleType {
     metalsTableDescription: Attribute.String & Attribute.Required;
     currencyTableTitle: Attribute.String & Attribute.Required;
     metalsTableTitle: Attribute.String & Attribute.Required;
+    type: Attribute.Enumeration<
+      ['\u0424\u041B', '\u042E\u041B', '\u041E\u0411\u0429']
+    >;
+    dateUpdateCurrency: Attribute.Date & Attribute.Required;
+    dateUpdateMetals: Attribute.Date & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1808,7 +1840,7 @@ export interface ApiDepositDeposit extends Schema.CollectionType {
       >;
     depositRatesTitle: Attribute.String & Attribute.Required;
     depositRatesBlock: Attribute.DynamicZone<
-      ['unit.dokumentami', 'unit.tekstom']
+      ['unit.dokumentami', 'unit.tekstom', 'unit.spojlery']
     > &
       Attribute.Required &
       Attribute.SetMinMax<
@@ -1855,6 +1887,11 @@ export interface ApiDepositDeposit extends Schema.CollectionType {
           preset: 'toolbar';
         }
       >;
+    parentSlug: Attribute.String;
+    type: Attribute.Enumeration<
+      ['\u0424\u041B', '\u042E\u041B', '\u041E\u0411\u0429']
+    > &
+      Attribute.DefaultTo<'\u042E\u041B'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1941,6 +1978,9 @@ export interface ApiDepositsPageDepositsPage extends Schema.SingleType {
           preset: 'toolbar';
         }
       >;
+    type: Attribute.Enumeration<
+      ['\u0424\u041B', '\u042E\u041B', '\u041E\u0411\u0429']
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1989,6 +2029,10 @@ export interface ApiDisclosuresPageDisclosuresPage extends Schema.SingleType {
       'oneToMany',
       'api::document.document'
     >;
+    type: Attribute.Enumeration<
+      ['\u0424\u041B', '\u042E\u041B', '\u041E\u0411\u0429']
+    >;
+    parentSlug: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2021,7 +2065,7 @@ export interface ApiDocumentDocument extends Schema.CollectionType {
   attributes: {
     title: Attribute.String & Attribute.Required;
     document: Attribute.Media<'files'> & Attribute.Required;
-    datePosted: Attribute.Date;
+    datePosted: Attribute.Date & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2098,6 +2142,9 @@ export interface ApiEncashmentPageEncashmentPage extends Schema.SingleType {
           preset: 'toolbar';
         }
       >;
+    type: Attribute.Enumeration<
+      ['\u0424\u041B', '\u042E\u041B', '\u041E\u0411\u0429']
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2142,6 +2189,10 @@ export interface ApiFinancialSecurityPageFinancialSecurityPage
       'title'
     > &
       Attribute.Required;
+    type: Attribute.Enumeration<
+      ['\u0424\u041B', '\u042E\u041B', '\u041E\u0411\u0429']
+    >;
+    parentSlug: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2224,6 +2275,9 @@ export interface ApiGeneralInfoGeneralInfo extends Schema.SingleType {
       >;
     slug: Attribute.UID<'api::general-info.general-info', 'title'> &
       Attribute.Required;
+    type: Attribute.Enumeration<
+      ['\u0424\u041B', '\u042E\u041B', '\u041E\u0411\u0429']
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2334,6 +2388,9 @@ export interface ApiGoldenCrownPageGoldenCrownPage extends Schema.SingleType {
           preset: 'toolbar';
         }
       >;
+    type: Attribute.Enumeration<
+      ['\u0424\u041B', '\u042E\u041B', '\u041E\u0411\u0429']
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2380,6 +2437,10 @@ export interface ApiHeadOfficeContactsPageHeadOfficeContactsPage
           preset: 'toolbar';
         }
       >;
+    type: Attribute.Enumeration<
+      ['\u0424\u041B', '\u042E\u041B', '\u041E\u0411\u0429']
+    >;
+    parentSlug: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2507,6 +2568,9 @@ export interface ApiHmbOnlineBusinessPageHmbOnlineBusinessPage
         }
       >;
     capabilitiesTitle: Attribute.String;
+    type: Attribute.Enumeration<
+      ['\u0424\u041B', '\u042E\u041B', '\u041E\u0411\u0429']
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2580,6 +2644,9 @@ export interface ApiHmbOnlinePageHmbOnlinePage extends Schema.SingleType {
     appStoreLink: Attribute.String;
     playMarketLink: Attribute.String;
     ruStoreLink: Attribute.String;
+    type: Attribute.Enumeration<
+      ['\u0424\u041B', '\u042E\u041B', '\u041E\u0411\u0429']
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2656,6 +2723,9 @@ export interface ApiHmbSquarePageHmbSquarePage extends Schema.SingleType {
           preset: 'toolbar';
         }
       >;
+    type: Attribute.Enumeration<
+      ['\u0424\u041B', '\u042E\u041B', '\u041E\u0411\u0429']
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2736,6 +2806,9 @@ export interface ApiIbankPageIbankPage extends Schema.SingleType {
         }
       >;
     capabilitiesTitle: Attribute.String;
+    type: Attribute.Enumeration<
+      ['\u0424\u041B', '\u042E\u041B', '\u041E\u0411\u0429']
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2817,6 +2890,9 @@ export interface ApiInterTransfersSwiftPageInterTransfersSwiftPage
           preset: 'toolbar';
         }
       >;
+    type: Attribute.Enumeration<
+      ['\u0424\u041B', '\u042E\u041B', '\u041E\u0411\u0429']
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2850,6 +2926,7 @@ export interface ApiInvestmentInvestment extends Schema.CollectionType {
     title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::investment.investment', 'title'> &
       Attribute.Required;
+    parentSlug: Attribute.String;
     mainBtnText: Attribute.String & Attribute.Required;
     mainImage: Attribute.Media<'images'> & Attribute.Required;
     passportBtnText: Attribute.String & Attribute.Required;
@@ -2918,6 +2995,10 @@ export interface ApiInvestmentInvestment extends Schema.CollectionType {
           preset: 'toolbar';
         }
       >;
+    type: Attribute.Enumeration<
+      ['\u0424\u041B', '\u042E\u041B', '\u041E\u0411\u0429']
+    > &
+      Attribute.DefaultTo<'\u0424\u041B'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2996,6 +3077,9 @@ export interface ApiInvestmentsPageInvestmentsPage extends Schema.SingleType {
           preset: 'toolbar';
         }
       >;
+    type: Attribute.Enumeration<
+      ['\u0424\u041B', '\u042E\u041B', '\u041E\u0411\u0429']
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -3119,6 +3203,7 @@ export interface ApiLoanLoan extends Schema.CollectionType {
     type: Attribute.Enumeration<['\u0424\u041B', '\u042E\u041B']> &
       Attribute.Required &
       Attribute.DefaultTo<'\u0424\u041B'>;
+    parentSlug: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -3196,6 +3281,9 @@ export interface ApiLoansCorporatePageLoansCorporatePage
           preset: 'toolbar';
         }
       >;
+    type: Attribute.Enumeration<
+      ['\u0424\u041B', '\u042E\u041B', '\u041E\u0411\u0429']
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -3286,6 +3374,9 @@ export interface ApiLoansIndividualsPageLoansIndividualsPage
           preset: 'toolbar';
         }
       >;
+    type: Attribute.Enumeration<
+      ['\u0424\u041B', '\u042E\u041B', '\u041E\u0411\u0429']
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -3512,6 +3603,9 @@ export interface ApiMerchantAcquiringPageMerchantAcquiringPage
           preset: 'toolbar';
         }
       >;
+    type: Attribute.Enumeration<
+      ['\u0424\u041B', '\u042E\u041B', '\u041E\u0411\u0429']
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -3592,6 +3686,15 @@ export interface ApiMirPayPageMirPayPage extends Schema.SingleType {
           preset: 'toolbar';
         }
       >;
+    type: Attribute.Enumeration<
+      ['\u0424\u041B', '\u042E\u041B', '\u041E\u0411\u0429']
+    >;
+    parentSlug: Attribute.String;
+    document: Attribute.Relation<
+      'api::mir-pay-page.mir-pay-page',
+      'oneToOne',
+      'api::document.document'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -3681,6 +3784,11 @@ export interface ApiMortgageMortgage extends Schema.CollectionType {
           preset: 'toolbar';
         }
       >;
+    parentSlug: Attribute.String;
+    type: Attribute.Enumeration<
+      ['\u0424\u041B', '\u042E\u041B', '\u041E\u0411\u0429']
+    > &
+      Attribute.DefaultTo<'\u0424\u041B'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -3757,6 +3865,9 @@ export interface ApiMortgagePageMortgagePage extends Schema.SingleType {
           preset: 'toolbar';
         }
       >;
+    type: Attribute.Enumeration<
+      ['\u0424\u041B', '\u042E\u041B', '\u041E\u0411\u0429']
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -3803,6 +3914,9 @@ export interface ApiNewsCollectionNewsCollection extends Schema.CollectionType {
     >;
     slug: Attribute.UID<'api::news-collection.news-collection', 'title'> &
       Attribute.Required;
+    type: Attribute.Enumeration<['\u041E\u0411\u0429']> &
+      Attribute.DefaultTo<'\u041E\u0411\u0429'>;
+    parentSlug: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -3839,6 +3953,10 @@ export interface ApiNewsPageNewsPage extends Schema.SingleType {
     bannerBtnText: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::news-page.news-page', 'title'> &
       Attribute.Required;
+    type: Attribute.Enumeration<
+      ['\u0424\u041B', '\u042E\u041B', '\u041E\u0411\u0429']
+    >;
+    bannerImage: Attribute.Media<'images'> & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -3925,6 +4043,9 @@ export interface ApiPaymentsByQrCodePagePaymentsByQrCodePage
           preset: 'toolbar';
         }
       >;
+    type: Attribute.Enumeration<
+      ['\u0424\u041B', '\u042E\u041B', '\u041E\u0411\u0429']
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -4221,6 +4342,9 @@ export interface ApiSafeDepositPageSafeDepositPage extends Schema.SingleType {
           preset: 'toolbar';
         }
       >;
+    type: Attribute.Enumeration<
+      ['\u0424\u041B', '\u042E\u041B', '\u041E\u0411\u0429']
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -4301,6 +4425,9 @@ export interface ApiSalaryProjectsPageSalaryProjectsPage
           preset: 'toolbar';
         }
       >;
+    type: Attribute.Enumeration<
+      ['\u0424\u041B', '\u042E\u041B', '\u041E\u0411\u0429']
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -4416,6 +4543,9 @@ export interface ApiSmsNotificationSmsNotification extends Schema.SingleType {
           preset: 'toolbar';
         }
       >;
+    type: Attribute.Enumeration<
+      ['\u0424\u041B', '\u042E\u041B', '\u041E\u0411\u0429']
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -4491,6 +4621,9 @@ export interface ApiSpbPageSpbPage extends Schema.SingleType {
           preset: 'toolbar';
         }
       >;
+    type: Attribute.Enumeration<
+      ['\u0424\u041B', '\u042E\u041B', '\u041E\u0411\u0429']
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -4608,6 +4741,10 @@ export interface ApiTransferCardToCardPageTransferCardToCardPage
           preset: 'toolbar';
         }
       >;
+    type: Attribute.Enumeration<
+      ['\u0424\u041B', '\u042E\u041B', '\u041E\u0411\u0429']
+    >;
+    parentSlug: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -4641,6 +4778,10 @@ export interface ApiVacanciesPageVacanciesPage extends Schema.SingleType {
     title: Attribute.String & Attribute.Required;
     slug: Attribute.UID<'api::vacancies-page.vacancies-page', 'title'> &
       Attribute.Required;
+    type: Attribute.Enumeration<
+      ['\u0424\u041B', '\u042E\u041B', '\u041E\u0411\u0429']
+    >;
+    parentSlug: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

@@ -81,6 +81,14 @@
     },
     "ruStoreLink": {
       "type": "string"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "ФЛ",
+        "ЮЛ",
+        "ОБЩ"
+      ]
     }
   }
 }

@@ -21,6 +21,9 @@
       "targetField": "title",
       "required": true
     },
+    "parentSlug": {
+      "type": "string"
+    },
     "mainBtnText": {
       "type": "string",
       "required": true
@@ -114,6 +117,15 @@
       },
       "required": true,
       "customField": "plugin::ckeditor5.CKEditor"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "ФЛ",
+        "ЮЛ",
+        "ОБЩ"
+      ],
+      "default": "ФЛ"
     }
   }
 }

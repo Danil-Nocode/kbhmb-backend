@@ -34,6 +34,16 @@
       "type": "uid",
       "targetField": "title",
       "required": true
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "ОБЩ"
+      ],
+      "default": "ОБЩ"
+    },
+    "parentSlug": {
+      "type": "string"
     }
   }
 }
